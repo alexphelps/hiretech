@@ -6,7 +6,7 @@ from .models import Category
 from .models import Location
 
 class JobAdmin(admin.ModelAdmin):
-    list_display = ('job_title','job_category','job_location','pub_date')
+    list_display = ('job_title','job_category','job_location','job_pub_date')
 
 admin.site.register(Job, JobAdmin)
 admin.site.register(Category)
