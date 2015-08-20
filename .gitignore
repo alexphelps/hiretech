@@ -1,5 +1,6 @@
 # 37jobs ignored files
 .vagrant/
+*.sqlite3
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
