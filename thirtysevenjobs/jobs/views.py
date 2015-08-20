@@ -7,7 +7,7 @@ from .models import Job
 # Create your views here.
 def index(request):
     #get all questions
-    jobs_list = Job.objects.order_by('-job_created_date')
+    jobs_list = Job.objects.all().order_by('-job_created_date')
     template = loader.get_template('jobs/index.html')
     context = RequestContext(request, {
         'jobs_list': jobs_list,
