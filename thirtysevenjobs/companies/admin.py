@@ -3,4 +3,8 @@ from django.contrib import admin
 # Register your models here.
 from .models import Company
 
-admin.site.register(Company)
+class ComapnyAdmin(admin.ModelAdmin):
+    list_display = ('company_name','company_url')
+    search_fields = ['company_name']
+
+admin.site.register(Company, ComapnyAdmin)
