@@ -1,0 +1,46 @@
+###########
+# Use of `relative_permalinks` ensures post links from the index work properly.
+permalink: pretty
+relative_permalinks: true
+
+# site.url, site.title
+
+url:   ''
+title: '37 Jobs'
+name: '37 Jobs'
+paginate:            1
+baseurl:             ""
+
+########
+# more settings
+
+markdown: kramdown
+markdown_ext: "markdown,mkdown,mkdn,mkd,md"
+
+sass:
+  sass_dir: css
+  style:    expanded
+
+gems:
+  - jekyll-sitemap
+
+exclude:
+- README.md
+
+
+safe: true
+lsi: false
+
+# Compress html
+compress_html:
+  clippings: ['!--', html, head, title, base, link, meta, style, body, article, section, nav, aside, h1, h2, h3, h4, h5, h6, hgroup, header, footer, address, p, hr, blockquote, ol, ul, li, dl, dt, dd, figure, figcaption, main, div, table, caption, colgroup, col, tbody, thead, tfoot, tr, td, th]
+  endings: [html, head, body, li, dt, dd, p, rt, rp, optgroup, option, colgroup, caption, thead, tbody, tfoot, tr, td, th]
+
+# Author details.
+authors:
+  alex:
+    display_name: Alex Phelps
+    gravatar: db6f1d7a89e08a3ce7da3936af288966
+    email: alex@37jobs.com
+    googleplus: https://plus.google.com/u/0/+AlexPhelps
+    github: alexphelps

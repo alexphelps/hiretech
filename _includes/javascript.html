@@ -1,0 +1,38 @@
+<!-- JS -->
+<script src="/js/jquery-1.11.2.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/ouibounce.min.js"></script>
+<script src="/js/jquery.dataTables.min.js"></script>
+<script src="/js/jquery.dataTables.bootstrap.min.js"></script>
+<script src="/js/select2.min.js"></script>
+<script src="/js/d3.min.js"></script>
+<script src="/js/c3.min.js"></script>
+<script src="/js/c3.overrides.js"></script>
+<script src="/js/mediaelement-and-player.min.js"></script>
+<script src="/js/moment.min.js"></script>
+<script src="/js/daterangepicker.js"></script>
+<script src="/js/main.js"></script>
+<script type="text/javascript">
+//fixed top sub-nav
+$(window).scroll(function() {    
+    var scroll = $(window).scrollTop();
+    if (scroll >= 50) {
+        $(".sub-nav").addClass("navbar-fixed-top");
+    } else {
+    	$(".sub-nav").removeClass("navbar-fixed-top");
+    }
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$(".accounts-nav-select").select2(
+	);
+});
+</script>
+<script>
+$('audio').mediaelementplayer({
+	audioWidth: 400, // width of audio player
+	audioHeight: 40, // height of audio player
+    features: ['playpause','progress','current','duration','volume',],
+});
+</script>

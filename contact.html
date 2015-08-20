@@ -1,0 +1,52 @@
+---
+layout: base
+title:  'Contact Us'
+---
+{% include header-no-nav.html %}
+<div class="content">
+<section>
+	<div class="container">
+		<div class="row m-b-40">
+			<div class="col-md-12 text-center">
+				<h3>Get in touch, we'd love to hear from you.</h3>
+			</div>
+		</div>
+		<div class="row m-b-100">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="panel p-30">
+					<div class="panel-body">
+						<h4>Send Us a Message</h4>
+						<form class="" action="https://getsimpleform.com/messages?form_api_token=1c0e9dfe4d2cfeb1fc7a65a6ae0f559d" method="post">
+						  <!-- the redirect_to is optional, the form will redirect to the referrer on submission -->
+						  <input type='hidden' name='redirect_to' value='{{site.url}}/thank-you/' />
+						  <!-- all your input fields here.... -->
+						  	<div class="form-group floating-label">
+						        <label class="control-label" for="fieldName">Name</label><br />
+					  			<input class="form-control" type="text" name="name" required/>
+					  		</div>
+					  		<div class="form-group floating-label">
+					  			<label class="control-label" for="fieldEmail">Email</label><br />
+						  		<input class="form-control" type="email" name="email" required />
+						  	</div>
+						  	<div class="form-group floating-label">
+						        <label class="control-label" for="fieldCompany">Company</label><br />
+					  			<input class="form-control" type="text" name="company" required />
+					  		</div>
+					  		
+						  	<div class="form-group textarea-group floating-label">
+						  		<label class="control-label" for="fieldCompany">How can we help?</label><br />
+						  		<textarea cols="40" rows="3" class="form-control" id="textArea" name="message"></textarea>
+						  	</div>
+							<input class="btn btn-primary btn-block" type='submit' value='Contact Us' />
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+</div>
+{% include footer.html %}
+{% include javascript.html %}
+</body>
+</html>

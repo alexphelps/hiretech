@@ -1,0 +1,88 @@
+---
+layout: base
+title:  'Call Tracking, Phone Call Analytics by Call Tracker '
+sitemap: false
+---
+{% include header-end-user.html %}
+<div class="content">
+	<div class="container">
+      <div class="row p-t-20 p-b-100">
+        <div class="col-md-8">
+          <table class="table table-hover table-condensed" id="all-calls" width="100%">
+              <thead>
+                  <tr>
+                      <th>
+                        Client
+                      </th>
+                      <th >
+                         Tracking Numbers
+                      </th>
+                      <th>
+                        Edit
+                      </th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <!-- row -->
+                  <tr class="first">
+                    <td>
+                      <a href="/dashboard">John's Computers</a>
+                    </td>
+                    <td>
+                      16
+                    </td>
+                    <td>
+                      <a href="#" class="btn btn-xs btn-primary">Edit</a>
+                    </td>
+                  </tr>
+                  <tr class="first">
+                    <td>
+                      <a href="/dashboard">Amy's Bakery</a>
+                    </td>
+                    <td>
+                      6
+                    </td>
+                    <td>
+                      <a href="#" class="btn btn-xs btn-primary">Edit</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+		        </div>
+            <div class="col-md-4">
+              <div class="well well-lg">
+                <a href="#" class="btn btn-block btn-primary">Add New Client</a>
+              </div>
+              <div class="well well-lg">
+                <h5>Reselling Calltracker?</h5>
+                <a href="#" class="btn btn-primary">Make it Your Own</a>
+              </div>
+            </div>
+      </div>
+    
+	</div>
+</div>
+{% include javascript.html %}
+<script type="text/javascript">
+$(document).ready(function(){
+  $('#all-calls').DataTable({
+  	"dom": 'lCfrtip',
+  	"order": [],
+  	"colVis": {
+  		"buttonText": "Columns",
+  		"overlayFade": 0,
+  		"align": "right"
+  	},
+  	"language": {
+  		"lengthMenu": '_MENU_ entries per page',
+  		"search": '<i class="md md-search"></i> ',
+  		"paginate": {
+  			"previous": '<i class="md md-keyboard-arrow-left"></i>',
+  			"next": '<i class="md md-keyboard-arrow-right"></i>'
+  		}
+  	}
+  });
+});
+</script>
+</body>
+</html>
