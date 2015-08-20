@@ -1,2 +1,1 @@
-# calltrackerio-site
-Static site for http://calltracker.io
+# 37jobs-site
