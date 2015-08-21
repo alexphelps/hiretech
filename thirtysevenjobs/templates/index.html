@@ -1,21 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="row">
-  <div class="col-md-12">
-    {% if jobs_list %}
-        <ul>
-        {% for job in jobs_list %}
-            <li><a href="/jobs/{{ job.id }}/">{{ job.job_title }}</a> {{ job.job_location }}</li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>No jobs are available.</p>
-    {% endif %}
+{% include 'header.html' %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="panel panel-default">
+        {% if jobs_list %}
+          <!-- List group -->
+            <ul class="list-group">
+            {% spaceless %}
+            {% for job in jobs_list %}
+                <li class="list-group-item">
+                  <h5><a href="/jobs/{{ job.id }}/">{{ job.job_title }}</a></h5>
+                  <small>{{ job.job_location }}</small>
+                </li>
+            {% endfor %}
+            {% endspaceless %}
+            </ul>
+        {% else %}
+            <p>No jobs are available.</p>
+        {% endif %}
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
 {% include 'footer.html' %}
 {% include 'javascript.html' %}
-
 </body>
 {% endblock %}
