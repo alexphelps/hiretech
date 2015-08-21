@@ -3,7 +3,7 @@
 {% include 'header.html' %}
 <div class="container">
   <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-8">
       <div class="panel panel-default">
         {% if jobs_list %}
           <!-- List group -->
@@ -11,8 +11,12 @@
             {% spaceless %}
             {% for job in jobs_list %}
                 <li class="list-group-item">
+                  <div class="pull-right">
+                    <p><strong>{{ job.job_location }}</strong></p>
+                    <small>{{ job.job_created_date }}</small>
+                  </div>
                   <h5><a href="/jobs/{{ job.id }}/">{{ job.job_title }}</a></h5>
-                  <small>{{ job.job_location }}</small>
+                  <p class="m-b-5">{{ job.job_company }}</p>
                 </li>
             {% endfor %}
             {% endspaceless %}
