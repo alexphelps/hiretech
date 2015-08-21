@@ -55,6 +55,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'jobs',
     'companies',
+    'compressor',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -116,7 +117,25 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
-
+STATIC_ROOT = normpath(join(DJANGO_ROOT, 'static'))
 STATIC_URL = '/static/'
-MEDIA_ROOT = normpath(join(SITE_ROOT, 'media'))
+#STATICFILES_DIRS = (
+#    normpath(join(SITE_ROOT, 'static')),
+#)
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder',
+)
+
+#MEDIA_ROOT = normpath(join(SITE_ROOT, 'media'))
 MEDIA_URL = '/media/'
+
+# Sass compiler
+COMPRESS_ENABLED = True
+COMPRESS_ROOT = normpath(join(DJANGO_ROOT, 'static'))
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'django_libsass.SassCompiler'),
+)
