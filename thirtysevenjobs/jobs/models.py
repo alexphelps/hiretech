@@ -13,13 +13,13 @@ class Job(models.Model):
     job_title = models.CharField(max_length=200)
     job_description = models.TextField()
     job_created_date = models.DateTimeField('date created',null=True)
-    status_choices = (
+    job_status_choices = (
         ('draft','Draft'),
         ('pending_review','Pending Review'),
         ('published','Published'),
         ('filled','Filled'),
     )
-    job_status = models.CharField(max_length="20",choices=status_choices,default='draft')
+    job_status = models.CharField(max_length="20",choices=job_status_choices,default='draft')
 
     def __unicode__(self):
         return self.job_status
