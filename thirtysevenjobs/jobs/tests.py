@@ -25,16 +25,15 @@ class IndexViewTest(TestCase):
         )
         response = self.client.get(url)
         print response
-        expected = '<li class="list-group-item"><div class="row">'
-        expected += '<div class="col-md-7 col-sm-7 col-xs-8">'
-        expected += '<img class="img-responsive img-thumbnail pull-left m-r-10 job-list-img"'
-        expected += ' src="/media/logo.png"><h5><a href="/jobs/1/">Python Guy</a><br>'
-        expected += '<small><a href="/comapnies/1/" class="text-muted">Pronto</a></small></h5>'
-        expected += '</div><div class="col-md-2 col-sm-2 col-xs-2 center-block hidden-xs">'
-        expected += '<p class="m-t-20">Owensboro, KY</p></div>'
-        expected += '<div class="col-md-3 col-sm-3 col-xs-4">'
-        expected += '<ul class="list-unstyled text-center m-t-10"><li>'
-        expected += '<span class="job-type full_time">Full Time</span></li>'
-        expected += '<li><small class="timeago" title="">None</small></li>'
-        expected += '</ul></div></div></li>'
+        expected = 'li class="list-group-item"><div class="row">'
+        expected = '<div class="col-md-9 col-sm-9 col-xs-8">'
+        expected = '<img class="img-responsive img-thumbnail pull-left m-r-10 job-list-img"'
+        expected = ' src="/media/logo.png"><h5><a href="/jobs/1/">Python Guy</a><br>'
+        expected = '<small><a href="/comapnies/1/" class="text-muted">Pronto</a>'
+        expected = ' - Owensboro, KY</small></h5></div>'
+        expected = '<div class="col-md-3 col-sm-3 col-xs-4">'
+        expected = '<ul class="list-unstyled text-center m-t-10"><li>'
+        expected = '<span class="job-type full_time">Full Time</span></li>'
+        expected = '<li><small class="timeago" title="">None</small></li>'
+        expected = '</ul></div></div></li>'
         self.assertContains(response,expected)
