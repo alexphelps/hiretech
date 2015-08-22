@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'header.html' %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <p class=""><a href="/jobs"><strong><i class="fa fa-arrow-left"></i> Back to all jobs</strong></a></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-9">
+      <div class="panel panel-white">
+          <div  class="panel-heading">
+            <a href="/comapnies/{{ job.job_company.id }}/">
+              <img class="img-responsive img-thumbnail pull-right job-details-img" src="{{ job.job_company.company_logo.url }}">
+            </a>  
+            <h3>{{ job.job_title }}</h3>
+            <p>{{ job.get_job_type_display }} / {{ job.job_location }}</p>
+          </div>
+          <div class="panel-body">
+            {{ job.job_description }}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="panel panel-white">
+          <div class="panel-heading">
+            <h5>How to Apply</h5>
+          </div>
+          <div class="panel-body">
+              {{ job.job_apply_notes }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% include 'footer.html' %}
+{% include 'javascript.html' %}
+</body>
+{% endblock %}
