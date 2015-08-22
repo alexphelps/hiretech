@@ -21,6 +21,7 @@ class IndexViewTest(TestCase):
             job_description='',
         )
         response = self.client.get(url)
+        print response
         expected = '<li class="list-group-item">'
         expected += '<h5><a href="/jobs/1/">Python Guy</a>'
         expected += '</h5><small>Owensboro, KY</small></li>'

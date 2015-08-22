@@ -2,27 +2,69 @@
 {% block content %}
 {% include 'header.html' %}
 <div class="container">
+  <div  class="row">
+    <div  class="col-md-12">
+      <div class="well">
+        <form class="form-group" style="min-height:50px;">
+          <div class="col-md-4">
+            <label><strong>Job Description</strong></label>
+            <input type="text" placeholder="Filter by title, benefits, companies, expertise" class="form-control">
+          </div>
+          <div class="col-md-4">
+            <label><strong>Job Location</strong></label>
+            <input type="text" placeholder="Filter by city, state, zip code or country" class="form-control">
+          </div>
+          <div class="col-md-2">
+            <div class="checkbox">
+              <label>
+                &nbsp;<br>
+                <input type="checkbox"> Full Time Only
+              </label>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <label>&nbsp;</label><br>
+            <button class="btn btn-primary">Search Jobs</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
       <div class="panel panel-default">
         {% if jobs_list %}
           <!-- List group -->
-            <ul class="list-group">
+            <ul class="list-group jobs-list">
             {% spaceless %}
             {% for job in jobs_list %}
                 <li class="list-group-item">
-                  <div class="pull-right">
-                    <p><strong>{{ job.job_location }}</strong></p>
-                    <small>{{ job.job_created_date }}</small>
+                  <div class="row">
+                    <div class="col-md-7">
+                      <img style="width:65px" class="img-responsive img-circle pull-left m-r-10" src="https://demo.astoundify.com/jobify-darker/wp-content/uploads/sites/16/2014/01/full_amazon_logo_transparent.png">
+                      <h5>
+                        <a href="/jobs/{{ job.id }}/">{{ job.job_title }}</a><br>
+                        <small><a href="/comapnies/{{ job.job_company.id }}/" class="text-muted">{{ job.job_company }}</a></small>
+                      </h5>
+                    </div>
+                    <div class="col-md-2 center-block">
+                      <p class="m-t-20">{% spaceless %}<label class="label {% if job.get_job_type_display == 'Full Time'%} label-success {% endif %}{% if job.get_job_type_display == 'Part Time'%} label-warning {% endif %}{% if job.get_job_type_display == 'Contract'%} label-primary {% endif %}
+                        ">{{ job.get_job_type_display }}{% endspaceless %}</label></p>
+                    </div>
+                    <div class="col-md-3">
+                      <p class="m-t-10">
+                        <strong>{{ job.job_location }}</strong><br>
+                        <small>{{ job.job_created_date }}</small>
+                      </p>
+                    </div>
                   </div>
-                  <h5><a href="/jobs/{{ job.id }}/">{{ job.job_title }}</a></h5>
-                  <p class="m-b-5">{{ job.job_company }}</p>
+
                 </li>
             {% endfor %}
             {% endspaceless %}
             </ul>
         {% else %}
-            <p>No jobs are available.</p>
+            <p class="lead">No jobs are available.</p>
         {% endif %}
         </div>
       </div>
