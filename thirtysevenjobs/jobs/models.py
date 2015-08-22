@@ -1,5 +1,6 @@
+import markdown
 from django.db import models
-
+    
 # Create your models here.
 class Category(models.Model):
     category_name = models.CharField(max_length=100)
@@ -18,7 +19,7 @@ class Job(models.Model):
         ('internship','Internship')
     )
     job_type = models.CharField(max_length=20,choices=job_types_choices,default='full_time')
-    job_description = models.TextField()
+    job_description = models.TextField(default='')
     job_apply_notes = models.TextField(default='')
     job_created_date = models.DateTimeField('date created',null=True)
     job_status_choices = (

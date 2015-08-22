@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 {% include 'header.html' %}
+{% load markdown_deux_tags %}
 <div class="container">
   <div class="row">
     <div class="col-md-12">
@@ -13,12 +14,12 @@
           <div  class="panel-heading">
             <a href="/comapnies/{{ job.job_company.id }}/">
               <img class="img-responsive img-thumbnail pull-right job-details-img" src="{{ job.job_company.company_logo.url }}">
-            </a>  
+            </a>
             <h3>{{ job.job_title }}</h3>
             <p>{{ job.get_job_type_display }} / {{ job.job_location }}</p>
           </div>
           <div class="panel-body">
-            {{ job.job_description }}
+            {{ job.job_description|markdown }}
           </div>
         </div>
       </div>
@@ -28,7 +29,7 @@
             <h5>How to Apply</h5>
           </div>
           <div class="panel-body">
-              {{ job.job_apply_notes }}
+              {{ job.job_apply_notes|markdown }}
           </div>
         </div>
       </div>

@@ -53,6 +53,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'markdown_deux',
     'jobs',
     'companies',
     'compressor',
@@ -132,6 +133,7 @@ STATICFILES_FINDERS = (
 
 MEDIA_ROOT = normpath(join(SITE_ROOT, 'media'))
 MEDIA_URL = '/media/'
+
 
 # Sass compiler
 COMPRESS_ENABLED = True
