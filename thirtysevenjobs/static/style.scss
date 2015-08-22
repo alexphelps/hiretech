@@ -1,6 +1,7 @@
 // add bootstrap variable settings here
 @import 'bootstrap';
 @import 'bootswatch';
+@import 'font-awesome';
 @import 'utility-classes';
 //custom styles
 .navbar {
@@ -8,4 +9,33 @@
 }
 .jobs-list .list-group-item {
   padding: 5px 10px;
+}
+
+.panel-white .panel-heading {
+    border-bottom: 1px solid #eee;
+}
+.job-list-img {
+    width:65px;
+}
+.job-details-img {
+    width:108px;
+}
+.job-type {
+  text-transform: uppercase;
+  text-align: center;
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+.job-type.full_time {
+  background-color: $btn-success-bg;
+}
+.job-type.part_time {
+  background-color: $btn-warning-bg;
+}
+.job-type.contract {
+  background-color: $btn-primary-bg;
+}
+.job-type.internship {
+  background-color: $btn-info-bg;
 }

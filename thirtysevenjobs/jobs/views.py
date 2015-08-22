@@ -1,5 +1,5 @@
 from django.http import Http404
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404,render
 from django.http import HttpResponse
 from django.template import RequestContext, loader
 
@@ -15,4 +15,5 @@ def index(request):
     return HttpResponse(template.render(context))
 
 def jobdetail(request, job_id):
-    return HttpResponse("You're looking at job %s." % job_id)
+    job = get_object_or_404(Job, pk=job_id)
+    return render(request, 'job_details.html', {'job': job})

@@ -130,7 +130,7 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
 )
 
-#MEDIA_ROOT = normpath(join(SITE_ROOT, 'media'))
+MEDIA_ROOT = normpath(join(SITE_ROOT, 'media'))
 MEDIA_URL = '/media/'
 
 # Sass compiler
