@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^jobs/', include('jobs.urls', namespace="jobs")),
+    url(r'^companies/', include('companies.urls', namespace="companies")),
     url(r'^admin/', include(admin.site.urls)),
 ]
 

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'header.html' %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <p class=""><a href="/jobs"><strong><i class="fa fa-arrow-left"></i> Back to all jobs</strong></a></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <img class="img-responsive img-thumbnail" src="{{ company.company_logo.url }}" />
+      <h5 class="m-t-10">{{ company.company_name }}</h5>
+      <p>{{ company.company_url|urlize }}</p>
+    </div>
+    <div class="col-md-9">
+      <h4>Available Jobs</h4>
+      {% if company_job_list %}
+        <!-- List group -->
+          <ul class="list-group jobs-list">
+          {% spaceless %}
+          {% for job in company_job_list %}
+              <li class="list-group-item">
+                <div class="row">
+                  <div class="col-md-9 col-sm-9 col-xs-8">
+                    <img class="img-responsive img-thumbnail pull-left m-r-10 job-list-img" src="{{ job.job_company.company_logo.url }}">
+                    <h5>
+                      <a href="/jobs/{{ job.id }}/">{{ job.job_title }}</a><br>
+                      <small>{{ job.job_location }}</small>
+                    </h5>
+                  </div>
+                  <div class="col-md-3 col-sm-3 col-xs-4">
+                    <ul class="list-unstyled text-center m-t-10">
+                      <li><a href="/jobs/{{ job.id }}/"><span class="job-type {{ job.job_type }}">{{ job.get_job_type_display }}</span></a></li>
+                      <li><small class="timeago" title="{{ job.job_created_date|date:"c" }}">{{ job.job_created_date }}</small></li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+          {% endfor %}
+          {% endspaceless %}
+          </ul>
+      {% else %}
+          <p class="lead">No jobs are available.</p>
+      {% endif %}
+      </div>
+    </div>
+  </div>
+{% include 'footer.html' %}
+{% include 'javascript.html' %}
+</body>
+{% endblock %}
