@@ -9,7 +9,7 @@ from .models import Job
 def index(request):
     #get all questions
     jobs_list = Job.objects.all().order_by('-job_created_date')
-    template = loader.get_template('index.html')
+    template = loader.get_template('job_index.html')
     context = RequestContext(request, {
         'jobs_list': jobs_list,
     })

@@ -12,7 +12,7 @@
     <div class="col-md-9">
       <div class="panel panel-white">
           <div  class="panel-heading">
-            <a href="/comapnies/{{ job.job_company.id }}/">
+            <a href="/companies/{{ job.job_company.id }}/">
               <img class="img-responsive img-thumbnail pull-right job-details-img" src="{{ job.job_company.company_logo.url }}">
             </a>
             <h3>{{ job.job_title }}</h3>
@@ -35,7 +35,6 @@
       </div>
     </div>
   </div>
-</div>
 {% include 'footer.html' %}
 {% include 'javascript.html' %}
 </body>

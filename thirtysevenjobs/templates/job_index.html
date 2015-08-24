@@ -44,12 +44,12 @@
                       <img class="img-responsive img-thumbnail pull-left m-r-10 job-list-img" src="{{ job.job_company.company_logo.url }}">
                       <h5>
                         <a href="/jobs/{{ job.id }}/">{{ job.job_title }}</a><br>
-                        <small><a href="{{ job.job_company.id }}" class="text-muted">{{ job.job_company }}</a> - {{ job.job_location }}</small>
+                        <small><a href="/companies/{{ job.job_company.id }}" class="text-muted">{{ job.job_company }}</a> - {{ job.job_location }}</small>
                       </h5>
                     </div>
                     <div class="col-md-3 col-sm-3 col-xs-4">
                       <ul class="list-unstyled text-center m-t-10">
-                        <li><span class="job-type {{ job.job_type }}">{{ job.get_job_type_display }}</span></li>
+                        <li><a href="/jobs/{{ job.id }}/"><span class="job-type {{ job.job_type }}">{{ job.get_job_type_display }}</span></a></li>
                         <li><small class="timeago" title="{{ job.job_created_date|date:"c" }}">{{ job.job_created_date }}</small></li>
                       </ul>
                     </div>
