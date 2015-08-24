@@ -3,7 +3,7 @@ from .models import Job,Category
 from companies.models import Company
 
 # Create your tests here.
-class IndexViewTest(TestCase):
+class JobIndexViewTest(TestCase):
     def test_index_response(self):
         url = '/jobs/'
         response = self.client.get(url)
@@ -36,3 +36,20 @@ class IndexViewTest(TestCase):
         expected = '<li><small class="timeago" title="">None</small></li>'
         expected = '</ul></div></div></li>'
         self.assertContains(response,expected)
+
+    def test_job_details_response(self):
+        category = Category.objects.create(category_name='Python Developer')
+        company = Company.objects.create(
+            company_name='Pronto',
+            company_logo='/media/logo.png',
+        )
+        job = Job.objects.create(
+            job_category=category,
+            job_company=company,
+            job_location='Owensboro, KY',
+            job_title='Python Guy',
+            job_description='',
+        )
+        url = '/jobs/' + str(job.id) + '/'
+        response = self.client.get(url)
+        self.assertEqual(response.status_code,200)
