@@ -83,6 +83,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.core.context_processors.media',
             ],
         },
     },
@@ -115,7 +116,8 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+MEDIA_ROOT = normpath(join(DJANGO_ROOT, 'media'))
+MEDIA_URL = '/media/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 STATIC_ROOT = normpath(join(DJANGO_ROOT, 'static'))
@@ -130,10 +132,6 @@ STATICFILES_FINDERS = (
     # other finders..
     'compressor.finders.CompressorFinder',
 )
-
-MEDIA_ROOT = normpath(join(SITE_ROOT, 'media'))
-MEDIA_URL = '/media/'
-
 
 # Sass compiler
 COMPRESS_ENABLED = True
