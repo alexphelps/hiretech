@@ -3,7 +3,7 @@
 *.sqlite3
 .DS_Store
 *.DS_Store
-thirtysevenjobs/media/
+media/
 thirtysevenjobs/static/CACHE/
 # Byte-compiled / optimized / DLL files
 __pycache__/

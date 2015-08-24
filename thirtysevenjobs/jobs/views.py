@@ -2,6 +2,7 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404,render
 from django.http import HttpResponse
 from django.template import RequestContext, loader
+from django.conf import settings
 
 from .models import Job
 # Create your views here.
@@ -16,4 +17,8 @@ def index(request):
 
 def jobdetail(request, job_id):
     job = get_object_or_404(Job, pk=job_id)
-    return render(request, 'job_details.html', {'job': job})
+    template = loader.get_template('job_details.html')
+    context = RequestContext(request,
+        {'job': job
+    })
+    return HttpResponse(template.render(context))
