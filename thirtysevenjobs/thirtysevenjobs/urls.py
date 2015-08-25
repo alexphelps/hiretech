@@ -22,7 +22,7 @@ urlpatterns = [
     url(r'^$', include('flatpages.urls', namespace="homepage")),
     url(r'^jobs/', include('jobs.urls', namespace="jobs")),
     url(r'^companies/', include('companies.urls', namespace="companies")),
-    url(r'^/', include('django.contrib.flatpages.urls')),
+    url(r"^account/", include("account.urls")),
     url(r'^admin/', include(admin.site.urls)),
 ]
 
