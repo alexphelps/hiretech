@@ -17,13 +17,14 @@ from django.conf.urls import patterns,include, url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from users import views as user_views
 
 urlpatterns = [
     url(r'^$', include('flatpages.urls', namespace="homepage")),
     url(r'^jobs/', include('jobs.urls', namespace="jobs")),
     url(r'^companies/', include('companies.urls', namespace="companies")),
-    url(r"^account/", include("account.urls")),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^signup/$', user_views.SignupView.as_view(), name='signup'),
 ]
 
 if settings.DEBUG:

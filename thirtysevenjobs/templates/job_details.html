@@ -13,7 +13,7 @@
       <div class="panel panel-white">
           <div  class="panel-heading">
             <a href="/companies/{{ job.job_company.id }}/">
-              <img class="img-responsive img-thumbnail pull-right job-details-img" src="{{ job.job_company.company_logo.url }}">
+              <img class="img-responsive img-rounded pull-right job-details-img" src="{{ job.job_company.company_logo.url }}">
             </a>
             <h3>{{ job.job_title }}</h3>
             <p>{{ job.get_job_type_display }} / {{ job.job_location }}</p>
