@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'header.html' %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="panel p-30">
+      <div class="panel-body">
+      <h4 class="">Get started.</h4>
+      <p class="lead text-center"></p>
+        <form action="." method="post" id="subForm">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group floating-label">
+              <label class="control-label" for="first_name">First Name</label><br/>
+               {{ form.first_name }}
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group floating-label">
+              <label class="control-label" for="last_name">Last Name</label><br/>
+              {{ form.last_name }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group floating-label">
+                <label class="control-label" for="email">Email</label><br/>
+                {{ form.email }}
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group floating-label">
+              <label class="control-label" for="password">Password</label><br/>
+              {{ form.password }}
+              </div>
+            </div>
+          </div>
+          <div class="form-group floating-label">
+            <label class="control-label" for="company_name">Company Name</label><br/>
+            {{ form.company_name }}
+          </div>
+            <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% include 'footer.html' %}
+{% include 'javascript.html' %}
+</body>
+{% endblock %}
