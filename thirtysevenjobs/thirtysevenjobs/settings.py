@@ -56,6 +56,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.flatpages',
     'markdown_deux',
+    'users',
     'jobs',
     'companies',
     'compressor',
