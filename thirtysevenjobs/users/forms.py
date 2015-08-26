@@ -51,7 +51,7 @@ class SignupForm(forms.Form):
                 'id': 'company_url',
                 'class': 'form-control'
             }),
-        )
+        required=False)
     company_logo = forms.ImageField(
         widget=forms.FileInput(
             attrs={
