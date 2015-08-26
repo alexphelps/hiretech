@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^jobs/', include('jobs.urls', namespace="jobs")),
     url(r'^companies/', include('companies.urls', namespace="companies")),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^signup/$', user_views.SignupView.as_view(), name='signup'),
+    url(r'^join/$', user_views.SignupView.as_view(), name='signup'),
 ]
 
 if settings.DEBUG:
