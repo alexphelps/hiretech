@@ -6,7 +6,7 @@ from  companies.models import Company
 
 # Create your models here.
 class UserProfile(models.Model):
-    user = models.ForeignKey(User, verbose_name='user')
+    user = models.ForeignKey(User)
     company = models.ForeignKey('companies.Company', default='')
     user_type_choices = (
         ('employer','Employer'),
