@@ -41,8 +41,9 @@ class JobIndexViewTest(TestCase):
     def test_job_details_response(self):
         category = Category.objects.create(category_name='Python Developer')
         company = Company.objects.create(
-            company_name='Pronto',
+            company_name='Python Shop',
             company_logo='/media/logo.png',
+            company_url='http://python.com',
         )
         job = Job.objects.create(
             job_category=category,
