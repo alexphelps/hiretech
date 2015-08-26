@@ -30,7 +30,6 @@ class CompanyDetailsViewTest(TestCase):
         )
         url = '/companies/' + str(company.id) + '/'
         response = self.client.get(url)
-        print response
         expected = '<img class="img-responsive img-rounded" '
         expected += 'src="/media/logo.png" />'
         expected += '<h5 class="m-t-10">Python Shop</h5>'
