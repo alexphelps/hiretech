@@ -7,6 +7,7 @@ from django.http import (
     HttpResponse,
     HttpResponseRedirect,
 )
+from django.contrib.auth import authenticate, login, logout
 
 from .forms import SignupForm
 from .models import UserProfile
@@ -52,10 +53,12 @@ class SignupView(TemplateView):
                 user=user,
                 company=company
             )
-            return HttpResponseRedirect(
-                '/jobs/'
-            )
-
+            username = request.POST['email']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return HttpResponseRedirect('/dashboard/')
         else:
             print form.errors
         context = {
