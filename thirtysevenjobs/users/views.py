@@ -1,4 +1,7 @@
+from django.http import *
+from django.shortcuts import render_to_response,redirect
 from django.shortcuts import render
+from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
 
 from django.contrib.auth.models import User
@@ -7,11 +10,18 @@ from django.http import (
     HttpResponse,
     HttpResponseRedirect,
 )
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 
 from .forms import SignupForm
 from .models import UserProfile
 from companies.models import Company
+
+class LoginRequiredMixin(object):
+    @classmethod
+    def as_view(cls, **initkwargs):
+        view = super(LoginRequiredMixin, cls).as_view(**initkwargs)
+        return login_required(view)
 
 # Create your views here.
 class SignupView(TemplateView):
@@ -53,6 +63,7 @@ class SignupView(TemplateView):
                 user=user,
                 company=company
             )
+            #log them in if we were able to sign them up
             username = request.POST['email']
             user = authenticate(username=username, password=password)
             if user is not None:
@@ -63,6 +74,18 @@ class SignupView(TemplateView):
             print form.errors
         context = {
             'form':form,
+        }
+        return render(
+            request,
+            self.template_name,
+            context
+        )
+
+class DashboardView(LoginRequiredMixin, TemplateView):
+    template_name = 'dashboard.html'
+    def get(self,request):
+        context = {
+
         }
         return render(
             request,
