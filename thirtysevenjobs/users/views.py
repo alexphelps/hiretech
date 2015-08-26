@@ -2,6 +2,11 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 
 from django.contrib.auth.models import User
+from django.http import (
+    Http404,
+    HttpResponse,
+    HttpResponseRedirect,
+)
 
 from .forms import SignupForm
 from .models import UserProfile
@@ -31,7 +36,6 @@ class SignupView(TemplateView):
             company_name = request.POST['company_name']
             company_url = request.POST['company_url']
             company_logo = request.FILES['company_logo']
-            print request.FILES
             user = User.objects.create_user(
                 username=email,
                 password=password,
@@ -48,7 +52,10 @@ class SignupView(TemplateView):
                 user=user,
                 company=company
             )
-            print request.POST
+            return HttpResponseRedirect(
+                '/jobs/'
+            )
+
         else:
             print form.errors
         context = {
