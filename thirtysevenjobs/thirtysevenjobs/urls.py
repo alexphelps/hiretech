@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from users import views as user_views
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
     url(r'^$', include('flatpages.urls', namespace="homepage")),
@@ -25,7 +26,7 @@ urlpatterns = [
     url(r'^companies/', include('companies.urls', namespace="companies")),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^join/$', user_views.SignupView.as_view(), name='signup'),
-    url(r'^dashboard/$', user_views.DashboardView.as_view(), name='dashboard'),
+    url(r'^dashboard/$', login_required(user_views.DashboardView.as_view(), login_url='/login/'), name='dashboard'),
 ]
 
 if settings.DEBUG:
