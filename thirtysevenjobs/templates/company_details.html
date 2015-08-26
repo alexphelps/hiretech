@@ -9,9 +9,11 @@
   </div>
   <div class="row">
     <div class="col-md-3">
+      {% spaceless %}
       <img class="img-responsive img-rounded" src="{{ company.company_logo.url }}" />
       <h5 class="m-t-10">{{ company.company_name }}</h5>
       <p>{{ company.company_url|urlize }}</p>
+      {% endspaceless %}
     </div>
     <div class="col-md-9">
       <h4>Available Jobs</h4>
