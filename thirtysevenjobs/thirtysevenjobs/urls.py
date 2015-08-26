@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^companies/', include('companies.urls', namespace="companies")),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^join/$', user_views.SignupView.as_view(), name='signup'),
+    url(r'^dashboard/$', user_views.DashboardView.as_view(), name='dashboard'),
 ]
 
 if settings.DEBUG:

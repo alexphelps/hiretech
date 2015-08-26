@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'header.html' %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Hi, {{ user.first_name }}</h1>
+      <p class="lead">Welcome to your dashboard</p>
+    </div>
+  </div>
+</div>
+{% include 'footer.html' %}
+{% include 'javascript.html' %}
+</body>
+{% endblock %}
