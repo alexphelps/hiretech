@@ -7,18 +7,26 @@
       <div class="panel p-30">
       <div class="panel-body">
       <h4 class="">Get started.</h4>
-      <p class="lead text-center"></p>
+      {% for message in messages %}
+          {% if message.level == 40 %}
+            <div class="alert alert-danger" role="alert">
+              {{ message }}
+            </div>
+          {% endif %}
+        {% endfor %}
         <form action="." method="post" enctype="multipart/form-data" id="subForm">
           {% csrf_token %}
           <div class="row">
             <div class="col-md-6">
-              <div class="form-group floating-label">
-              <label class="control-label" for="first_name">First Name</label><br/>
-               {{ form.first_name }}
-              </div>
+                <div class="control-group {% if form.first_name.errors %}has-error{% endif %}">
+                    <label class="control-label">First Name</label>
+                    <div class="controls">
+                        {{ form.first_name }}
+                    </div>
+                </div>
             </div>
             <div class="col-md-6">
-              <div class="form-group floating-label">
+              <div class="form-group {% if form.last_name.errors %}has-error{% endif %}">
               <label class="control-label" for="last_name">Last Name</label><br/>
               {{ form.last_name }}
               </div>
@@ -26,24 +34,24 @@
           </div>
           <div class="row">
             <div class="col-md-6">
-              <div class="form-group floating-label">
+              <div class="form-group {% if form.email.errors %}has-error{% endif %}">
                 <label class="control-label" for="email">Email</label><br/>
                 {{ form.email }}
               </div>
             </div>
             <div class="col-md-6">
-              <div class="form-group floating-label">
+              <div class="form-group {% if form.password.errors %}has-error{% endif %}">
               <label class="control-label" for="password">Password</label><br/>
               {{ form.password }}
               </div>
             </div>
           </div>
-          <div class="form-group floating-label">
+          <div class="form-group {% if form.company_name.errors %}has-error{% endif %}">
             <label class="control-label" for="company_name">Company Name</label><br/>
             {{ form.company_name }}
           </div>
-          <div class="form-group floating-label">
-            <label class="control-label" for="company_name">Company Url</label><br/>
+          <div class="form-group {% if form.company_url.errors %}has-error{% endif %}">
+            <label class="control-label" for="company_url">Company Url</label><br/>
             {{ form.company_url }}
           </div>
           <div class="form-group floating-label">

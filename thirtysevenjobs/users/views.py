@@ -1,4 +1,3 @@
-from django.http import *
 from django.shortcuts import render_to_response,redirect
 from django.shortcuts import render
 from django.views.generic import TemplateView
@@ -9,8 +8,9 @@ from django.http import (
     HttpResponse,
     HttpResponseRedirect,
 )
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+from django.contrib.messages import constants as MSG
 
 from .forms import SignupForm
 from .models import UserProfile
@@ -65,7 +65,13 @@ class SignupView(TemplateView):
                     login(request, user)
                     return HttpResponseRedirect('/dashboard/')
         else:
-            print form.errors
+            error_msg = 'Ooops, please see errors below.'
+            messages.add_message(
+                self.request,
+                MSG.ERROR,
+                error_msg
+            )
+
         context = {
             'form':form,
         }
