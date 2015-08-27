@@ -9,9 +9,7 @@
       <h4 class="">Get started.</h4>
       {% for message in messages %}
           {% if message.level == 40 %}
-            <div class="alert alert-danger" role="alert">
-              {{ message }}
-            </div>
+            <div class="alert alert-danger" role="alert">{{ message }}</div>
           {% endif %}
         {% endfor %}
         <form action="." method="post" enctype="multipart/form-data" id="subForm">
@@ -35,7 +33,7 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group {% if form.email.errors %}has-error{% endif %}">
-                <label class="control-label" for="email">Email</label><br/>
+                <label class="control-label" for="email">Email <span>{{ form.field.errors }}</span></label><br/>
                 {{ form.email }}
               </div>
             </div>
@@ -54,8 +52,8 @@
             <label class="control-label" for="company_url">Company Url</label><br/>
             {{ form.company_url }}
           </div>
-          <div class="form-group floating-label">
-            <label class="control-label" for="company_name">Company Logo</label><br/>
+          <div class="form-group {% if form.company_logo.errors %}has-error{% endif %}">
+            <label class="control-label" for="company_logo">Company Logo</label><br/>
             {{ form.company_logo }}
           </div>
             <button type="submit" class="btn btn-primary btn-block">Sign Up</button>

@@ -65,7 +65,7 @@ class SignupView(TemplateView):
                     login(request, user)
                     return HttpResponseRedirect('/dashboard/')
         else:
-            error_msg = 'Ooops, please see errors below.'
+            error_msg = 'Ooops, please see required fields below.'
             messages.add_message(
                 self.request,
                 MSG.ERROR,

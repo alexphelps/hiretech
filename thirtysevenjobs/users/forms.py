@@ -3,6 +3,9 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group, User
 
+from django.contrib import messages
+from django.contrib.messages import constants as MSG
+
 from companies.models import Company
 
 class SignupForm(forms.Form):
@@ -58,4 +61,19 @@ class SignupForm(forms.Form):
                 'id': 'company_logo',
                 'class': 'form-control'
             }),
-        required=False)
+        required=True)
+
+    error_messages = {
+        'email_exists': 'The email already is already in use.',
+    }
+    def clean(self):
+        cleaned_data = super(SignupForm, self).clean()
+        email = cleaned_data.get("email")
+        users_count = User.objects.filter(username=email).count()
+        if users_count > 0:
+            print 'duplicate email'
+            raise forms.ValidationError(
+                    self.error_messages['email_exists'],
+                    code='email_exists',
+                )
+        return self.cleaned_data
