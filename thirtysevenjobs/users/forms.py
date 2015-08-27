@@ -2,6 +2,7 @@ from django import forms
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group, User
+from django.utils.translation import ugettext_lazy as _
 
 from django.contrib import messages
 from django.contrib.messages import constants as MSG
@@ -73,7 +74,8 @@ class SignupForm(forms.Form):
         if users_count > 0:
             print 'duplicate email'
             raise forms.ValidationError(
-                    self.error_messages['email_exists'],
-                    code='email_exists',
+                    _('Duplicate email',
+                    params={'value': '42'
+                    })
                 )
         return self.cleaned_data
