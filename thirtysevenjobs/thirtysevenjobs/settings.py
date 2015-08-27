@@ -121,6 +121,8 @@ USE_TZ = True
 
 SITE_ID = 1
 
+LOGIN_URL = '/login/'
+
 MEDIA_ROOT = normpath(join(DJANGO_ROOT, 'media'))
 MEDIA_URL = '/media/'
 # Static files (CSS, JavaScript, Images)
