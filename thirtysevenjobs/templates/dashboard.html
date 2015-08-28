@@ -4,8 +4,16 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h1>Hi, {{ user.first_name }}</h1>
+      <h3>Hi, {{ user.first_name }} {{ user.last_name }} {{ user.username }}</h3>
       <p class="lead">Welcome to your dashboard</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="well">
+        {{ current_user_profile.company.company_name }}
+        <img class="img-responsive img-rounded" src="{{ current_user_profile.company.company_logo.url }}" />
+      </div>
     </div>
   </div>
 </div>
