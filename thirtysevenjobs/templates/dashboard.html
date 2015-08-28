@@ -24,6 +24,33 @@
     <div class="col-md-8">
       <h3>Hi, {{ user.first_name }} {{ user.last_name }} {{ user.username }}</h3>
       <p class="lead">Welcome to your dashboard</p>
+      {% if current_user_company_jobs %}
+        {% for job in current_user_company_jobs %}
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-md-9 col-sm-9 col-xs-8">
+              <img class="img-responsive pull-left m-r-10 job-list-img" src="{{ job.job_company.company_logo.url }}">
+              <h5>
+                <a href="/jobs/{{ job.id }}/">{{ job.job_title }}</a><br>
+                <small>{{ job.job_location }}</small>
+              </h5>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-4">
+              <ul class="list-unstyled text-center m-t-10">
+                <li><a href="/jobs/{{ job.id }}/"><span class="job-type {{ job.job_type }}">{{ job.get_job_type_display }}</span></a></li>
+                <li><small class="timeago" title="{{ job.job_created_date|date:"c" }}">{{ job.job_created_date }}</small></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+      {% else %}
+        <div class="well">
+          <p class="lead text-center">You don't have any active job postings.<br>
+            <a href="#" class="btn btn-primary m-t-20">Add a Job</a>
+          </p>
+        </div>
+      {% endif %}
     </div>
   </div>
 </div>

@@ -14,6 +14,7 @@ from django.contrib.messages import constants as MSG
 
 from .forms import SignupForm
 from .models import UserProfile
+from jobs.models import Job
 from companies.models import Company
 
 
@@ -87,8 +88,11 @@ class DashboardView(TemplateView):
         current_user = request.user
         current_user_id = current_user.id
         current_user_profile = UserProfile.objects.get(user__id=current_user_id)
+        current_user_company = current_user_profile.company.id
+        current_user_company_jobs = Job.objects.filter(job_company=current_user_company)
         context = {
             'current_user_profile':current_user_profile,
+            'current_user_company_jobs':current_user_company_jobs,
         }
         return render(
             request,
