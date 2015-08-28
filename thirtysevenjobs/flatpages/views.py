@@ -10,7 +10,6 @@ class HomepageView(TemplateView):
     template_name = 'index.html'
     def get(self,request):
         user = request.user
-        print user
         context = {
             'user':user,
         }
