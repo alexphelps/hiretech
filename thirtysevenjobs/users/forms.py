@@ -72,7 +72,6 @@ class SignupForm(forms.Form):
         email = cleaned_data.get("email")
         users_count = User.objects.filter(username=email).count()
         if users_count > 0:
-            print 'duplicate email'
             raise forms.ValidationError(
                     _('Duplicate email',
                     params={'value': '42'
