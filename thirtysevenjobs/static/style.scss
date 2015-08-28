@@ -2,6 +2,7 @@
 @import 'bootstrap';
 @import 'bootswatch';
 @import 'utility-classes';
+
 @media (max-width: 778px) {
   .nav.navbar-nav.pull-right {
     float: none !important;
@@ -50,4 +51,47 @@ i.icon-lg.mdi::before {
 }
 .job-type.internship {
   background-color: $btn-info-bg;
+}
+/* --- material floating label --- */
+.floating-label.form-group {
+    display: flex;
+    height: 55px;
+}
+
+.floating-label .control-label {
+    font-size: 16px;
+    font-weight: 400;
+    opacity: 0.4;
+    pointer-events: none;
+    position: absolute;
+    transform: translate3d(0, 22px, 0) scale(1);
+    transform-origin: left top;
+    transition: 240ms;
+}
+
+.floating-label.form-group.focused .control-label {
+    opacity: 1;
+    transform: scale(0.75);
+}
+
+.floating-label .form-control {
+    align-self: flex-end;
+}
+
+.floating-label .form-control::-webkit-input-placeholder {
+    color: transparent;
+    transition: 240ms;
+}
+
+.floating-label .form-control:focus::-webkit-input-placeholder {
+    transition: none;
+}
+
+.floating-label .form-group.focused .form-control::-webkit-input-placeholder {
+    color: #bbb;
+}
+
+.floating-label.form-group.textarea-group {
+  height: auto;
+  min-height:110px;
 }
