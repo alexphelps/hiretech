@@ -86,12 +86,9 @@ class DashboardView(TemplateView):
     def get(self,request):
         current_user = request.user
         current_user_id = current_user.id
-        print current_user_id
         current_user_profile = UserProfile.objects.get(user__id=current_user_id)
-        print current_user_profile.company
         context = {
             'current_user_profile':current_user_profile,
-
         }
         return render(
             request,
