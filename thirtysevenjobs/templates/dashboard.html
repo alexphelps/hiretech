@@ -3,7 +3,7 @@
 {% include 'header.html' %}
 <div class="container">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
       <div class="panel panel-default">
         <div class="panel-heading">
           <a href="#" class="btn btn-sm btn-primary pull-right m-t-10">Edit</a>
@@ -14,14 +14,13 @@
         </div>
         <ul class="list-group">
           <li class="list-group-item">
-            <h5 class="list-group-item-heading">Company Name</h5>
-            <p class="list-group-item-text">{{ current_user_profile.company.company_name }}</p>
+            <h5>{{ current_user_profile.company.company_name }}</h5>
           </li>
-          <li class="list-group-item">{{ current_user_profile.company.company_url|urlize }}</li>
+          <li class="list-group-item"><i class="fa fa-link"></i> {{ current_user_profile.company.company_url|urlize }}</li>
         </ul>
       </div>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-9">
       <h3>Hi, {{ user.first_name }} {{ user.last_name }} {{ user.username }}</h3>
       <p class="lead">Welcome to your dashboard</p>
       {% if current_user_company_jobs %}
