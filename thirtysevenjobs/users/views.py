@@ -82,6 +82,13 @@ class SignupView(TemplateView):
             context
         )
 
+class LogoutView(TemplateView):
+    def get(self,request):
+        logout(request)
+        return HttpResponseRedirect('/login/')
+
+
+
 class DashboardView(TemplateView):
     template_name = 'dashboard.html'
     def get(self,request):
