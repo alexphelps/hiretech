@@ -9,6 +9,8 @@ from django.contrib.messages import constants as MSG
 
 from companies.models import Company
 
+from nocaptcha_recaptcha.fields import NoReCaptchaField
+
 class LoginForm(forms.Form):
     email = forms.CharField(
         widget=forms.EmailInput(
@@ -81,6 +83,8 @@ class SignupForm(forms.Form):
                 'class': 'form-control'
             }),
         required=True)
+
+    captcha = NoReCaptchaField()
 
     error_messages = {
         'email_exists': 'The email already is already in use.',

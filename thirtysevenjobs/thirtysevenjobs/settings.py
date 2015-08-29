@@ -56,6 +56,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.flatpages',
     'markdown_deux',
+    'nocaptcha_recaptcha',
     'users',
     'jobs',
     'companies',
@@ -139,6 +140,10 @@ STATICFILES_FINDERS = (
     # other finders..
     'compressor.finders.CompressorFinder',
 )
+
+#Google Recaptcha
+NORECAPTCHA_SITE_KEY = '6Lc6AgwTAAAAACed2E7SeDaz6AeVmuKFzL8_5h0o'
+NORECAPTCHA_SECRET_KEY = '6Lc6AgwTAAAAAK6A-TE2ApoK4oxCaKeqiEcDDXg9'
 
 # Sass compiler
 COMPRESS_ENABLED = True
