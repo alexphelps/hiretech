@@ -17,7 +17,6 @@ from .models import UserProfile
 from jobs.models import Job
 from companies.models import Company
 
-
 # Create your views here.
 class LogoutView(TemplateView):
     def get(self,request):
