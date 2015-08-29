@@ -12,13 +12,58 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.messages import constants as MSG
 
-from .forms import SignupForm
+from .forms import SignupForm, LoginForm
 from .models import UserProfile
 from jobs.models import Job
 from companies.models import Company
 
 
 # Create your views here.
+class LogoutView(TemplateView):
+    def get(self,request):
+        logout(request)
+        return HttpResponseRedirect('/login/')
+
+class LoginView(TemplateView):
+    template_name = 'login.html'
+    def get(self,request):
+        form = LoginForm()
+        context = {
+            'form':form,
+        }
+        return render(
+            request,
+            self.template_name,
+            context
+        )
+    def post(self,request):
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = request.POST['email']
+            password = request.POST['password']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return HttpResponseRedirect('/dashboard/')
+        else:
+            error_msg = 'Ooops, please see required fields below.'
+            messages.add_message(
+                self.request,
+                MSG.ERROR,
+                error_msg
+            )
+        context = {
+            'form':form,
+        }
+        return render(
+            request,
+            self.template_name,
+            context
+        )
+
+
+
 class SignupView(TemplateView):
     template_name = 'signup.html'
     def get(self,request):
@@ -81,13 +126,6 @@ class SignupView(TemplateView):
             self.template_name,
             context
         )
-
-class LogoutView(TemplateView):
-    def get(self,request):
-        logout(request)
-        return HttpResponseRedirect('/login/')
-
-
 
 class DashboardView(TemplateView):
     template_name = 'dashboard.html'

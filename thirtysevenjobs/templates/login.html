@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'header.html' %}
+<div class="container m-t-20">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="panel p-30">
+      <div class="panel-body">
+      <h4 class="">Log In to Your Account.</h4>
+      <p>Don't have an account? <a href="/join/">Create a free one here.</a></p>
+      {% for message in messages %}
+          {% if message.level == 40 %}
+            <div class="alert alert-danger" role="alert">{{ message }}</div>
+          {% endif %}
+        {% endfor %}
+        <form action="." method="post" id="loginForm">
+          {% csrf_token %}
+          <div class="form-group floating-label {% if form.email.errors %}has-error{% endif %}">
+            <label class="control-label" for="email">Email</label><br/>
+            {{ form.email }}
+          </div>
+          <div class="form-group floating-label {% if form.password.errors %}has-error{% endif %}">
+          <label class="control-label" for="password">Password</label><br/>
+            {{ form.password }}
+          </div>
+          <p><a href="#">Forgot your password?</a></p>
+            <button type="submit" class="btn btn-primary btn-block">Log In</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% include 'footer.html' %}
+{% include 'javascript.html' %}
+</body>
+{% endblock %}

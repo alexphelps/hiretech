@@ -9,6 +9,24 @@ from django.contrib.messages import constants as MSG
 
 from companies.models import Company
 
+class LoginForm(forms.Form):
+    email = forms.CharField(
+        widget=forms.EmailInput(
+            attrs={
+                'id': 'email',
+                'class': 'form-control'
+            }),
+        required=True)
+
+    password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'id': 'password',
+                'class':'form-control'
+            }),
+        required=True)
+
+
 class SignupForm(forms.Form):
     first_name = forms.CharField(
         widget=forms.TextInput(
