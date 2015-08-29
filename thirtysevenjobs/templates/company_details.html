@@ -1,22 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
 {% include 'header.html' %}
+<div class="row job-details-hero">
+  <div class="col-md-12">
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 text-center">
+    <img class="img-thumbnail job-details-img" src="{{ company.company_logo.url }}">
+    <h3>{{ company.company_name }}</h3>
+    <p>{{ company.company_url|urlize }}</p>
+  </div>
+</div>
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
-      <p class=""><a href="/jobs"><strong><i class="fa fa-arrow-left"></i> Back to all jobs</strong></a></p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3">
-      {% spaceless %}
-      <img class="img-responsive img-rounded" src="{{ company.company_logo.url }}" />
-      <h5 class="m-t-10">{{ company.company_name }}</h5>
-      <p>{{ company.company_url|urlize }}</p>
-      {% endspaceless %}
-    </div>
-    <div class="col-md-9">
-      <h4>Available Jobs</h4>
+    <div class="col-md-8 col-md-offset-2">
+      <h5 class="text-center">Available Jobs at {{ company.company_name }}</h5>
       {% if company_job_list %}
         <!-- List group -->
           <ul class="list-group jobs-list">
