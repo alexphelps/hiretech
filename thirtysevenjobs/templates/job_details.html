@@ -12,7 +12,7 @@
       <a href="/companies/{{ job.job_company.id }}/">
         <img class="img-thumbnail job-details-img" src="{{ job.job_company.company_logo.url }}">
       </a>
-      <h3 itemprop="title">{{ job.job_title }}</h3>
+      <h3><span itemprop="title">{{ job.job_title }}</span> at {{ job.job_company.company_name }}</h3>
       <p><span class="job-type {{ job.job_type }}" itemprop="employmentType">{{ job.get_job_type_display }}</span>   <i class="fa fa-map-marker"></i> {{ job.job_location }}</p>
     </div>
   </div>

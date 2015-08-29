@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 {% include 'header.html' %}
-<div class="container">
+<div class="container m-t-20">
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <div class="panel p-30">
       <div class="panel-body">
-      <h4 class="">Get started.</h4>
+      <h4 class="">Join GitJobs and post your available positions.</h4>
       {% for message in messages %}
           {% if message.level == 40 %}
             <div class="alert alert-danger" role="alert">{{ message }}</div>

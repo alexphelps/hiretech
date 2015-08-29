@@ -8,9 +8,18 @@
     float: none !important;
   }
 }
+.job-details-hero {
+  height: 120px;
+  background-color: #2196F3;
+}
+
+.job-details-hero:first-of-type + .row {
+  margin-top: -70px;
+}
 //custom styles
 .navbar {
     border-radius: 0px;
+    margin-bottom: 0px;
 }
 .navbar-brand {
   color: #000;
@@ -28,10 +37,10 @@ i.icon-lg.mdi::before {
     border-bottom: 1px solid #eee;
 }
 .job-list-img {
-    width:65px;
+    width:68px;
 }
 .job-details-img {
-    width:108px;
+    width:140px;
 }
 .job-type {
   text-transform: uppercase;
