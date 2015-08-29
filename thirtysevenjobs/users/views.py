@@ -23,6 +23,7 @@ class LogoutView(TemplateView):
         logout(request)
         return HttpResponseRedirect('/login/')
 
+
 class LoginView(TemplateView):
     template_name = 'login.html'
     def get(self,request):
@@ -45,13 +46,13 @@ class LoginView(TemplateView):
                 if user.is_active:
                     login(request, user)
                     return HttpResponseRedirect('/dashboard/')
-        else:
-            error_msg = 'Ooops, please see required fields below.'
-            messages.add_message(
-                self.request,
-                MSG.ERROR,
-                error_msg
-            )
+            else:
+                error_msg = 'Your email and password do not match. Please try again.'
+                messages.add_message(
+                    self.request,
+                    MSG.ERROR,
+                    error_msg
+                )
         context = {
             'form':form,
         }

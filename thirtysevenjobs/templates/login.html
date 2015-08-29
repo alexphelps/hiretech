@@ -8,7 +8,7 @@
       <div class="panel-body">
       <h4 class="">Log In to Your Account.</h4>
       <p>Don't have an account? <a href="/join/">Create a free one here.</a></p>
-      {% for message in messages %}
+        {% for message in messages %}
           {% if message.level == 40 %}
             <div class="alert alert-danger" role="alert">{{ message }}</div>
           {% endif %}
