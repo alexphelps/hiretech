@@ -99,17 +99,3 @@ class DashboardView(TemplateView):
             self.template_name,
             context
         )
-
-class HomepageView(TemplateView):
-    template_name = 'index.html'
-    def get(self,request):
-        user = request.user
-        print user
-        context = {
-            'user':user,
-        }
-        return render(
-            request,
-            self.template_name,
-            context
-        )
