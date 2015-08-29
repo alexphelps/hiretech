@@ -2,6 +2,9 @@
 @import 'bootstrap';
 @import 'bootswatch';
 @import 'utility-classes';
+body {
+  font-size: 14px;
+}
 
 @media (max-width: 778px) {
   .nav.navbar-nav.pull-right {
