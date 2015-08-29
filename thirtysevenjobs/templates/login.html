@@ -12,6 +12,9 @@
           {% if message.level == 40 %}
             <div class="alert alert-danger" role="alert">{{ message }}</div>
           {% endif %}
+          {% if message.level == 25 %}
+            <div class="alert alert-success" role="alert">{{ message }}</div>
+          {% endif %}
         {% endfor %}
         <form action="." method="post" id="loginForm">
           {% csrf_token %}

@@ -21,6 +21,12 @@ from companies.models import Company
 class LogoutView(TemplateView):
     def get(self,request):
         logout(request)
+        info_msg = 'You have been logged out.'
+        messages.add_message(
+            self.request,
+            MSG.SUCCESS,
+            info_msg
+        )
         return HttpResponseRedirect('/login/')
 
 
