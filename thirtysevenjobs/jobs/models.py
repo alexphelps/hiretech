@@ -22,7 +22,7 @@ class Job(models.Model):
     job_description = models.TextField(default='')
     job_responsibilities = models.TextField(default='')
     job_qualifications = models.TextField(default='')
-    job_apply_notes = models.TextField(default='')
+    job_notes = models.TextField(default='')
     job_created_date = models.DateTimeField('date created',null=True)
     job_status_choices = (
         ('draft','Draft'),
