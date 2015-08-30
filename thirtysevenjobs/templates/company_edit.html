@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'header.html' %}
+<div class="container m-t-20">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="panel panel-default">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <h5>Comp Details</h5>
+          </li>
+          <li class="list-group-item"><i class="fa fa-link"></i> {{ current_user_profile.company.company_url|urlize }}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-9">
+
+    </div>
+  </div>
+</div>
+{% include 'footer.html' %}
+{% include 'javascript.html' %}
+</body>
+{% endblock %}
