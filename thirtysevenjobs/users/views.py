@@ -1,8 +1,6 @@
-from django.shortcuts import render_to_response,redirect
-from django.shortcuts import render
-from django.views.generic import TemplateView
-
+from django.conf import settings
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
@@ -11,13 +9,22 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib import messages
 from django.contrib.messages import constants as MSG
+from django.core.mail import send_mail
+from django.db.models.query_utils import Q
 from django.http import (
     Http404,
     HttpResponse,
     HttpResponseRedirect,
 )
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.shortcuts import render_to_response,redirect
+from django.shortcuts import render
+from django.template import loader
+from django.views.generic import TemplateView
 
-from .forms import SignupForm, LoginForm, PasswordResetRequestForm
+
+from .forms import SignupForm, LoginForm, PasswordResetRequestForm, PasswordResetNewPassword
 from .models import UserProfile
 from jobs.models import Job
 from companies.models import Company
@@ -89,6 +96,116 @@ class ResetPasswordRequestView(TemplateView):
             self.template_name,
             context
         )
+    def post(self,request):
+        form = PasswordResetRequestForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['email']
+            associated_users= User.objects.filter(Q(username=username))
+            if associated_users.exists():
+                for user in associated_users:
+                    c = {
+                        'email': user.email,
+                        'domain': request.META['HTTP_HOST'],
+                        'site_name': 'your site',
+                        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                        'user': user,
+                        'token': default_token_generator.make_token(user),
+                        'protocol': 'http',
+                        }
+                    subject_template_name='registration/password_reset_subject.txt'
+                    email_template_name='registration/password_reset_email.html'
+                    subject = loader.render_to_string(subject_template_name, c)
+                    subject = ''.join(subject.splitlines())
+                    email = loader.render_to_string(email_template_name, c)
+                    send_mail(subject, email, 'alexphelps3@gmail.com' , [user.email], fail_silently=False)
+                    success_msg = 'A confirmation email has been sent to ' + username
+                    success_msg += '. Please follow the link in the email to reset your password.'
+                    messages.add_message(
+                        self.request,
+                        MSG.SUCCESS,
+                        success_msg
+                    )
+            else:
+                error_msg = 'Your email does not exist in the system.'
+                messages.add_message(
+                    self.request,
+                    MSG.ERROR,
+                    error_msg
+                )
+        context = {
+            'form':form,
+        }
+        return render(
+            request,
+            self.template_name,
+            context
+        )
+
+class PasswordResetConfirmView(TemplateView):
+    template_name = 'password-reset-confirm.html'
+    def get(self,request, uidb64=None, token=None, *arg, **kwargs):
+        form = PasswordResetNewPassword()
+        context = {
+            'form':form,
+        }
+        return render(
+            request,
+            self.template_name,
+            context
+        )
+    def post(self, request, uidb64=None, token=None, *arg, **kwargs):
+        """
+        View that checks the hash in a password reset link and presents a
+        form for entering a new password.
+        """
+        UserModel = get_user_model()
+        form = PasswordResetNewPassword(request.POST)
+        assert uidb64 is not None and token is not None  # checked by URLconf
+        try:
+            uid = urlsafe_base64_decode(uidb64)
+            user = UserModel._default_manager.get(pk=uid)
+        except (TypeError, ValueError, OverflowError, UserModel.DoesNotExist):
+            user = None
+
+        if user is not None and default_token_generator.check_token(user, token):
+            if form.is_valid():
+                new_password = form.cleaned_data['new_password2']
+                user.set_password(new_password)
+                user.save()
+
+                success_msg = 'Password has been reset.'
+                messages.add_message(
+                    self.request,
+                    MSG.SUCCESS,
+                    success_msg
+                )
+                return HttpResponseRedirect(
+                    reverse('login')
+                )
+            else:
+                error_msg = 'Password reset has not been unsuccessful.'
+                messages.add_message(
+                    self.request,
+                    MSG.ERROR,
+                    error_msg
+                )
+        else:
+            error_msg = 'The reset password link is no longer valid.'
+            messages.add_message(
+                self.request,
+                MSG.ERROR,
+                error_msg
+            )
+        context = {
+            'form':form,
+        }
+        return render(
+            request,
+            self.template_name,
+            context
+        )
+
+
 class SignupView(TemplateView):
     template_name = 'signup.html'
     def get(self,request):
