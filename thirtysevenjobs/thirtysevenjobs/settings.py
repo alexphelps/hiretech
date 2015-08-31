@@ -146,7 +146,7 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
 )
 
-#Google Recaptcha
+# Google Recaptcha
 NORECAPTCHA_SITE_KEY = '6Lc6AgwTAAAAACed2E7SeDaz6AeVmuKFzL8_5h0o'
 NORECAPTCHA_SECRET_KEY = '6Lc6AgwTAAAAAK6A-TE2ApoK4oxCaKeqiEcDDXg9'
 
@@ -156,3 +156,13 @@ COMPRESS_ROOT = normpath(join(DJANGO_ROOT, 'static'))
 COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
+
+# Email Settings
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'alexphelps3@gmail.com'
+SERVER_EMAIL = 'alexphelps3@gmail.com'
+EMAIL_HOST = 'smtp.mandrillapp.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'alexphelps3@gmail.com'
+EMAIL_HOST_PASSWORD = 'Aj0ESkNeZFOKmIX5gYsAfQ'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
