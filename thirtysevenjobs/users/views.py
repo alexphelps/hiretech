@@ -154,10 +154,6 @@ class PasswordResetConfirmView(TemplateView):
             context
         )
     def post(self, request, uidb64=None, token=None, *arg, **kwargs):
-        """
-        View that checks the hash in a password reset link and presents a
-        form for entering a new password.
-        """
         UserModel = get_user_model()
         form = PasswordResetNewPassword(request.POST)
         assert uidb64 is not None and token is not None  # checked by URLconf
@@ -171,27 +167,25 @@ class PasswordResetConfirmView(TemplateView):
             if form.is_valid():
                 password1 = form.cleaned_data.get('new_password')
                 password2 = form.cleaned_data.get('new_password2')
-                if password1 and password2:
-                    if password1 != password2:
-                        error_msg = 'Passwords do not match.'
-                        messages.add_message(
-                            self.request,
-                            MSG.ERROR,
-                            error_msg
-                        )
-                    else:
-                        user.set_password(password2)
-                        user.save()
-                        success_msg = 'Your password has been reset. You can now log in below.'
-                        messages.add_message(
-                            self.request,
-                            MSG.SUCCESS,
-                            success_msg
-                        )
-                        return HttpResponseRedirect(
-                            reverse('login')
-                        )
-
+                if password1 != password2:
+                    error_msg = 'Passwords do not match.'
+                    messages.add_message(
+                        self.request,
+                        MSG.ERROR,
+                        error_msg
+                    )
+                else:
+                    user.set_password(password2)
+                    user.save()
+                    success_msg = 'Your password has been reset. You can now log in below.'
+                    messages.add_message(
+                        self.request,
+                        MSG.SUCCESS,
+                        success_msg
+                    )
+                    return HttpResponseRedirect(
+                        reverse('login')
+                    )
             else:
                 error_msg = 'Password reset has not been unsuccessful.'
                 messages.add_message(
