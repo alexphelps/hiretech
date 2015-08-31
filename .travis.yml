@@ -20,7 +20,10 @@ before_script:
 script:
   - cd thirtysevenjobs
   - python manage.py test
-  - coverage run manage.py test
+  - coverage run --source=thirtysevenjobs manage.py test
+  - coverage run --source=jobs manage.py test
+  - coverage run --source=companies manage.py test
+  - coverage run --source=users manage.py test
 
 after_success:
   - coveralls
