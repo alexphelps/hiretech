@@ -24,15 +24,14 @@ class JobIndexViewTest(TestCase):
             job_description='',
         )
         response = self.client.get(url)
-        #print response
+        print response
         expected = '<li class="list-group-item"><div class="row">'
         expected += '<div class="col-md-9 col-sm-9 col-xs-8">'
         expected += '<img class="img-responsive img-rounded pull-left m-r-10 job-list-img" '
-        expected += 'src="/media/logo.png"><h5><a href="/jobs/1/">Python Guy</a>'
-        expected += '<br><small><a href="/companies/1" class="text-muted">Pronto</a>'
-        expected += ' - Owensboro, KY</small></h5></div>'
-        expected += '<div class="col-md-3 col-sm-3 col-xs-4">'
-        expected += '<ul class="list-unstyled text-center m-t-10"><li><a href="/jobs/1/">'
+        expected += 'src="/media/logo.png"><h5><a href="/jobs/3/">Python Guy</a>'
+        expected += '<br><small><a href="/companies/4" class="text-muted">Pronto</a>'
+        expected += ' - Owensboro, KY</small></h5></div><div class="col-md-3 col-sm-3 col-xs-4">'
+        expected += '<ul class="list-unstyled text-center m-t-10"><li><a href="/jobs/3/">'
         expected += '<span class="job-type full_time">Full Time</span></a></li><li>'
         expected += '<small class="timeago" title="">None</small>'
         expected += '</li></ul></div></div></li>'
