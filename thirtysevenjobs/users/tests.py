@@ -4,6 +4,18 @@ from django.test import TestCase
 from .views import SignupView,DashboardView
 
 # Create your tests here.
+class LogoutViewTest(TestCase):
+    def test_signup_response(self):
+        url = '/logout/'
+        response = self.client.get(url)
+        self.assertEqual(response.status_code,302)
+
+class LoginViewTest(TestCase):
+    def test_signup_response(self):
+        url = '/login/'
+        response = self.client.get(url)
+        self.assertEqual(response.status_code,200)
+
 class SignupViewTest(TestCase):
     def test_signup_response(self):
         url = '/join/'
