@@ -169,19 +169,29 @@ class PasswordResetConfirmView(TemplateView):
 
         if user is not None and default_token_generator.check_token(user, token):
             if form.is_valid():
-                new_password = form.cleaned_data['new_password2']
-                user.set_password(new_password)
-                user.save()
+                password1 = form.cleaned_data.get('new_password')
+                password2 = form.cleaned_data.get('new_password2')
+                if password1 and password2:
+                    if password1 != password2:
+                        error_msg = 'Passwords do not match.'
+                        messages.add_message(
+                            self.request,
+                            MSG.ERROR,
+                            error_msg
+                        )
+                    else:
+                        user.set_password(password2)
+                        user.save()
+                        success_msg = 'Your password has been reset. You can now log in below.'
+                        messages.add_message(
+                            self.request,
+                            MSG.SUCCESS,
+                            success_msg
+                        )
+                        return HttpResponseRedirect(
+                            reverse('login')
+                        )
 
-                success_msg = 'Password has been reset.'
-                messages.add_message(
-                    self.request,
-                    MSG.SUCCESS,
-                    success_msg
-                )
-                return HttpResponseRedirect(
-                    reverse('login')
-                )
             else:
                 error_msg = 'Password reset has not been unsuccessful.'
                 messages.add_message(

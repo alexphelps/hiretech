@@ -38,21 +38,21 @@ class PasswordResetRequestForm(forms.Form):
         required=True)
 
 class PasswordResetNewPassword(forms.Form):
-        new_password = forms.CharField(
-            widget=forms.PasswordInput(
-                attrs={
-                    'id': 'new_password',
-                    'class':'form-control'
-                }),
-            required=True)
+    new_password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'id': 'new_password',
+                'class':'form-control'
+            }),
+        required=True)
 
-        new_password2 = forms.CharField(
-            widget=forms.PasswordInput(
-                attrs={
-                    'id': 'new_password2',
-                    'class':'form-control'
-                }),
-            required=True)
+    new_password2 = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'id': 'new_password2',
+                'class':'form-control'
+            }),
+        required=True)
 
 class SignupForm(forms.Form):
     first_name = forms.CharField(
