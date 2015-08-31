@@ -16,6 +16,12 @@ class LoginViewTest(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code,200)
 
+class PasswordResetViewTest(TestCase):
+    def test_signup_response(self):
+        url = '/password/reset/'
+        response = self.client.get(url)
+        self.assertEqual(response.status_code,200)
+
 class SignupViewTest(TestCase):
     def test_signup_response(self):
         url = '/join/'

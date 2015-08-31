@@ -28,7 +28,7 @@ urlpatterns = [
     url(r'^join/$', user_views.SignupView.as_view(), name='signup'),
     url(r'^login/$', user_views.LoginView.as_view(), name='login'),
     url(r'^logout/$', user_views.LogoutView.as_view(), name='logout'),
-    url(r'^password/reset/$', user_views.ResetPasswordRequestView.as_view(), name='password_reset'),
+    url(r'^password/reset/$', user_views.PasswordResetView.as_view(), name='password_reset'),
     url(r'^password/reset/confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$', user_views.PasswordResetConfirmView.as_view(),name='password_reset_confirm'),
     url(r'^dashboard/$', login_required(user_views.DashboardView.as_view()), name='dashboard'),
 ]
