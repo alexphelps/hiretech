@@ -82,8 +82,11 @@ class LoginView(TemplateView):
             request,
             self.template_name,
             context
-        )
-
+       )
+"""
+Password reset adaped from here
+http://ruddra.com/blog/2014/10/21/make-own-forgot-slash-reset-password-in-django/
+"""
 class ResetPasswordRequestView(TemplateView):
     template_name = 'password-reset.html'
     def get(self,request):
@@ -140,7 +143,6 @@ class ResetPasswordRequestView(TemplateView):
             self.template_name,
             context
         )
-
 class PasswordResetConfirmView(TemplateView):
     template_name = 'password-reset-confirm.html'
     def get(self,request, uidb64=None, token=None, *arg, **kwargs):
