@@ -24,7 +24,6 @@ class JobIndexViewTest(TestCase):
             job_description='',
         )
         response = self.client.get(url)
-        print response
         expected = '<li class="list-group-item"><div class="row">'
         expected += '<div class="col-md-9 col-sm-9 col-xs-8">'
         expected += '<img class="img-responsive img-rounded pull-left m-r-10 job-list-img" '
