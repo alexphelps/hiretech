@@ -28,6 +28,14 @@ class LoginForm(forms.Form):
             }),
         required=True)
 
+class PasswordResetRequestForm(forms.Form):
+    email = forms.CharField(
+        widget=forms.EmailInput(
+            attrs={
+                'id': 'email',
+                'class': 'form-control'
+            }),
+        required=True)
 
 class SignupForm(forms.Form):
     first_name = forms.CharField(
