@@ -19,3 +19,6 @@ before_script:
 script:
   - cd thirtysevenjobs
   - python manage.py test
+
+after_success:
+  - coveralls
