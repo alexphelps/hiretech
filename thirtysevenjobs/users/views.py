@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 from django.http import (
     Http404,
     HttpResponse,
@@ -27,7 +28,9 @@ class LogoutView(TemplateView):
             MSG.SUCCESS,
             info_msg
         )
-        return HttpResponseRedirect('/login/')
+        return HttpResponseRedirect(
+            reverse('login')
+        )
 
 
 class LoginView(TemplateView):
@@ -45,13 +48,15 @@ class LoginView(TemplateView):
     def post(self,request):
         form = LoginForm(request.POST)
         if form.is_valid():
-            username = request.POST['email']
-            password = request.POST['password']
+            username = form.cleaned_data['email']
+            password = form.cleaned_data['password']
             user = authenticate(username=username, password=password)
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponseRedirect('/dashboard/')
+                    return HttpResponseRedirect(
+                        reverse('dashboard')
+                    )
             else:
                 error_msg = 'Your email and password do not match. Please try again.'
                 messages.add_message(
@@ -86,12 +91,12 @@ class SignupView(TemplateView):
     def post(self,request):
         form = SignupForm(request.POST,request.FILES)
         if form.is_valid():
-            first_name = request.POST['first_name']
-            last_name = request.POST['last_name']
-            email = request.POST['email']
-            password = request.POST['password']
-            company_name = request.POST['company_name']
-            company_url = request.POST['company_url']
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+            company_name = form.cleaned_data['company_name']
+            company_url = form.cleaned_data['company_url']
             company_logo = request.FILES['company_logo']
             user = User.objects.create_user(
                 username=email,
@@ -110,7 +115,7 @@ class SignupView(TemplateView):
                 company=company
             )
             #log them in if we were able to sign them up
-            username = request.POST['email']
+            username = form.cleaned_data['email']
             user = authenticate(username=username, password=password)
             if user is not None:
                 if user.is_active:
