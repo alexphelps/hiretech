@@ -4,16 +4,20 @@ from django.views.generic import TemplateView
 
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
+
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.tokens import default_token_generator
+from django.contrib import messages
+from django.contrib.messages import constants as MSG
 from django.http import (
     Http404,
     HttpResponse,
     HttpResponseRedirect,
 )
-from django.contrib.auth import authenticate, login, logout
-from django.contrib import messages
-from django.contrib.messages import constants as MSG
 
-from .forms import SignupForm, LoginForm
+from .forms import SignupForm, LoginForm, PasswordResetRequestForm
 from .models import UserProfile
 from jobs.models import Job
 from companies.models import Company
@@ -73,8 +77,18 @@ class LoginView(TemplateView):
             context
         )
 
-
-
+class ResetPasswordRequestView(TemplateView):
+    template_name = 'password-reset.html'
+    def get(self,request):
+        form = PasswordResetRequestForm()
+        context = {
+            'form':form,
+        }
+        return render(
+            request,
+            self.template_name,
+            context
+        )
 class SignupView(TemplateView):
     template_name = 'signup.html'
     def get(self,request):
