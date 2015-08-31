@@ -6,9 +6,11 @@
 <div class="container">
 <div class="row">
   <div class="col-md-12 text-center">
+    {% spaceless %}
     <img class="img-thumbnail job-details-img" src="{{ company.company_logo.url }}">
     <h3>{{ company.company_name }}</h3>
     <p>{{ company.company_url|urlize }}</p>
+    {% endspaceless %}
   </div>
 </div>
 <div class="container">
