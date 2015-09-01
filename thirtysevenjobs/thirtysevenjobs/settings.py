@@ -101,13 +101,12 @@ WSGI_APPLICATION = 'thirtysevenjobs.wsgi.application'
 
 DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-            'NAME': 'gitjobs',                      # Or path to database file if using sqlite3.
-            # The following settings are not used with sqlite3:
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'gitjobs',
             'USER': 'postgres',
             'PASSWORD': 'admin',
-            'HOST': 'localhost',                      # Empty for localhost through domain sockets or           '127.0.0.1' for localhost through TCP.
-            'PORT': '',                      # Set to empty string for default.
+            'HOST': 'localhost',
+            'PORT': '',
         }
     }
 
@@ -126,6 +125,19 @@ USE_L10N = True
 USE_TZ = True
 
 SITE_ID = 1
+
+# Email Settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'GitJobs Noreply <noreply@gitjobs.co>'
+DEFAULT_DOMAIN = 'app.prontomarketing.com'
+SERVER_EMAIL = 'alexphelps3@gmail.com'
+EMAIL_HOST = 'smtp.mandrillapp.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'alexphelps3@gmail.com'
+EMAIL_HOST_PASSWORD = 'Aj0ESkNeZFOKmIX5gYsAfQ'
+
+
 
 LOGIN_URL = '/login/'
 
@@ -157,22 +169,9 @@ COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
 
-# Markdown 
+# Markdown
 MARKDOWN_DEUX_STYLES = {
     "default": {
-        "extras": {
-            "code-friendly": None,
-        },
         "safe_mode": "escape",
     },
 }
-
-# Email Settings
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'alexphelps3@gmail.com'
-SERVER_EMAIL = 'alexphelps3@gmail.com'
-EMAIL_HOST = 'smtp.mandrillapp.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'alexphelps3@gmail.com'
-EMAIL_HOST_PASSWORD = 'Aj0ESkNeZFOKmIX5gYsAfQ'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

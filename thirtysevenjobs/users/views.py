@@ -1,15 +1,15 @@
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
+from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.core.validators import validate_email
-from django.core.exceptions import ValidationError
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib import messages
 from django.contrib.messages import constants as MSG
-from django.core.mail import send_mail
 from django.db.models.query_utils import Q
 from django.http import (
     Http404,
@@ -18,8 +18,7 @@ from django.http import (
 )
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.shortcuts import render_to_response,redirect
-from django.shortcuts import render
+from django.shortcuts import render_to_response,redirect,render
 from django.template import loader
 from django.views.generic import TemplateView
 
@@ -119,8 +118,9 @@ class PasswordResetView(TemplateView):
                     email_template_name='registration/password_reset_email.html'
                     subject = loader.render_to_string(subject_template_name, c)
                     subject = ''.join(subject.splitlines())
+                    from_email = 'SERVER_EMAIL'
                     email = loader.render_to_string(email_template_name, c)
-                    send_mail(subject, email, 'alexphelps3@gmail.com' , [user.email], fail_silently=False)
+                    send_mail(subject, email, 'GitJobs Noreply <noreply@gitjobs.co>',[user.email], fail_silently=False)
                     success_msg = 'A confirmation email has been sent to ' + username
                     success_msg += '. Please follow the link in the email to reset your password.'
                     messages.add_message(
