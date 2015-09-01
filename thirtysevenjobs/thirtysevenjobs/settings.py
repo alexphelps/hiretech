@@ -157,6 +157,16 @@ COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
 
+# Markdown 
+MARKDOWN_DEUX_STYLES = {
+    "default": {
+        "extras": {
+            "code-friendly": None,
+        },
+        "safe_mode": "escape",
+    },
+}
+
 # Email Settings
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'alexphelps3@gmail.com'
