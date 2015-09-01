@@ -108,19 +108,19 @@ class PasswordResetView(TemplateView):
                     c = {
                         'email': user.email,
                         'domain': request.META['HTTP_HOST'],
-                        'site_name': 'your site',
+                        'site_name': 'GitJobs',
                         'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                         'user': user,
                         'token': default_token_generator.make_token(user),
                         'protocol': 'http',
                         }
-                    subject_template_name='registration/password_reset_subject.txt'
-                    email_template_name='registration/password_reset_email.html'
+                    subject_template_name='emails/password_reset_subject.txt'
+                    email_template_name='emails/password_reset_email.html'
                     subject = loader.render_to_string(subject_template_name, c)
                     subject = ''.join(subject.splitlines())
-                    from_email = 'SERVER_EMAIL'
                     email = loader.render_to_string(email_template_name, c)
-                    send_mail(subject, email, 'GitJobs Noreply <noreply@gitjobs.co>',[user.email], fail_silently=False)
+                    from_email = settings.DEFAULT_FROM_EMAIL
+                    send_mail(subject, email, from_email,[user.email], fail_silently=False)
                     success_msg = 'A confirmation email has been sent to ' + username
                     success_msg += '. Please follow the link in the email to reset your password.'
                     messages.add_message(
