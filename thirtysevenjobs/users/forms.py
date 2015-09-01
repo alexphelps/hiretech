@@ -111,16 +111,13 @@ class SignupForm(forms.Form):
 
     captcha = NoReCaptchaField()
 
-    error_messages = {
-        'email_exists': 'The email already is already in use.',
-    }
     def clean(self):
         cleaned_data = super(SignupForm, self).clean()
         email = cleaned_data.get("email")
         users_count = User.objects.filter(username=email).count()
         if users_count > 0:
             raise forms.ValidationError(
-                    _('Duplicate email',
+                    _('The email already is already in use.',
                     params={'value': '42'
                     })
                 )
