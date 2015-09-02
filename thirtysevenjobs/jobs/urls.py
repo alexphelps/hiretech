@@ -1,7 +1,7 @@
 from django.conf.urls import patterns,url
-from . import views
+from . import views as job_views
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'^(?P<job_id>[0-9]+)/$', views.jobdetail, name='jobdetail'),
+    url(r'^$', job_views.JobIndex.as_view(), name='jobindex'),
+    url(r'^(?P<job_id>[0-9]+)/$', job_views.JobDetails.as_view(), name='jobdetail'),
 ]
