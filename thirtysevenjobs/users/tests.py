@@ -1,3 +1,4 @@
+from django.core.files import File
 from django.contrib.auth.models import AnonymousUser, User
 from django.test import TestCase
 from companies.models import Company
@@ -58,30 +59,16 @@ class SignupViewTest(TestCase):
         self.assertEqual(response.status_code,200)
 
     def test_signup_new_company(self):
-        user = User.objects.create_user(
-            username='alex@admin.com',
-            email='alex@admin.com',
-            first_name='Alex',
-            last_name='Phelps',
-            password='testpass'
-            )
-        company = Company.objects.create(
-            company_name='Alex Company',
-            company_logo='/media/logo.png',
-        )
-        userprofile = UserProfile.objects.create(
-            user=user,
-            company=company,
-            user_type='employer'
-        )
-        url = '/login/'
+        url = '/join/'
+        test_logo = open('static/admin/img/icon_alert.gif')
         user_company_data = {
             'first_name':'Alex',
             'last_name':'Phelps',
             'email':'alex@admin.com',
             'password':'testpass',
             'company_name':'Alex Company',
-            'company_logo':'/media/logo.png',
+            'company_logo':test_logo,
+            'g-recaptcha-response': 'PASSED',
         }
         response = self.client.post(url,data=user_company_data,follow=True)
         self.assertRedirects(response,'/dashboard/',302)

@@ -271,7 +271,6 @@ class SignupView(TemplateView):
                 MSG.ERROR,
                 error_msg
             )
-
         context = {
             'form':form,
         }
