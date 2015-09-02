@@ -47,6 +47,10 @@ class LoginView(TemplateView):
     template_name = 'login.html'
     def get(self,request):
         form = LoginForm()
+        if request.user.is_authenticated():
+            return HttpResponseRedirect(
+                reverse('dashboard')
+            )
         context = {
             'form':form,
         }
