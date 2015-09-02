@@ -261,7 +261,9 @@ class SignupView(TemplateView):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponseRedirect('/dashboard/')
+                    return HttpResponseRedirect(
+                        reverse('dashboard')
+                    )
         else:
             error_msg = 'Ooops, please see required fields below.'
             messages.add_message(

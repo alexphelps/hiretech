@@ -46,7 +46,7 @@ class LoginViewTest(TestCase):
 
 
 class PasswordResetViewTest(TestCase):
-    def test_signup_response(self):
+    def test_password_reset_response(self):
         url = '/password/reset/'
         response = self.client.get(url)
         self.assertEqual(response.status_code,200)
@@ -55,4 +55,34 @@ class SignupViewTest(TestCase):
     def test_signup_response(self):
         url = '/join/'
         response = self.client.get(url)
+        self.assertEqual(response.status_code,200)
+
+    def test_signup_new_company(self):
+        user = User.objects.create_user(
+            username='alex@admin.com',
+            email='alex@admin.com',
+            first_name='Alex',
+            last_name='Phelps',
+            password='testpass'
+            )
+        company = Company.objects.create(
+            company_name='Alex Company',
+            company_logo='/media/logo.png',
+        )
+        userprofile = UserProfile.objects.create(
+            user=user,
+            company=company,
+            user_type='employer'
+        )
+        url = '/login/'
+        user_company_data = {
+            'first_name':'Alex',
+            'last_name':'Phelps',
+            'email':'alex@admin.com',
+            'password':'testpass',
+            'company_name':'Alex Company',
+            'company_logo':'/media/logo.png',
+        }
+        response = self.client.post(url,data=user_company_data,follow=True)
+        self.assertRedirects(response,'/dashboard/',302)
         self.assertEqual(response.status_code,200)
