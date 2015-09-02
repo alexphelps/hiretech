@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'header.html' %}
+<div class="container m-t-20">
+  <div  class="row">
+    <div  class="col-md-10 col-md-offset-1">
+      <div class="panel panel-default p-30">
+        <div class="panel-header">
+          <h4>Post a New Job</h4>
+        </div>
+        <div class="panel-body">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label for="" class="col-sm-2 control-label">Company</label>
+              <div class="col-md-9 col-sm-10">
+                <input type="text" class="form-control" placeholder="{{ current_user_profile.company }}" disabled>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="" class="col-sm-2 control-label">Job Title</label>
+              <div class="col-md-9 col-sm-10">
+                <input type="text" class="form-control" placeholder="">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="" class="col-sm-2 control-label">Location</label>
+              <div class="col-md-9 col-sm-10">
+                <input type="text" class="form-control" placeholder="">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="" class="col-sm-2 control-label">Employment Type</label>
+              <div class="col-md-9 col-sm-10">
+                <select class="form-control">
+                  <option>Full Time</option>
+                  <option>Part Time</option>
+                  <option>Contract</option>
+                  <option>Internship</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="" class="col-sm-2 control-label">Responsibilities</label>
+              <div class="col-md-9 col-sm-10">
+                <textarea class="form-control" rows="4"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="" class="col-sm-2 control-label">Qualifications</label>
+              <div class="col-md-9 col-sm-10">
+                <textarea class="form-control" rows="4"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="" class="col-sm-2 control-label">Notes</label>
+              <div class="col-md-9 col-sm-10">
+                <textarea class="form-control" rows="2"></textarea>
+                <span class="help-block">Optional</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-9 col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-block btn-primary">Post Job</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% include 'footer.html' %}
+{% include 'javascript.html' %}
+</body>
+{% endblock %}

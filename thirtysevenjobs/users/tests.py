@@ -14,7 +14,6 @@ class LogoutViewTest(TestCase):
         self.assertEqual(response.status_code,302)
 
 class LoginViewTest(TestCase):
-
     def test_login_response(self):
         url = '/login/'
         response = self.client.get(url)

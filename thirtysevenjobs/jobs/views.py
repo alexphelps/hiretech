@@ -6,6 +6,7 @@ from django.conf import settings
 from django.views.generic import TemplateView
 
 from .models import Job
+from users.models import UserProfile 
 # Create your views here.
 
 class JobIndex(TemplateView):
@@ -14,6 +15,21 @@ class JobIndex(TemplateView):
         jobs_list = Job.objects.all().order_by('-job_created_date')
         context = {
             'jobs_list': jobs_list,
+        }
+        return render(
+            request,
+            self.template_name,
+            context
+        )
+
+class JobAddNew(TemplateView):
+    template_name = 'job_add.html'
+    def get(self,request):
+        current_user = request.user
+        current_user_id = current_user.id
+        current_user_profile = UserProfile.objects.get(user__id=current_user_id)
+        context = {
+            'current_user_profile':current_user_profile,
         }
         return render(
             request,
