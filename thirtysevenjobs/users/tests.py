@@ -1,5 +1,6 @@
 from django.core.files import File
 from django.contrib.auth.models import AnonymousUser, User
+from django.http import HttpRequest
 from django.test import TestCase
 from companies.models import Company
 from .models import UserProfile
@@ -51,6 +52,32 @@ class PasswordResetViewTest(TestCase):
         url = '/password/reset/'
         response = self.client.get(url)
         self.assertEqual(response.status_code,200)
+
+    def test_password_reset_form(self):
+        user = User.objects.create_user(
+            username='alex@admin.com',
+            email='alex@admin.com',
+            first_name='Alex',
+            last_name='Phelps',
+            password='testpass'
+            )
+        company = Company.objects.create(
+            company_name='Alex Company',
+            company_logo='/media/logo.png',
+        )
+        userprofile = UserProfile.objects.create(
+            user=user,
+            company=company,
+            user_type='employer'
+        )
+        url = '/password/reset/'
+        userdata = {
+            'email':'alex@admin.com'
+        }
+        response = self.client.post(url,data=userdata,HTTP_HOST='example.com')
+        self.assertEqual(response.status_code,200)
+
+
 
 class SignupViewTest(TestCase):
     def test_signup_response(self):
