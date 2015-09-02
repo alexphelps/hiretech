@@ -1,3 +1,4 @@
+mock
 psycopg2
 python-coveralls
 Django==1.8.4
