@@ -5,9 +5,10 @@ from django.template import RequestContext, loader
 from django.conf import settings
 from django.views.generic import TemplateView,DetailView
 from taggit.models import Tag
-
+from .forms import JobAddForm
 from .models import Job
 from users.models import UserProfile
+
 # Create your views here.
 class TagMixin(object):
     def get_context_data(self, kwargs):
@@ -31,17 +32,22 @@ class JobIndex(TemplateView):
 class JobAddNew(TemplateView):
     template_name = 'job_add.html'
     def get(self,request):
+        form = JobAddForm()
         current_user = request.user
         current_user_id = current_user.id
         current_user_profile = UserProfile.objects.get(user__id=current_user_id)
         context = {
             'current_user_profile':current_user_profile,
+            'form':form,
         }
         return render(
             request,
             self.template_name,
             context
         )
+    def post(self,request):
+        form = JobAddForm(request.POST)
+
 
 class JobDetails(TagMixin,DetailView):
     template_name = 'job_details.html'
@@ -50,6 +56,7 @@ class JobDetails(TagMixin,DetailView):
         job = get_object_or_404(Job, pk=job_id)
         context = {
             'job': job,
+
         }
         return render(
             request,
