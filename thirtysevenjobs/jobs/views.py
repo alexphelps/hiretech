@@ -3,19 +3,13 @@ from django.shortcuts import get_object_or_404,render
 from django.http import HttpResponse
 from django.template import RequestContext, loader
 from django.conf import settings
-from django.views.generic import TemplateView,DetailView
+from django.views.generic import TemplateView,ListView,DetailView
 from taggit.models import Tag
 from .forms import JobAddForm
 from .models import Job
 from users.models import UserProfile
 
 # Create your views here.
-class TagMixin(object):
-    def get_context_data(self, kwargs):
-        context = super(TagMixin, self).get_context_data(kwargs)
-        context['tags'] = Tag.objects.all()
-        return context
-
 class JobIndex(TemplateView):
     template_name = 'job_index.html'
     def get(self,request):
@@ -49,14 +43,15 @@ class JobAddNew(TemplateView):
         form = JobAddForm(request.POST)
 
 
-class JobDetails(TagMixin,DetailView):
+class JobDetails(TemplateView):
     template_name = 'job_details.html'
     def get(self,request,**kwargs):
         job_id = self.kwargs['job_id']
         job = get_object_or_404(Job, pk=job_id)
+        tags = job.tags.all()
         context = {
             'job': job,
-
+            'tags': tags,
         }
         return render(
             request,

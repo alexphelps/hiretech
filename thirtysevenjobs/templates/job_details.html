@@ -38,9 +38,9 @@
         <p><span class="job-type {{ job.job_type }}" itemprop="employmentType">{{ job.get_job_type_display }}</span></p>
         <div class="m-t-30">
           {% for tag in tags %}
-            <li><a href="{% url 'tagged' tag.slug %}">{{ tag.name }}</a></li>
+            <span class="label label-default">{{ tag.name }}</span>
           {% empty %}
-            <li>No Tags</li>
+            <p>No Tags</p>
           {% endfor %}
         </div>
         <div class="m-t-30">
