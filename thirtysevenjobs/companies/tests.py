@@ -10,7 +10,7 @@ class CompanyDetailsViewTest(TestCase):
             company_logo='/media/logo.png',
             company_url='http://python.com',
         )
-        url = '/companies/' + str(company.id) + '/'
+        url = '/companies/' + str(company.company_slug) + '/'
         response = self.client.get(url)
         self.assertEqual(response.status_code,200)
 
@@ -26,7 +26,7 @@ class CompanyDetailsViewTest(TestCase):
             job_title='Python Guy',
             job_description='',
         )
-        url = '/companies/' + str(company.id) + '/'
+        url = '/companies/' + str(company.company_slug) + '/'
         response = self.client.get(url)
         expected = '<img class="img-thumbnail job-details-img" src="/media/logo.png">'
         expected += '<h3>Git Jobs</h3><p>'
