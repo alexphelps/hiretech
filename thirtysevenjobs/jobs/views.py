@@ -14,7 +14,6 @@ class TagMixin(object):
         context = super(TagMixin, self).get_context_data(kwargs)
         context['tags'] = Tag.objects.all()
         return context
-        print context
 
 class JobIndex(TemplateView):
     template_name = 'job_index.html'
@@ -46,12 +45,11 @@ class JobAddNew(TemplateView):
 
 class JobDetails(TagMixin,DetailView):
     template_name = 'job_details.html'
-    model = Job
     def get(self,request,**kwargs):
         job_id = self.kwargs['job_id']
         job = get_object_or_404(Job, pk=job_id)
         context = {
-            'job': job
+            'job': job,
         }
         return render(
             request,
