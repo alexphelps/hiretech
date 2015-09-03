@@ -44,7 +44,7 @@
                       <img class="img-responsive img-rounded pull-left m-r-10 job-list-img" src="{{ job.job_company.company_logo.url }}">
                       <h5>
                         <a href="/jobs/{{ job.id }}/">{{ job.job_title }}</a><br>
-                        <small><a href="/companies/{{ job.job_company.id }}" class="text-muted">{{ job.job_company }}</a> - {{ job.job_location }}</small>
+                        <small><a href="/companies/{{ job.job_company.company_slug }}" class="text-muted">{{ job.job_company }}</a> - {{ job.job_location }}</small>
                       </h5>
                     </div>
                     <div class="col-md-3 col-sm-3 col-xs-4">

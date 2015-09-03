@@ -8,7 +8,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 text-center">
-        <a href="/companies/{{ job.job_company.id }}/">
+        <a href="/companies/{{ job.job_company.company_slug }}/">
           <img class="img-thumbnail job-details-img" src="{{ job.job_company.company_logo.url }}">
         </a>
         <h3><span itemprop="title">{{ job.job_title }}</span> at {{ job.job_company.company_name }}</h3>
@@ -36,6 +36,13 @@
       <div class="col-md-4">
         <h5>Employment Type</h5>
         <p><span class="job-type {{ job.job_type }}" itemprop="employmentType">{{ job.get_job_type_display }}</span></p>
+        <div class="m-t-30">
+          {% for tag in tags %}
+            <li><a href="{% url 'tagged' tag.slug %}">{{ tag.name }}</a></li>
+          {% empty %}
+            <li>No Tags</li>
+          {% endfor %}
+        </div>
         <div class="m-t-30">
           <h5>Job Location</h5>
           <span itemprop="jobLocation" itemscope itemtype="http://schema.org/Place">
