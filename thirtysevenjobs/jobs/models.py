@@ -1,14 +1,10 @@
 from django.conf import settings
 from django.db import models
 
+from taggit.managers import TaggableManager
 # Create your models here.
-class Category(models.Model):
-    category_name = models.CharField(max_length=100)
-    def __unicode__(self):
-        return self.category_name
 
 class Job(models.Model):
-    job_category = models.ForeignKey(Category,default=0)
     job_company = models.ForeignKey('companies.Company',default=0)
     job_location = models.CharField(max_length=200)
     job_title = models.CharField(max_length=200)
@@ -31,6 +27,7 @@ class Job(models.Model):
         ('filled','Filled'),
     )
     job_status = models.CharField(max_length="20",choices=job_status_choices,default='draft')
+    tags = TaggableManager()
 
     def __unicode__(self):
         return self.job_status

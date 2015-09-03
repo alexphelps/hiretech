@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Job,Category
+from .models import Job
 from companies.models import Company
 
 # Create your tests here.
@@ -11,13 +11,11 @@ class JobIndexViewTest(TestCase):
 
     def test_job_list_shows(self):
         url = '/jobs/'
-        category = Category.objects.create(category_name='Python Developer')
         company = Company.objects.create(
             company_name='Pronto',
             company_logo='/media/logo.png',
         )
         Job.objects.create(
-            job_category=category,
             job_company=company,
             job_location='Owensboro, KY',
             job_title='Python Guy',
@@ -37,14 +35,12 @@ class JobIndexViewTest(TestCase):
         self.assertContains(response,expected)
 
     def test_job_details_response(self):
-        category = Category.objects.create(category_name='Python Developer')
         company = Company.objects.create(
             company_name='Python Shop',
             company_logo='/media/logo.png',
             company_url='http://python.com',
         )
         job = Job.objects.create(
-            job_category=category,
             job_company=company,
             job_location='Owensboro, KY',
             job_title='Python Guy',

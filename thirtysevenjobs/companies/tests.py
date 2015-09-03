@@ -1,6 +1,6 @@
 from django.test import TestCase
 from .models import Company
-from jobs.models import Job, Category
+from jobs.models import Job
 
 # Create your tests here.
 class CompanyDetailsViewTest(TestCase):
@@ -15,14 +15,12 @@ class CompanyDetailsViewTest(TestCase):
         self.assertEqual(response.status_code,200)
 
     def test_company_details_shows(self):
-        category = Category.objects.create(category_name='Python Developer')
         company = Company.objects.create(
             company_name='Git Jobs',
             company_logo='/media/logo.png',
             company_url='http://python.com',
         )
         job = Job.objects.create(
-            job_category=category,
             job_company=company,
             job_location='Owensboro, KY',
             job_title='Python Guy',

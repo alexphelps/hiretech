@@ -57,6 +57,7 @@ INSTALLED_APPS = (
     'django.contrib.flatpages',
     'markdown_deux',
     'nocaptcha_recaptcha',
+    'taggit',
     'users',
     'jobs',
     'companies',
