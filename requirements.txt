@@ -7,3 +7,5 @@ django-libsass
 django-markdown-deux
 django-nocaptcha-recaptcha
 django-taggit
+django-haystack
+elasticsearch
