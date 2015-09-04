@@ -32,25 +32,24 @@
           <h5>Additional Notes</h5>
           {{ job.job_notes|markdown }}
         </div>
+        <a href="#" class="btn btn-primary btn-lg">Apply Now</a>
       </div>
       <div class="col-md-4">
         <h5>Employment Type</h5>
         <p><span class="job-type {{ job.job_type }}" itemprop="employmentType">{{ job.get_job_type_display }}</span></p>
-        <div class="m-t-30">
-          {% for tag in tags %}
-            <span class="label label-default">{{ tag.name }}</span>
-          {% empty %}
-            <p>No Tags</p>
-          {% endfor %}
-        </div>
-        <div class="m-t-30">
-          <h5>Job Location</h5>
-          <span itemprop="jobLocation" itemscope itemtype="http://schema.org/Place">
-            <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-                <span itemprop="addressLocality">{{ job.job_location }}</span>
-              </span>
+        <h5>Tags</h5>
+        {% for tag in tags %}
+          <span class="label label-tag">{{ tag.name }}</span>
+        {% empty %}
+          <p>No Tags</p>
+        {% endfor %}
+        <h5>Job Location</h5>
+        <span itemprop="jobLocation" itemscope itemtype="http://schema.org/Place">
+          <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+              <span itemprop="addressLocality">{{ job.job_location }}</span>
             </span>
-        </div>
+          </span>
+        <p class="m-t-30"><a href="#" class="btn btn-primary btn-lg">Apply Now</a></p>
       </div>
     </div>
   </div>

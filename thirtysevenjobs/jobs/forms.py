@@ -1,4 +1,5 @@
 from django import forms
+from taggit.forms import *
 
 class JobAddForm(forms.Form):
     job_title = forms.CharField(
@@ -15,12 +16,12 @@ class JobAddForm(forms.Form):
                 'class': 'form-control'
             }),
         required=True)
-    tags = forms.CharField(
-        widget=forms.TextInput(
+    tags = TagField(
+        widget=TagWidget(
             attrs={
                 'id': 'tags',
                 'class': 'form-control',
-                'placeholder':'Python,Ruby,Agile,Scrum,DevOps,etc'
+                'placeholder':'Linux,Python,Ruby,Agile,Scrum,DevOps,etc'
             }),
         required=True)
     job_type = forms.ChoiceField(
@@ -41,7 +42,7 @@ class JobAddForm(forms.Form):
             attrs={
                 'id': 'job_description',
                 'class': 'form-control',
-                'rows':'4'
+                'rows':'6'
             }),
         required=True)
     job_responsibilities = forms.CharField(
@@ -49,7 +50,7 @@ class JobAddForm(forms.Form):
             attrs={
                 'id': 'job_responsibilities',
                 'class': 'form-control',
-                'rows':'4'
+                'rows':'6'
             }),
         required=True)
     job_qualifications = forms.CharField(
@@ -57,7 +58,7 @@ class JobAddForm(forms.Form):
             attrs={
                 'id': 'job_qualifications',
                 'class': 'form-control',
-                'rows':'4'
+                'rows':'6'
             }),
         required=True)
     job_notes = forms.CharField(
@@ -65,6 +66,6 @@ class JobAddForm(forms.Form):
             attrs={
                 'id': 'job_notes',
                 'class': 'form-control',
-                'rows':'3'
+                'rows':'4'
             }),
         required=True)

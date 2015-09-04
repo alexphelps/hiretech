@@ -15,7 +15,12 @@ body {
   height: 120px;
   background-color: #2196F3;
 }
-
+.label-tag {
+  background-color: #E4E1E1;
+  color: #666;
+  font-weight: normal;
+  font-size: 100%;
+}
 .job-details-hero:first-of-type + .container {
   margin-top: -70px;
 }
