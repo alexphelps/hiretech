@@ -20,10 +20,9 @@ class JobAddForm(forms.Form):
         widget=TagWidget(
             attrs={
                 'id': 'tags',
-                'class': 'form-control',
-                'placeholder':'Linux,Python,Ruby,Agile,Scrum,DevOps,etc'
+                'class': 'form-control tokenfield'
             }),
-        required=True)
+        )
     job_type = forms.ChoiceField(
         choices=(
             ('full_time','Full Time'),
@@ -68,4 +67,4 @@ class JobAddForm(forms.Form):
                 'class': 'form-control',
                 'rows':'4'
             }),
-        required=True)
+        required=False)

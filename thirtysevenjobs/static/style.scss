@@ -1,6 +1,8 @@
 // add bootstrap variable settings here
 @import 'bootstrap';
 @import 'bootswatch';
+@import 'bootstrap-tokenfield';
+@import 'tokenfield-typeahead';
 @import 'utility-classes';
 body {
   font-size: 14px;
@@ -21,6 +23,44 @@ body {
   font-weight: normal;
   font-size: 100%;
 }
+.tokenfield {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  -webkit-appearance: none;
+  -webkit-box-shadow: inset 0 -1px 0 #ddd;
+  box-shadow: inset 0 -1px 0 #ddd;
+  white-space:nowrap;
+}
+.tokenfield.focus {
+  border-color: none;
+  -webkit-appearance: none;
+  -webkit-box-shadow: inset 0 -1px 0 #ddd;
+  box-shadow: inset 0 -2px 0 #2196F3;
+}
+.tokenfield .token .close {
+  vertical-align: initial;
+}
+.tokenfield .token:hover {
+    border-color: transparent;
+}
+.tokenfield .token {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-border-radius: .25em;
+  -moz-border-radius: .25em;
+  border-radius: .25em;
+  display: inline-block;
+  border: 1px solid #ededed;
+  background-color: #ededed;
+  white-space: nowrap;
+  margin: -1px 5px 5px 0;
+  height: 22px;
+  vertical-align: top;
+  cursor: default;
+}
+
 .job-details-hero:first-of-type + .container {
   margin-top: -70px;
 }

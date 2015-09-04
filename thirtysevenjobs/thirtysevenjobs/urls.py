@@ -33,6 +33,9 @@ urlpatterns = [
     url(r'^dashboard/$', login_required(user_views.DashboardView.as_view()), name='dashboard'),
 ]
 
+admin.site.site_header = 'Gitjobs'
+admin.site.site_name = 'Gitjobs'
+
 if settings.DEBUG:
     urlpatterns += patterns('',
         url(r'^vagrant/thirtysevenjobs/media/(?P<path>.*)$', 'django.views.static.serve', {

@@ -71,7 +71,9 @@ class JobAddNew(TemplateView):
             )
             for each in tags:
                 job.tags.add(each)
+
         else:
+            print form.errors
             error_msg = 'Please see required fields below.'
             messages.add_message(
                 self.request,
