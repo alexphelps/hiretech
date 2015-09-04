@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='company',
             name='company_logo',
-            field=models.ImageField(default=b'', upload_to=b'/vagrant/thirtysevenjobs/media'),
+            field=models.ImageField(default=b'', upload_to=b'/vagrant/gitjobs/media'),
         ),
     ]

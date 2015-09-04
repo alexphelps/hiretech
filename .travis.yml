@@ -18,9 +18,9 @@ before_script:
 
 # command to run tests
 script:
-  - cd thirtysevenjobs
+  - cd gitjobs
   - python manage.py test
-  - coverage run --source=thirtysevenjobs manage.py test
+  - coverage run --source=gitjobs manage.py test
   - coverage run --source=jobs manage.py test
   - coverage run --source=companies manage.py test
   - coverage run --source=users manage.py test

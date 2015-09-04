@@ -1,4 +1,4 @@
-"""thirtysevenjobs URL Configuration
+"""gitjobs URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.8/topics/http/urls/
@@ -38,7 +38,7 @@ admin.site.site_name = 'Gitjobs'
 
 if settings.DEBUG:
     urlpatterns += patterns('',
-        url(r'^vagrant/thirtysevenjobs/media/(?P<path>.*)$', 'django.views.static.serve', {
+        url(r'^vagrant/gitjobs/media/(?P<path>.*)$', 'django.views.static.serve', {
             'document_root': settings.MEDIA_ROOT,
         }),
         url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
