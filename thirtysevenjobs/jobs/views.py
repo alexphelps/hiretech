@@ -68,9 +68,11 @@ class JobAddNew(TemplateView):
                 job_responsibilities=job_responsibilities,
                 job_qualifications=job_qualifications,
                 job_notes=job_notes,
+                job_status='published',
             )
             for each in tags:
-                job.tags.add(each)
+                lowertag = each.lower()
+                job.tags.add(lowertag)
 
         else:
             print form.errors

@@ -177,3 +177,7 @@ MARKDOWN_DEUX_STYLES = {
         "safe_mode": "escape",
     },
 }
+
+# Taggit
+TAGGIT_FORCE_LOWERCASE = True
+TAGGIT_CASE_INSENSITIVE = True
