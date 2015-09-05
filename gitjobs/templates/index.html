@@ -10,14 +10,10 @@
   <div class="row m-t-40 m-b-60">
     <div class="col-md-8 col-md-offset-2">
       <div class="well">
-        <form class="form-group" style="min-height:120px;">
-          <div class="col-md-6">
+        <form class="form-group" style="min-height:120px;" method="get" action="{% url 'search' %}">
+          <div class="col-md-12">
             <label><strong>Job Description</strong></label>
-            <input type="text" placeholder="Filter by title, benefits, companies" class="form-control">
-          </div>
-          <div class="col-md-6">
-            <label><strong>Job Location</strong></label>
-            <input type="text" placeholder="Filter by city, state or country" class="form-control">
+            {{ form.q }}
           </div>
           <div class="col-md-12">
             <label>&nbsp;</label><br>

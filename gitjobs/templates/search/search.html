@@ -6,13 +6,9 @@
     <div class="col-md-12">
       <div class="well">
         <form class="form-group" style="min-height:50px;" method="get" action="{% url 'search' %}">
-          <div class="col-md-5">
-            <label><strong>Job Description</strong></label>
+          <div class="col-md-10">
+            <label><strong>Search Jobs</strong></label>
             {{ form.q }}
-          </div>
-          <div class="col-md-5">
-            <label><strong>Job Location</strong></label>
-
           </div>
           <div class="col-md-2">
             <label>&nbsp;</label><br>
@@ -46,7 +42,7 @@
               </div>
             </li>
         {% empty %}
-            <p>No results found.</p>
+            <p>No results found. Maybe try a broader search term?</p>
         {% endfor %}
         </ul>
     {% endif %}

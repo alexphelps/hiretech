@@ -18,13 +18,16 @@ from .forms import JobAddForm
 from .models import Job
 from companies.models import Company
 from users.models import UserProfile
+from search.forms import CustomSearchForm
 
 # Create your views here.
 class JobIndex(TemplateView):
     template_name = 'job_index.html'
     def get(self,request):
+        form = CustomSearchForm(request.GET, searchqueryset=None)
         jobs_list = Job.objects.all().order_by('-job_created_date')
         context = {
+            'form': form,
             'jobs_list': jobs_list,
         }
         return render(
