@@ -6,6 +6,12 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.messages import constants as MSG
+from django.core.urlresolvers import reverse
+from django.http import (
+    Http404,
+    HttpResponse,
+    HttpResponseRedirect,
+)
 from django.views.generic import TemplateView,ListView,DetailView
 from taggit.models import Tag
 from .forms import JobAddForm
@@ -73,6 +79,16 @@ class JobAddNew(TemplateView):
             for each in tags:
                 lowertag = each.lower()
                 job.tags.add(lowertag)
+
+            success_msg = 'Woohoo! Your job posting has been published.'
+            messages.add_message(
+                self.request,
+                MSG.SUCCESS,
+                success_msg
+            )
+            return HttpResponseRedirect(
+                reverse('dashboard')
+            )
 
         else:
             print form.errors
