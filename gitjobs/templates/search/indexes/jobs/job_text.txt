@@ -1,0 +1,3 @@
+{{ object.job_title }}
+{{ object.jobs.tags }}
+{{ object.job_description }}
