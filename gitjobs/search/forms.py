@@ -8,7 +8,7 @@ class CustomSearchForm(ModelSearchForm):
         self.fields['q'].widget = forms.TextInput(attrs={
             'class': 'form-control',
             'id': 'search-input',
-            'placeholder': 'Search by title, loaction, benefits, companies',
+            'placeholder': 'Search by title, location, benefits, companies',
         })
     def search(self):
         if not self.is_valid():
