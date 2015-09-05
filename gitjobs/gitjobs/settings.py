@@ -194,9 +194,9 @@ MARKDOWN_DEUX_STYLES = {
 SUIT_CONFIG = {
     'ADMIN_NAME': 'GitJobs',
     'MENU': (
-        {'app': 'jobs', 'label': 'Jobs', 'icon':'icon-briefcase'},
+        {'app': 'jobs', 'label': 'Jobs', 'icon':'icon-tasks'},
         {'app': 'taggit', 'label': 'Tags', 'icon':'icon-tag'},
-        {'app': 'companies', 'label': 'Companies', 'icon':'icon-leaf'},
+        {'app': 'companies', 'label': 'Companies', 'icon':'icon-briefcase'},
         {'app': 'auth', 'label': 'Auth', 'icon':'icon-lock'},
         {'app': 'users', 'label': 'User Profiles', 'icon':'icon-user'},
     )

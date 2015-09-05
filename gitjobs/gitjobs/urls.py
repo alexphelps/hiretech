@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from users import views as user_views
+from search import views as search_views
 from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
@@ -31,7 +32,7 @@ urlpatterns = [
     url(r'^password/reset/$', user_views.PasswordResetView.as_view(), name='password_reset'),
     url(r'^password/reset/confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$', user_views.PasswordResetConfirmView.as_view(),name='password_reset_confirm'),
     url(r'^dashboard/$', login_required(user_views.DashboardView.as_view()), name='dashboard'),
-    url(r'^search/', include('haystack.urls')),
+    url(r'^search/', search_views.CustomSearchView.as_view(), name='search'),
 ]
 
 admin.site.site_header = 'Gitjobs'
