@@ -1,3 +1,8 @@
+{{ object.id }}
 {{ object.job_title }}
 {{ object.jobs.tags }}
-{{ object.job_description }}
+{{ object.job_company }}
+{{ object.job_company.company_slug }}
+{{ object.job_location }}
+{{ object.job_type }}
+{{ object.job_created_date }}

@@ -17,15 +17,29 @@
 
         {% if query %}
             <h3>Results</h3>
-
+            <ul class="list-group jobs-list">
             {% for result in page.object_list %}
-                <p>
-                    <a href="{{ result.object.get_absolute_url }}">{{ result.object.job_title }}</a>
-                </p>
+                <li class="list-group-item">
+                  <div class="row">
+                    <div class="col-md-9 col-sm-9 col-xs-8">
+                      <img class="img-responsive img-rounded pull-left m-r-10 job-list-img" src="{{ result.object.job_company.company_logo.url }}">
+                      <h5>
+                        <a href="/jobs/{{ result.object.id }}/">{{ result.object.job_title }}</a><br>
+                        <small><a href="/companies/{{ result.object.job_company.company_slug }}" class="text-muted">{{ result.object.job_company }}</a> - {{ result.object.job_location }}</small>
+                      </h5>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-4">
+                      <ul class="list-unstyled text-center m-t-10">
+                        <li><a href="/jobs/{{ result.object.id }}/"><span class="job-type {{ result.object.job_type }}">{{ result.object.get_job_type_display }}</span></a></li>
+                        <li><small class="timeago" title="{{ result.object.job_created_date|date:"c" }}">{{ result.object.job_created_date }}</small></li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
             {% empty %}
                 <p>No results found.</p>
             {% endfor %}
-
+            </ul>
             {% if page.has_previous or page.has_next %}
                 <div>
                     {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
