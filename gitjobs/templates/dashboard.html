@@ -21,6 +21,14 @@
       </div>
     </div>
     <div class="col-md-9">
+      {% for message in messages %}
+        {% if message.level == 40 %}
+          <div class="alert alert-danger" role="alert">{{ message }}</div>
+        {% endif %}
+        {% if message.level == 25 %}
+          <div class="alert alert-success" role="alert">{{ message }}</div>
+        {% endif %}
+      {% endfor %}
       <h3>Hi, {{ user.first_name }} {{ user.last_name }} {{ user.username }}</h3>
       <p class="lead">Welcome to your dashboard</p>
       {% if current_user_company_jobs %}
