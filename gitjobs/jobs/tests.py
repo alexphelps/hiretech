@@ -31,8 +31,6 @@ class JobIndexViewTest(TestCase):
         expected += ' - Owensboro, KY</small></h5></div><div class="col-md-3 col-sm-3 col-xs-4">'
         expected += '<ul class="list-unstyled text-center m-t-10"><li><a href="/jobs/3/">'
         expected += '<span class="job-type full_time">Full Time</span></a></li><li>'
-        expected += '<small class="timeago" title="">None</small>'
-        expected += '</li></ul></div></div></li>'
         self.assertContains(response,expected)
 
     def test_job_details_response(self):

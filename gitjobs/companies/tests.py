@@ -40,6 +40,4 @@ class CompanyDetailsViewTest(TestCase):
         expected += '<div class="col-md-3 col-sm-3 col-xs-4">'
         expected += '<ul class="list-unstyled text-center m-t-10">'
         expected += '<li><a href="/jobs/1/"><span class="job-type full_time">Full Time</span></a>'
-        expected += '</li><li><small class="timeago" title="">None</small>'
-        expected += '</li></ul></div></div></li>'
         self.assertContains(response,expected)
