@@ -47,6 +47,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'suit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -136,6 +137,7 @@ HAYSTACK_CONNECTIONS = {
         'INDEX_NAME': 'haystack',
     },
 }
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
 # Email Settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -188,6 +190,7 @@ MARKDOWN_DEUX_STYLES = {
     },
 }
 
-# Taggit
-TAGGIT_FORCE_LOWERCASE = True
-TAGGIT_CASE_INSENSITIVE = True
+# Django Suit Config
+SUIT_CONFIG = {
+    'ADMIN_NAME': 'GitJobs'
+}
