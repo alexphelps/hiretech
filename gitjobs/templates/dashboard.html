@@ -3,61 +3,81 @@
 {% include 'header.html' %}
 <div class="container m-t-20">
   <div class="row">
-    <div class="col-md-3">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <a href="#" class="btn btn-sm btn-primary pull-right m-t-10">Edit</a>
-          <h5>Company Details</h5>
-        </div>
-        <div class="panel-body">
-          <img class="img-responsive img-rounded" src="{{ current_user_profile.company.company_logo.url }}" />
-        </div>
-        <ul class="list-group">
-          <li class="list-group-item">
-            <h5>{{ current_user_profile.company.company_name }}</h5>
-          </li>
-          <li class="list-group-item"><i class="fa fa-link"></i> {{ current_user_profile.company.company_url|urlize }}</li>
-        </ul>
-      </div>
+    <div class="col-md-12">
+        <img class="img-responsive img-thumbnail pull-left m-r-20" style="width:100px" src="{{ current_user_profile.company.company_logo.url }}" />
+        <h5>{{ current_user_profile.company.company_name }}</h5>
+         {{ current_user_profile.company.company_url|urlize }}
     </div>
+  </div>
+  <div class="row m-t-20">
     <div class="col-md-9">
-      {% for message in messages %}
-        {% if message.level == 40 %}
-          <div class="alert alert-danger" role="alert">{{ message }}</div>
-        {% endif %}
-        {% if message.level == 25 %}
-          <div class="alert alert-success" role="alert">{{ message }}</div>
-        {% endif %}
-      {% endfor %}
-      <h3>Hi, {{ user.first_name }} {{ user.last_name }} {{ user.username }}</h3>
-      <p class="lead">Welcome to your dashboard</p>
-      {% if current_user_company_jobs %}
-        {% for job in current_user_company_jobs %}
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col-md-9 col-sm-9 col-xs-8">
-              <img class="img-responsive pull-left m-r-10 job-list-img" src="{{ job.job_company.company_logo.url }}">
-              <h5>
-                <a href="/jobs/{{ job.id }}/">{{ job.job_title }}</a><br>
-                <small>{{ job.job_location }}</small>
-              </h5>
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#activejobs" aria-controls="activejobs" role="tab" data-toggle="tab">Active Jobs</a></li>
+        <li role="presentation"><a href="#filledjobs" aria-controls="filledjobs" role="tab" data-toggle="tab">Filled Jobs</a></li>
+        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+      </ul>
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="activejobs">
+          <div class="m-t-20">
+            {% for message in messages %}
+              {% if message.level == 40 %}
+                <div class="alert alert-danger" role="alert">{{ message }}</div>
+              {% endif %}
+              {% if message.level == 25 %}
+                <div class="alert alert-success" role="alert">{{ message }}</div>
+              {% endif %}
+            {% endfor %}
             </div>
-            <div class="col-md-3 col-sm-3 col-xs-4">
-              <ul class="list-unstyled text-center m-t-10">
-                <li><a href="/jobs/{{ job.id }}/"><span class="job-type {{ job.job_type }}">{{ job.get_job_type_display }}</span></a></li>
-                <li><small class="timeago" title="{{ job.job_created_date|date:"c" }}">{{ job.job_created_date }}</small></li>
-              </ul>
+            <div class="m-t-20">
+              <a href="/jobs/add/" class="btn btn-primary pull-right btn-sm">Add Another Job</a>
+              <h5>Active Job Postings</h5>
             </div>
-          </div>
-        </li>
-        {% endfor %}
-      {% else %}
-        <div class="well">
-          <p class="lead text-center">You don't have any active job postings.<br>
-            <a href="/jobs/add/" class="btn btn-primary m-t-20">Add a Job</a>
-          </p>
-        </div>
-      {% endif %}
+            <ul class="list-group m-t-20">
+            {% if current_user_company_jobs %}
+              {% for job in current_user_company_jobs %}
+                <li class="list-group-item">
+                  <div class="row">
+                    <div class="col-md-8 col-sm-8 col-xs-7">
+                      <img class="img-responsive pull-left m-r-10 job-list-img" src="{{ job.job_company.company_logo.url }}">
+                      <h5>
+                        <a href="/jobs/{{ job.id }}/">{{ job.job_title }}</a><br>
+                        <small>{{ job.job_location }}</small>
+                      </h5>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-4">
+                      <ul class="list-unstyled text-center m-t-10">
+                        <li><a href="/jobs/{{ job.id }}/"><span class="job-type {{ job.job_type }}">{{ job.get_job_type_display }}</span></a></li>
+                        <li><small class="timeago" title="{{ job.job_created_date|date:"c" }}">{{ job.job_created_date }}</small></li>
+                      </ul>
+                    </div>
+                    <div class="col-md-1 col-sm-1 col-xs-1">
+                      <div class="btn-group m-t-10 pull-right">
+                        <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-cog"></i></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="#"> Edit</a></li>
+                          <li><a href="#"> Delete</a></li>
+                          <li><a href="#"> Ban</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              {% endfor %}
+            </ul>
+            {% else %}
+              <div class="well">
+                <p class="lead text-center">You don't have any active job postings.<br>
+                  <a href="/jobs/add/" class="btn btn-primary m-t-20">Add a Job</a>
+                </p>
+              </div>
+            {% endif %}
+        </div><!--End Active Jobs Panel -->
+        <div role="tabpanel" class="tab-pane" id="filledjobs">
+          Filled jobs tab
+        </div><!--End Exipred Jobs Panel -->
+        <div role="tabpanel" class="tab-pane" id="settings">
+          Company Settings Tab
+        </div><!--End Company Settings Panel -->
     </div>
   </div>
 </div>

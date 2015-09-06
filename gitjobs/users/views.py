@@ -287,7 +287,7 @@ class DashboardView(TemplateView):
         current_user_id = current_user.id
         current_user_profile = UserProfile.objects.get(user__id=current_user_id)
         current_user_company = current_user_profile.company.id
-        current_user_company_jobs = Job.objects.filter(job_company=current_user_company)
+        current_user_company_jobs = Job.objects.filter(job_company=current_user_company,job_status='published').order_by('-job_created_date')
         context = {
             'current_user_profile':current_user_profile,
             'current_user_company_jobs':current_user_company_jobs,

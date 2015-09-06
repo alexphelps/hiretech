@@ -12,7 +12,7 @@
       <div class="well">
         <form class="form-group" style="min-height:120px;" method="get" action="{% url 'search' %}">
           <div class="col-md-12">
-            <label><strong>Job Description</strong></label>
+            <label><strong>Search Jobs</strong></label>
             {{ form.q }}
           </div>
           <div class="col-md-12">
@@ -23,6 +23,44 @@
       </div>
     </div>
   </div>
+  <div class="row  m-t-20">
+    <div class="col-md-8 col-md-offset-2">
+      <h3 class="text-center">Recent Jobs</h3>
+      <div class="panel panel-default">
+        {% if recent_five_jobs_list %}
+          <!-- List group -->
+            <ul class="list-group jobs-list">
+            {% spaceless %}
+            {% for job in recent_five_jobs_list %}
+                <li class="list-group-item">
+                  <div class="row">
+                    <div class="col-md-9 col-sm-9 col-xs-8">
+                      <img class="img-responsive img-rounded pull-left m-r-10 job-list-img" src="{{ job.job_company.company_logo.url }}">
+                      <h5>
+                        <a href="/jobs/{{ job.id }}/">{{ job.job_title }}</a><br>
+                        <small><a href="/companies/{{ job.job_company.company_slug }}" class="text-muted">{{ job.job_company }}</a> - {{ job.job_location }}</small>
+                      </h5>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-4">
+                      <ul class="list-unstyled text-center m-t-10">
+                        <li><a href="/jobs/{{ job.id }}/"><span class="job-type {{ job.job_type }}">{{ job.get_job_type_display }}</span></a></li>
+                        <li><small class="timeago" title="{{ job.job_created_date|date:"c" }}">{{ job.job_created_date }}</small></li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+            {% endfor %}
+            {% endspaceless %}
+            </ul>
+        {% else %}
+            <p class="lead">No jobs are available.</p>
+        {% endif %}
+        </div>
+        <div class="text-center">
+          <a class="btn btn-primary" href="/jobs">View All Jobs</a>
+        </div>
+      </div>
+    </div>
   <div  class="row m-t-60">
     <div class="col-md-8 col-md-offset-2 text-center">
       <h3 class="">Why <strong>GitJobs</strong>?</h3>

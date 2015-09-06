@@ -21,6 +21,7 @@ class JobIndexViewTest(TestCase):
             job_location='Owensboro, KY',
             job_title='Python Guy',
             job_description='',
+            job_status='published',
         )
         response = self.client.get(url)
         expected = '<li class="list-group-item"><div class="row">'

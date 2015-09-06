@@ -8,17 +8,19 @@ class CustomSearchView(TemplateView):
     template_name = 'search/search.html'
 
     def get(self, request):
+        query = ''
+        results = ''
         form = CustomSearchForm(request.GET, searchqueryset=None)
         if form.is_valid():
             query = form.cleaned_data['q']
             results = form.search()
-
+        context = {
+            'form': form,
+            'query': query,
+            'results': results,
+        }
         return render(
             request,
             self.template_name,
-            {
-                'form': form,
-                'query': query,
-                'results': results,
-            }
+            context
         )

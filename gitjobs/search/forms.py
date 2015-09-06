@@ -2,14 +2,14 @@ from django import forms
 
 from haystack.forms import SearchForm,ModelSearchForm
 
-class CustomSearchForm(ModelSearchForm):
-    def __init__(self, *args, **kwargs):
-        super(CustomSearchForm, self).__init__(*args, **kwargs)
-        self.fields['q'].widget = forms.TextInput(attrs={
+class CustomSearchForm(SearchForm):
+    q = forms.CharField(
+        widget=forms.TextInput(attrs={
             'class': 'form-control',
             'id': 'search-input',
             'placeholder': 'Search by title, location, benefits, companies',
         })
+    )
     def search(self):
         if not self.is_valid():
             return self.no_query_found()
