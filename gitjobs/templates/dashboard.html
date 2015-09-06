@@ -28,16 +28,16 @@
               {% endif %}
             {% endfor %}
             </div>
+            {% if current_user_company_published_jobs %}
             <div class="m-t-20">
               <a href="/jobs/add/" class="btn btn-primary pull-right btn-sm">Add Another Job</a>
               <h5>Active Job Postings</h5>
             </div>
             <ul class="list-group m-t-20">
-            {% if current_user_company_jobs %}
-              {% for job in current_user_company_jobs %}
+              {% for job in current_user_company_published_jobs %}
                 <li class="list-group-item">
                   <div class="row">
-                    <div class="col-md-8 col-sm-8 col-xs-7">
+                    <div class="col-md-7 col-sm-7 col-xs-6">
                       <img class="img-responsive pull-left m-r-10 job-list-img" src="{{ job.job_company.company_logo.url }}">
                       <h5>
                         <a href="/jobs/{{ job.id }}/">{{ job.job_title }}</a><br>
@@ -50,8 +50,8 @@
                         <li><small class="timeago" title="{{ job.job_created_date|date:"c" }}">{{ job.job_created_date }}</small></li>
                       </ul>
                     </div>
-                    <div class="col-md-1 col-sm-1 col-xs-1">
-                      <div class="btn-group m-t-10 pull-right">
+                    <div class="col-md-2 col-sm-2 col-xs-2 text-center">
+                      <div class="btn-group m-t-10">
                         <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-cog"></i></a>
                         <ul class="dropdown-menu">
                           <li><a href="#"> Edit</a></li>
@@ -73,7 +73,42 @@
             {% endif %}
         </div><!--End Active Jobs Panel -->
         <div role="tabpanel" class="tab-pane" id="filledjobs">
-          Filled jobs tab
+          {% if current_user_company_filled_jobs %}
+          <div class="m-t-20">
+            <a href="/jobs/add/" class="btn btn-primary pull-right btn-sm">Add Another Job</a>
+            <h5>Filled Jobs</h5>
+          </div>
+          <ul class="list-group m-t-20">
+            {% for job in current_user_company_filled_jobs %}
+              <li class="list-group-item">
+                <div class="row">
+                  <div class="col-md-7 col-sm-7 col-xs-6">
+                    <img class="img-responsive pull-left m-r-10 job-list-img" src="{{ job.job_company.company_logo.url }}">
+                    <h5>
+                      {{ job.job_title }}<br>
+                      <small>{{ job.job_location }}</small>
+                    </h5>
+                  </div>
+                  <div class="col-md-3 col-sm-3 col-xs-4">
+                    <ul class="list-unstyled text-center m-t-10">
+                      <li><span class="job-type {{ job.job_type }}">{{ job.get_job_type_display }}</span></li>
+                      <li><small class="timeago" title="{{ job.job_created_date|date:"c" }}">{{ job.job_created_date }}</small></li>
+                    </ul>
+                  </div>
+                  <div class="col-md-2 col-sm-2 col-xs-2 text-center">
+                    <p class="m-t-20 m-r-10"><span class="label label-tag">Filled</span></p>
+                  </div>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+          {% else %}
+            <div class="well m-t-20">
+              <p class="lead text-center">You don't have any filled jobs.<br>
+                <a href="/jobs/add/" class="btn btn-primary m-t-20">Add a Job</a>
+              </p>
+            </div>
+          {% endif %}
         </div><!--End Exipred Jobs Panel -->
         <div role="tabpanel" class="tab-pane" id="settings">
           Company Settings Tab

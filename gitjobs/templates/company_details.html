@@ -17,11 +17,11 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <h5 class="text-center">Available Jobs at {{ company.company_name }}</h5>
-      {% if company_job_list %}
+      {% if company_active_job_list %}
         <!-- List group -->
           <ul class="list-group jobs-list">
           {% spaceless %}
-          {% for job in company_job_list %}
+          {% for job in company_active_job_list %}
               <li class="list-group-item">
                 <div class="row">
                   <div class="col-md-9 col-sm-9 col-xs-8">

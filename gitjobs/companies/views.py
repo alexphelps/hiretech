@@ -13,9 +13,9 @@ class CompanyDetails(DetailView):
     template_name = 'company_details.html'
     def get(self,request, company_slug):
         company = get_object_or_404(Company, company_slug=company_slug)
-        company_job_list = Job.objects.filter(job_company=company)
+        company_active_job_list = Job.objects.filter(job_company=company,job_status='published')
         context = {
-            'company_job_list': company_job_list,
+            'company_active_job_list': company_active_job_list,
             'company': company,
         }
         return render(

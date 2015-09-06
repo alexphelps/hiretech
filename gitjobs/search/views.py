@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 
 from .forms import CustomSearchForm
+from jobs.models import Job
 
 class CustomSearchView(TemplateView):
     template_name = 'search/search.html'
