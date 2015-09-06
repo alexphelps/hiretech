@@ -25,7 +25,7 @@ class JobIndex(TemplateView):
     template_name = 'job_index.html'
     def get(self,request):
         form = CustomSearchForm(request.GET, searchqueryset=None)
-        jobs_list = Job.objects.all().order_by('-job_created_date')
+        jobs_list = Job.objects.filter(job_status='published').order_by('-job_created_date')
         context = {
             'form': form,
             'jobs_list': jobs_list,
