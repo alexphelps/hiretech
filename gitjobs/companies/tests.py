@@ -25,6 +25,7 @@ class CompanyDetailsViewTest(TestCase):
             job_location='Owensboro, KY',
             job_title='Python Guy',
             job_description='',
+            job_status='published',
         )
         url = '/companies/' + str(company.company_slug) + '/'
         response = self.client.get(url)
