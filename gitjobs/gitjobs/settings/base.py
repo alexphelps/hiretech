@@ -45,7 +45,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'suit',
+    #'suit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -135,7 +135,8 @@ HAYSTACK_CONNECTIONS = {
         'INDEX_NAME': 'haystack',
     },
 }
-HAYSTACK_SIGNAL_PROCESSOR = 'search.signals.RealtimeSignalProcessor'
+HAYSTACK_DEFAULT_OPERATOR = 'OR'
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
 # Email Settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -165,7 +166,6 @@ STATIC_URL = '/static/'
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    # other finders..
     'compressor.finders.CompressorFinder',
 )
 
@@ -188,6 +188,7 @@ MARKDOWN_DEUX_STYLES = {
 }
 
 # Django Suit Config
+"""
 SUIT_CONFIG = {
     'ADMIN_NAME': 'GitJobs',
     'MENU': (
@@ -198,3 +199,4 @@ SUIT_CONFIG = {
         {'app': 'users', 'label': 'User Profiles', 'icon':'icon-user'},
     )
 }
+"""
