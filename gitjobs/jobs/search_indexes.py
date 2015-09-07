@@ -13,5 +13,5 @@ class JobIndex(indexes.SearchIndex, indexes.Indexable):
     def prepare_tags(self, obj):
         return [tag.name for tag in obj.tags.all()]
 
-    def index_queryset(self, using=Job):
-        return self.get_model().objects.filter(job_status='published')
+    #def index_queryset(self, using=Job):
+    #    return self.get_model().objects.filter(job_status='published')

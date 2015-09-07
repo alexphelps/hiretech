@@ -11,14 +11,19 @@ class CustomSearchView(TemplateView):
     def get(self, request):
         query = ''
         results = ''
+        filtered_results = []
         form = CustomSearchForm(request.GET, searchqueryset=None)
         if form.is_valid():
             query = form.cleaned_data['q']
             results = form.search()
+            for each in results:
+                if each.object.job_status == 'published':
+                    filtered_results.append(each)
+                    
         context = {
             'form': form,
             'query': query,
-            'results': results,
+            'results': filtered_results,
         }
         return render(
             request,
