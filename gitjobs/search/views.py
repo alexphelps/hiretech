@@ -10,7 +10,7 @@ class CustomSearchView(TemplateView):
 
     def get(self, request):
         query = ''
-        results = ''
+        results = []
         filtered_results = []
         form = CustomSearchForm(request.GET, searchqueryset=None)
         if form.is_valid():
@@ -19,7 +19,7 @@ class CustomSearchView(TemplateView):
             for each in results:
                 if each.object.job_status == 'published':
                     filtered_results.append(each)
-                    
+
         context = {
             'form': form,
             'query': query,

@@ -1,3 +1,4 @@
+
 """
 Django settings for gitjobs project.
 
@@ -20,7 +21,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ########## PATH CONFIGURATION
 # Absolute filesystem path to the Django project directory:
 DJANGO_ROOT = dirname(dirname(abspath(__file__)))
-
 # Absolute filesystem path to the top-level project folder:
 SITE_ROOT = dirname(DJANGO_ROOT)
 
@@ -38,8 +38,6 @@ path.append(DJANGO_ROOT)
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '=xno-dxwgo+jv$$u=7&x^wav$wmsynl6-^!k!fs=$^7to_1t8='
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -154,11 +152,11 @@ EMAIL_HOST_PASSWORD = 'Aj0ESkNeZFOKmIX5gYsAfQ'
 
 LOGIN_URL = '/login/'
 
-MEDIA_ROOT = normpath(join(DJANGO_ROOT, 'media'))
+MEDIA_ROOT = normpath(join('media'))
 MEDIA_URL = '/media/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
-STATIC_ROOT = normpath(join(DJANGO_ROOT, 'static'))
+STATIC_ROOT = normpath(join('static'))
 STATIC_URL = '/static/'
 #STATICFILES_DIRS = (
 #    normpath(join(SITE_ROOT, 'static')),
@@ -172,13 +170,12 @@ STATICFILES_FINDERS = (
 )
 
 # Google Recaptcha
-os.environ['NORECAPTCHA_TESTING'] = 'True'
 NORECAPTCHA_SITE_KEY = '6Lc6AgwTAAAAACed2E7SeDaz6AeVmuKFzL8_5h0o'
 NORECAPTCHA_SECRET_KEY = '6Lc6AgwTAAAAAK6A-TE2ApoK4oxCaKeqiEcDDXg9'
 
 # Sass compiler
 COMPRESS_ENABLED = True
-COMPRESS_ROOT = normpath(join(DJANGO_ROOT, 'static'))
+COMPRESS_ROOT = normpath(join('static'))
 COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
