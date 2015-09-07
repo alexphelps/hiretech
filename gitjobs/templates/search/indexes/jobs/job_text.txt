@@ -1,8 +1,10 @@
 {{ object.id }}
 {{ object.job_title }}
+{{ object.job_description }}
 {% for tag in object.tags.all %}{{ tag.name }} {% endfor %}
 {{ object.job_company }}
 {{ object.job_company.company_slug }}
 {{ object.job_location }}
 {{ object.job_type }}
 {{ object.job_created_date }}
+{{ object.job_status }}
