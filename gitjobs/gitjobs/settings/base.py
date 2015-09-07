@@ -45,7 +45,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    #'suit',
+    'suit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -127,6 +127,11 @@ USE_TZ = True
 
 SITE_ID = 1
 
+# TEMPLATE CONFIGURATION
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.request',
+)
+
 # Haystack ElasticSearch
 HAYSTACK_CONNECTIONS = {
     'default': {
@@ -141,8 +146,8 @@ HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 # Email Settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'GitJobs Noreply <noreply@gitjobs.co>'
-DEFAULT_DOMAIN = 'app.prontomarketing.com'
+DEFAULT_FROM_EMAIL = 'GitJobs Noreply <noreply@git-jobs.com>'
+DEFAULT_DOMAIN = 'git-jobs.com'
 SERVER_EMAIL = 'alexphelps3@gmail.com'
 EMAIL_HOST = 'smtp.mandrillapp.com'
 EMAIL_PORT = 587
@@ -188,7 +193,6 @@ MARKDOWN_DEUX_STYLES = {
 }
 
 # Django Suit Config
-"""
 SUIT_CONFIG = {
     'ADMIN_NAME': 'GitJobs',
     'MENU': (
@@ -199,4 +203,3 @@ SUIT_CONFIG = {
         {'app': 'users', 'label': 'User Profiles', 'icon':'icon-user'},
     )
 }
-"""
