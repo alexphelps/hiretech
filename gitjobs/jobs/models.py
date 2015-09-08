@@ -33,4 +33,4 @@ class Job(models.Model):
         return self.job_status
 
     def get_absolute_url(self):
-        return "/jobs/"+str(self.id)+"/"
+        return '/jobs/%i/' % (self.id)

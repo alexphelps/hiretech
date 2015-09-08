@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
 
 from taggit.managers import TaggableManager
@@ -18,3 +19,6 @@ class Company(models.Model):
         if self.company_name and not self.company_slug:
             self.company_slug = slugify(self.company_name)
         return super(Company, self).save(**kwargs)
+
+    def get_absolute_url(self):
+        return "/companies/%s/" % self.company_slug

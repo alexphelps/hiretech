@@ -20,12 +20,15 @@ from django.conf.urls.static import static
 from django.contrib.auth.decorators import login_required
 from django.contrib.sitemaps import views
 from django.contrib.sitemaps.views import sitemap
+from django.views.decorators.cache import cache_page
 from users import views as user_views
 from search import views as search_views
 from jobs.sitemap import JobsSiteMap
+from companies.sitemap import CompaniesSiteMap
 
 sitemaps = {
     'jobs-listings': JobsSiteMap,
+    'companies': CompaniesSiteMap
 }
 
 urlpatterns = [
