@@ -10,7 +10,7 @@ class Company(models.Model):
     company_slug = models.SlugField(max_length=255, blank=True)
     company_url = models.URLField(max_length=200,default='')
     company_logo = models.ImageField(upload_to=settings.MEDIA_ROOT,default='')
-    tags = TaggableManager()
+    tags = TaggableManager(blank=True)
 
     def __unicode__(self):
         return self.company_name
