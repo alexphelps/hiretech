@@ -31,3 +31,6 @@ class Job(models.Model):
 
     def __unicode__(self):
         return self.job_status
+
+    def get_absolute_url(self):
+        return "/jobs/"+str(self.id)+"/"
