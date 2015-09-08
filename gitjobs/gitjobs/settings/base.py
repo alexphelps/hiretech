@@ -128,11 +128,6 @@ USE_TZ = True
 
 SITE_ID = 1
 
-# TEMPLATE CONFIGURATION
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.core.context_processors.request',
-)
-
 # Haystack ElasticSearch
 HAYSTACK_CONNECTIONS = {
     'default': {
