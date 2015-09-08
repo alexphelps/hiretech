@@ -19,7 +19,7 @@ class Job(models.Model):
     job_responsibilities = models.TextField(default='')
     job_qualifications = models.TextField(default='')
     job_notes = models.TextField(default='')
-    job_created_date = models.DateTimeField('date created',auto_now_add=True)
+    job_created_date = models.DateTimeField('date created',auto_now_add=True,null=True)
     job_status_choices = (
         ('draft','Draft'),
         ('pending_review','Pending Review'),
