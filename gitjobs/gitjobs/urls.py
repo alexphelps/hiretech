@@ -18,13 +18,14 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.decorators import login_required
+from django.contrib.sitemaps import views
 from django.contrib.sitemaps.views import sitemap
 from users import views as user_views
 from search import views as search_views
 from jobs.sitemap import JobsSiteMap
 
 sitemaps = {
-    'jobs': JobsSiteMap,
+    'jobs-listings': JobsSiteMap,
 }
 
 urlpatterns = [
@@ -39,7 +40,8 @@ urlpatterns = [
     url(r'^password/reset/confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$', user_views.PasswordResetConfirmView.as_view(),name='password_reset_confirm'),
     url(r'^dashboard/$', login_required(user_views.DashboardView.as_view()), name='dashboard'),
     url(r'^search/', search_views.CustomSearchView.as_view(), name='search'),
-    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    url(r'^sitemap\.xml$', views.index, {'sitemaps': sitemaps}),
+    url(r'^sitemap-(?P<section>.+)\.xml$', views.sitemap, {'sitemaps': sitemaps}),
 ]
 
 
