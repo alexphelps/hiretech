@@ -7,7 +7,7 @@ from .models import Job
 
 class JobsSiteMap(Sitemap):
     changefreq = "weekly"
-    priority = 1
+    priority = 0.8
 
     def items(self):
         return Job.objects.filter(job_status='published')

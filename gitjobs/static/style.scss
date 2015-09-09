@@ -7,6 +7,9 @@
 body {
   font-size: 14px;
 }
+.navbar-toggle .icon-bar {
+  background-color:#2196F3;
+}
 
 @media (max-width: 778px) {
   .nav.navbar-nav.pull-right {
