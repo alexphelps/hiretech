@@ -51,7 +51,6 @@ urlpatterns = [
 
 admin.site.site_header = 'Gitjobs'
 admin.site.site_name = 'Gitjobs'
-
 if settings.DEBUG:
     urlpatterns += patterns('',
         url(r'^media(?P<path>.*)$', 'django.views.static.serve', {
