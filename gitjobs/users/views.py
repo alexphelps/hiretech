@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ValidationError,ObjectDoesNotExist
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.core.validators import validate_email
@@ -20,7 +20,7 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.shortcuts import render_to_response,redirect,render
 from django.template import loader
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, View
 
 
 from .forms import SignupForm, LoginForm, PasswordResetRequestForm, PasswordResetNewPassword
@@ -298,4 +298,18 @@ class DashboardView(TemplateView):
             request,
             self.template_name,
             context
+        )
+
+class JobMarkAsFilled(View):
+    def get(self, request, job_id):
+        try:
+            job = Job.objects.get(id=job_id)
+        except ObjectDoesNotExist:
+            raise Http404
+
+        job.job_status='filled'
+        job.save()
+
+        return HttpResponseRedirect(
+            reverse('dashboard')
         )

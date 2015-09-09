@@ -1,18 +1,18 @@
 from django.http import Http404
 from django.shortcuts import get_object_or_404,render
-from django.http import HttpResponse
 from django.template import RequestContext, loader
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.messages import constants as MSG
 from django.core.urlresolvers import reverse
+from django.core.exceptions import ValidationError,PermissionDenied
 from django.http import (
     Http404,
     HttpResponse,
     HttpResponseRedirect,
 )
-from django.views.generic import TemplateView,ListView,DetailView
+from django.views.generic import TemplateView,View
 from taggit.models import Tag
 from .forms import JobAddForm
 from .models import Job
@@ -128,3 +128,29 @@ class JobDetails(TemplateView):
             self.template_name,
             context
         )
+
+class JobMarkAsFilled(View):
+    def get(self, request,**kwargs):
+        job_id = self.kwargs['job_id']
+        job = get_object_or_404(Job, pk=job_id)
+        jobcompany = job.job_company
+        print jobcompany
+        current_user = request.user
+        current_user_id = current_user.id
+        current_user_profile = UserProfile.objects.get(user__id=current_user_id)
+        current_user_company = current_user_profile.company
+        print current_user_company
+        if jobcompany == current_user_company:
+            job.job_status='filled'
+            job.save()
+            success_msg = 'Great Job! Your job was filled.'
+            messages.add_message(
+                self.request,
+                MSG.SUCCESS,
+                success_msg
+            )
+            return HttpResponseRedirect(
+                reverse('dashboard')
+            )
+        else:
+            raise PermissionDenied
