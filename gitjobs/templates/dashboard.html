@@ -14,7 +14,7 @@
       <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#activejobs" aria-controls="activejobs" role="tab" data-toggle="tab">Active Jobs</a></li>
         <li role="presentation"><a href="#filledjobs" aria-controls="filledjobs" role="tab" data-toggle="tab">Filled Jobs</a></li>
-        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+        <li role="presentation"><a href="/companies/{{ current_user_profile.company.company_slug }}/edit/">Settings</a></li>
       </ul>
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="activejobs">
@@ -110,9 +110,6 @@
             </div>
           {% endif %}
         </div><!--End Exipred Jobs Panel -->
-        <div role="tabpanel" class="tab-pane" id="settings">
-          Company Settings Tab
-        </div><!--End Company Settings Panel -->
     </div>
   </div>
 </div>

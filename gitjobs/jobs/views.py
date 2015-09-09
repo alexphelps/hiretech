@@ -133,12 +133,10 @@ class JobMarkAsFilled(View):
         job_id = self.kwargs['job_id']
         job = get_object_or_404(Job, pk=job_id)
         jobcompany = job.job_company
-        print jobcompany
         current_user = request.user
         current_user_id = current_user.id
         current_user_profile = UserProfile.objects.get(user__id=current_user_id)
         current_user_company = current_user_profile.company
-        print current_user_company
         if jobcompany == current_user_company:
             job.job_status='filled'
             job.save()

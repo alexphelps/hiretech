@@ -17,3 +17,8 @@ class CompanyEditForm(forms.Form):
                 'class': 'form-control'
             }),
         required=True)
+
+    def save(self, company):
+        company.company_name = self.cleaned_data['company_name']
+        company.company_url = self.cleaned_data['company_url']
+        company.save()
