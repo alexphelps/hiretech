@@ -4,7 +4,7 @@ from django.contrib.messages import constants as MSG
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ValidationError,PermissionDenied
 from django.views.generic import TemplateView,DetailView,UpdateView
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404,render
 from django.http import HttpResponse,HttpResponseRedirect
 from django.template import RequestContext, loader
@@ -44,10 +44,12 @@ class CompanyEditView(TemplateView):
         initial = {
             'company_name': company.company_name,
             'company_url' : company.company_url,
+            'company_logo': company.company_logo,
         }
         form = self.form(initial=initial)
         context = {
             'form':form,
+            'current_user_company': current_user_company,
         }
         return render(
             request,
@@ -56,23 +58,25 @@ class CompanyEditView(TemplateView):
         )
 
     def post(self,request,company_slug):
-        form = CompanyEditForm(request.POST)
+        form = CompanyEditForm(request.POST,request.FILES)
         company = get_object_or_404(Company, company_slug=company_slug)
+        current_user = request.user
+        current_user_id = current_user.id
+        current_user_profile = UserProfile.objects.get(user__id=current_user_id)
+        current_user_company = current_user_profile.company
+        company_logo = ''
         if form.is_valid():
-            form.save(company)
+            if request.FILES:
+                company_logo = request.FILES['company_logo']
+            form.save(company,request,company_logo)
             success_msg = 'Company Details Updated.'
             messages.add_message(
                 request,
                 MSG.SUCCESS,
                 success_msg
             )
-            context = {
-                'form':form,
-            }
-            return render(
-                request,
-                self.template_name,
-                context
+            return HttpResponseRedirect(
+                reverse('dashboard'),
             )
         else:
             error_msg = 'Please see required fields below.'
@@ -83,6 +87,7 @@ class CompanyEditView(TemplateView):
             )
             context = {
                 'form':form,
+                'current_user_company': current_user_company,
             }
             return render(
                 request,
