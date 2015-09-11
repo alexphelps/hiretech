@@ -143,7 +143,7 @@ class DashboardViewPublishedJobTest(TestCase):
         expected = '<li class="list-group-item"><div class="row"><div class="col-md-7 col-sm-7 col-xs-6"><img class="img-responsive pull-left m-r-10 job-list-img" src="/media/logo.png"><h5><a href="/jobs/4/">Python Guy</a><br><small>Owensboro, KY</small></h5></div><div class="col-md-3 col-sm-3 col-xs-4"><ul class="list-unstyled text-center m-t-10"><li><a href="/jobs/4/"><span class="job-type full_time">Full Time</span></a></li><li>'
         self.assertContains(response,expected)
         expected = '</li></ul></div><div class="col-md-2 col-sm-2 col-xs-2 text-center">'
-        expected += '<div class="btn-group m-t-10"><a class="btn btn-default '
+        expected += '<div class="btn-group m-t-10"><a class="btn btn-default btn-sm '
         expected += 'dropdown-toggle" data-toggle="dropdown" href="#">'
         expected += '<i class="fa fa-cog"></i></a><ul class="dropdown-menu"><li>'
         expected += '<a href="#" data-toggle="modal" data-target="#myModal"> '
