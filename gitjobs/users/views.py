@@ -299,17 +299,3 @@ class DashboardView(TemplateView):
             self.template_name,
             context
         )
-
-class JobMarkAsFilled(View):
-    def get(self, request, job_id):
-        try:
-            job = Job.objects.get(id=job_id)
-        except ObjectDoesNotExist:
-            raise Http404
-
-        job.job_status='filled'
-        job.save()
-
-        return HttpResponseRedirect(
-            reverse('dashboard')
-        )
