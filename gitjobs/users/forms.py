@@ -139,3 +139,11 @@ class UserEditForm(forms.Form):
                 'class': 'form-control'
             }),
         required=True)
+
+    email = forms.CharField(
+        widget=forms.EmailInput(
+            attrs={
+                'id': 'email',
+                'class': 'form-control'
+            }),
+        required=True)
