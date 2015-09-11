@@ -292,11 +292,15 @@ class DashboardView(TemplateView):
         current_user_profile = UserProfile.objects.get(user__id=current_user_id)
         current_user_company = current_user_profile.company.id
         current_user_company_published_jobs = Job.objects.filter(job_company=current_user_company,job_status='published').order_by('-job_created_date')
+        published_jobs_count = current_user_company_published_jobs.count()
         current_user_company_filled_jobs = Job.objects.filter(job_company=current_user_company,job_status='filled').order_by('-job_created_date')
+        filled_jobs_count = current_user_company_filled_jobs.count()
         context = {
             'current_user_profile':current_user_profile,
             'current_user_company_published_jobs':current_user_company_published_jobs,
             'current_user_company_filled_jobs': current_user_company_filled_jobs,
+            'published_jobs_count':published_jobs_count,
+            'filled_jobs_count':filled_jobs_count,
         }
         return render(
             request,
@@ -329,6 +333,8 @@ class UserSettingsView(TemplateView):
     def post(self,request,**kwargs):
         form = UserEditForm(request.POST)
         user = request.user
+        current_user = request.user
+        current_user_id = current_user.id
         current_user_profile = UserProfile.objects.get(user__id=current_user_id)
         if form.is_valid():
             form.save(user)

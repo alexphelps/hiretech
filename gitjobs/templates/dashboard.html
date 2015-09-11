@@ -3,14 +3,26 @@
 {% include 'header.html' %}
 <div class="container m-t-20">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6 col-md-offset-1">
         <img class="img-responsive img-thumbnail pull-left m-r-20" style="width:100px" src="{{ current_user_profile.company.company_logo.url }}" />
         <h5>{{ current_user_profile.company.company_name }}</h5>
-         {{ current_user_profile.company.company_url|urlize }}
+         <p>{{ current_user_profile.company.company_url|urlize }}</p>
+    </div>
+    <div class="col-md-2">
+      <div class="well text-center">
+        <h6>Open Jobs</h6>
+        <p class="lead text-primary m-b-10"><strong>{{ published_jobs_count }}</strong></p>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="well text-center">
+        <h6>Filled Jobs</h6>
+        <p class="lead text-primary m-b-10"><strong>{{ filled_jobs_count }}</strong></p>
+      </div>
     </div>
   </div>
   <div class="row m-t-20">
-    <div class="col-md-9">
+    <div class="col-md-10 col-md-offset-1">
       <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#activejobs" aria-controls="activejobs" role="tab" data-toggle="tab">Active Jobs</a></li>
         <li role="presentation"><a href="#filledjobs" aria-controls="filledjobs" role="tab" data-toggle="tab">Filled Jobs</a></li>
@@ -53,7 +65,7 @@
                     </div>
                     <div class="col-md-2 col-sm-2 col-xs-2 text-center">
                       <div class="btn-group m-t-10">
-                        <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-cog"></i></a>
+                        <a class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-cog"></i></a>
                         <ul class="dropdown-menu">
                           <li><a href="#" data-toggle="modal" data-target="#myModal"> Mark as Filled</a></li>
                         </ul>
