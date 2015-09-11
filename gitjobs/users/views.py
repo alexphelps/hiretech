@@ -304,13 +304,14 @@ class DashboardView(TemplateView):
             context
         )
 
-class UserEditView(TemplateView):
+class UserSettingsView(TemplateView):
     template_name = 'user_edit.html'
     form = UserEditForm
     def get(self,request,**kwargs):
         user = request.user
-        user_profile_id = self.kwargs['user_profile_id']
-        user_profile = get_object_or_404(UserProfile, pk=user_profile_id)
+        current_user = request.user
+        current_user_id = current_user.id
+        current_user_profile = UserProfile.objects.get(user__id=current_user_id)
         initial = {
             'first_name': user.first_name,
             'last_name': user.last_name,
@@ -328,11 +329,10 @@ class UserEditView(TemplateView):
     def post(self,request,**kwargs):
         form = UserEditForm(request.POST)
         user = request.user
-        user_profile_id = self.kwargs['user_profile_id']
-        user_profile = get_object_or_404(UserProfile, pk=user_profile_id)
+        current_user_profile = UserProfile.objects.get(user__id=current_user_id)
         if form.is_valid():
             form.save(user)
-            success_msg = 'User Details Updated.'
+            success_msg = 'User details updated.'
             messages.add_message(
                 request,
                 MSG.SUCCESS,
