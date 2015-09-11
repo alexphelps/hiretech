@@ -306,14 +306,49 @@ class DashboardView(TemplateView):
 
 class UserEditView(TemplateView):
     template_name = 'user_edit.html'
+    form = UserEditForm
     def get(self,request,**kwargs):
-        form = UserEditForm()
+        user = request.user
         user_profile_id = self.kwargs['user_profile_id']
-        user = get_object_or_404(UserProfile, pk=user_profile_id)
+        user_profile = get_object_or_404(UserProfile, pk=user_profile_id)
+        initial = {
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'email': user.email,
+        }
+        form = self.form(initial=initial)
         context = {
             'form':form,
         }
+        return render(
+            request,
+            self.template_name,
+            context
+        )
+    def post(self,request,**kwargs):
+        form = UserEditForm(request.POST)
+        user = request.user
+        user_profile_id = self.kwargs['user_profile_id']
+        user_profile = get_object_or_404(UserProfile, pk=user_profile_id)
+        if form.is_valid():
+            form.save(user)
+            success_msg = 'User Details Updated.'
+            messages.add_message(
+                request,
+                MSG.SUCCESS,
+                success_msg
+            )
+        else:
+            error_msg = 'Please see required fields below.'
+            messages.add_message(
+                request,
+                MSG.ERROR,
+                error_msg
+            )
 
+        context = {
+            'form':form,
+        }
         return render(
             request,
             self.template_name,

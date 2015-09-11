@@ -147,3 +147,8 @@ class UserEditForm(forms.Form):
                 'class': 'form-control'
             }),
         required=True)
+
+    def save(self,user):
+        user.first_name = self.cleaned_data['first_name']
+        user.last_name = self.cleaned_data['last_name']
+        user.save()
