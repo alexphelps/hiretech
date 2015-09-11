@@ -4,7 +4,7 @@ from django.core.exceptions import PermissionDenied
 from users.models import UserProfile
 from companies.models import Company
 
-def iscompany(func):
+def userincompany(func):
     def wrapper(request, *args, **kwargs):
         company_slug = kwargs['company_slug']
         current_user = request.request.user

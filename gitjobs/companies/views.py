@@ -14,7 +14,7 @@ from .forms import CompanyEditForm
 from .models import Company
 from jobs.models import Job
 from users.models import UserProfile
-from gitjobs.decorators import iscompany
+from gitjobs.decorators import userincompany
 
 class CompanyDetails(DetailView):
     template_name = 'company_details.html'
@@ -34,7 +34,7 @@ class CompanyDetails(DetailView):
 class CompanyEditView(TemplateView):
     template_name = 'company_edit.html'
     form = CompanyEditForm
-    @iscompany
+    @userincompany
     def get(self,request, company_slug, **kwargs):
         company = kwargs['company']
         initial = {
@@ -51,7 +51,7 @@ class CompanyEditView(TemplateView):
             self.template_name,
             context
         )
-    @iscompany
+    @userincompany
     def post(self,request,company_slug, **kwargs):
         form = CompanyEditForm(request.POST,request.FILES)
         company = kwargs['company']
