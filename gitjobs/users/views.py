@@ -18,12 +18,16 @@ from django.http import (
 )
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.shortcuts import render_to_response,redirect,render
+from django.shortcuts import get_object_or_404,render_to_response,redirect,render
 from django.template import loader
 from django.views.generic import TemplateView, View
-
-
-from .forms import SignupForm, LoginForm, PasswordResetRequestForm, PasswordResetNewPassword
+from .forms import (
+    SignupForm,
+    LoginForm,
+    PasswordResetRequestForm,
+    PasswordResetNewPassword,
+    UserEditForm,
+)
 from .models import UserProfile
 from jobs.models import Job
 from companies.models import Company
@@ -294,6 +298,22 @@ class DashboardView(TemplateView):
             'current_user_company_published_jobs':current_user_company_published_jobs,
             'current_user_company_filled_jobs': current_user_company_filled_jobs,
         }
+        return render(
+            request,
+            self.template_name,
+            context
+        )
+
+class UserEditView(TemplateView):
+    template_name = 'user_edit.html'
+    def get(self,request,**kwargs):
+        form = UserEditForm()
+        user_profile_id = self.kwargs['user_profile_id']
+        user = get_object_or_404(UserProfile, pk=user_profile_id)
+        context = {
+            'form':form,
+        }
+
         return render(
             request,
             self.template_name,

@@ -1,5 +1,4 @@
 from django.http import Http404
-from django.shortcuts import get_object_or_404,render
 from django.template import RequestContext, loader
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -12,6 +11,7 @@ from django.http import (
     HttpResponse,
     HttpResponseRedirect,
 )
+from django.shortcuts import get_object_or_404,render
 from django.views.generic import TemplateView,View
 from taggit.models import Tag
 from .forms import JobAddForm

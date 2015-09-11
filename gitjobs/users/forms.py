@@ -1,15 +1,15 @@
-from django import forms
 
+from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group, User
 from django.utils.translation import ugettext_lazy as _
-
 from django.contrib import messages
 from django.contrib.messages import constants as MSG
 
-from companies.models import Company
-
 from nocaptcha_recaptcha.fields import NoReCaptchaField
+
+from companies.models import Company
+from .models import UserProfile
 
 class LoginForm(forms.Form):
     email = forms.CharField(
@@ -122,3 +122,20 @@ class SignupForm(forms.Form):
                     })
                 )
         return self.cleaned_data
+
+class UserEditForm(forms.Form):
+    first_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'id': 'first_name',
+                'class': 'form-control'
+            }),
+        required=True)
+
+    last_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'id': 'last_name',
+                'class': 'form-control'
+            }),
+        required=True)

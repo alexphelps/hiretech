@@ -37,6 +37,7 @@ urlpatterns = [
     url(r'^$', include('flatpages.urls', namespace="homepage")),
     url(r'^jobs/', include('jobs.urls', namespace="jobs")),
     url(r'^companies/', include('companies.urls', namespace="companies")),
+    url(r'^users/', include('users.urls', namespace="jobs")),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^join/$', user_views.SignupView.as_view(), name='signup'),
     url(r'^login/$', user_views.LoginView.as_view(), name='login'),
