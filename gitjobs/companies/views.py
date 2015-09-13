@@ -44,7 +44,7 @@ class CompanyEditView(TemplateView):
         form = self.form(initial=initial)
         context = {
             'form':form,
-            'current_user_company': kwargs['current_user_company'],
+            'company': kwargs['company'],
         }
         return render(
             request,
@@ -78,7 +78,7 @@ class CompanyEditView(TemplateView):
             )
             context = {
                 'form':form,
-                'current_user_company': kwargs['current_user_company'],
+                'company': kwargs['company'],
             }
             return render(
                 request,

@@ -11,11 +11,11 @@ def userincompany(func):
         current_user_id = current_user.id
         current_user_profile = UserProfile.objects.get(user__id=current_user_id)
         company = get_object_or_404(Company, company_slug=company_slug)
-        current_user_company = current_user_profile.company
-        if current_user_company != company:
+        current_user_account = current_user_profile.account.id
+        current_user_companies = Company.objects.filter(account=current_user_account)
+        if company not in current_user_companies:
             raise PermissionDenied
         else:
             kwargs['company'] = company
-            kwargs['current_user_company'] = current_user_company
             return func(request,*args,**kwargs)
     return wrapper
