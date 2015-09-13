@@ -136,8 +136,9 @@ class JobMarkAsFilled(View):
         current_user = request.user
         current_user_id = current_user.id
         current_user_profile = UserProfile.objects.get(user__id=current_user_id)
-        current_user_company = current_user_profile.company
-        if jobcompany == current_user_company:
+        current_user_account = current_user_profile.account.id
+        current_user_account_companies = Company.objects.filter(account=current_user_account)
+        if jobcompany in current_user_account_companies:
             job.job_status='filled'
             job.save()
             success_msg = 'Great Job! Your job was filled.'

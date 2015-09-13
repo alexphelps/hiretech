@@ -30,6 +30,7 @@ from .forms import (
 )
 from .models import UserProfile
 from jobs.models import Job
+from accounts.models import Account
 from companies.models import Company
 
 # Create your views here.
@@ -240,9 +241,13 @@ class SignupView(TemplateView):
             last_name = form.cleaned_data['last_name']
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
+            account = form.cleaned_data['company_name']
             company_name = form.cleaned_data['company_name']
             company_url = form.cleaned_data['company_url']
             company_logo = request.FILES['company_logo']
+            account = Account.objects.create(
+                name=account,
+            )
             user = User.objects.create_user(
                 username=email,
                 password=password,
@@ -251,14 +256,16 @@ class SignupView(TemplateView):
                 last_name=last_name
             )
             company = Company.objects.create(
+                account=account,
                 company_name=company_name,
                 company_url=company_url,
                 company_logo=company_logo
             )
-            UserProfile.objects.create(
+            userprofile = UserProfile.objects.create(
                 user=user,
-                company=company
+                account=account,
             )
+
             #log them in if we were able to sign them up
             username = form.cleaned_data['email']
             user = authenticate(username=username, password=password)
@@ -290,14 +297,16 @@ class DashboardView(TemplateView):
         current_user = request.user
         current_user_id = current_user.id
         current_user_profile = UserProfile.objects.get(user__id=current_user_id)
-        current_user_company = current_user_profile.company.id
-        current_user_company_published_jobs = Job.objects.filter(job_company=current_user_company,job_status='published').order_by('-job_created_date')
-        published_jobs_count = current_user_company_published_jobs.count()
-        current_user_company_filled_jobs = Job.objects.filter(job_company=current_user_company,job_status='filled').order_by('-job_created_date')
+        current_user_account = current_user_profile.account.id
+        current_user_account_companies = Company.objects.filter(account=current_user_account)
+        current_user_account_published_jobs = Job.objects.filter(job_company=current_user_account_companies,job_status='published').order_by('-job_created_date')
+        published_jobs_count = current_user_account_published_jobs.count()
+        current_user_company_filled_jobs = Job.objects.filter(job_company=current_user_account_companies,job_status='filled').order_by('-job_created_date')
         filled_jobs_count = current_user_company_filled_jobs.count()
         context = {
             'current_user_profile':current_user_profile,
-            'current_user_company_published_jobs':current_user_company_published_jobs,
+            'current_user_account_companies': current_user_account_companies,
+            'current_user_account_published_jobs':current_user_account_published_jobs,
             'current_user_company_filled_jobs': current_user_company_filled_jobs,
             'published_jobs_count':published_jobs_count,
             'filled_jobs_count':filled_jobs_count,

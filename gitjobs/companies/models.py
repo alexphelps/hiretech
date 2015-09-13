@@ -4,8 +4,11 @@ from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
 
 from taggit.managers import TaggableManager
+
+from accounts.models import Account
 # Create your models here.
 class Company(models.Model):
+    account = models.ForeignKey('accounts.Account',blank=True,null=True)
     company_name = models.CharField(max_length=200,default='')
     company_slug = models.SlugField(max_length=255, blank=True)
     company_url = models.URLField(max_length=200,default='')

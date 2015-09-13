@@ -61,6 +61,7 @@ INSTALLED_APPS = (
     'users',
     'jobs',
     'companies',
+    'accounts',
     'compressor',
     'taggit',
 )
@@ -192,6 +193,7 @@ MARKDOWN_DEUX_STYLES = {
 SUIT_CONFIG = {
     'ADMIN_NAME': 'GitJobs',
     'MENU': (
+        {'app': 'accounts', 'label': 'Accounts', 'icon':'icon-leaf'},
         {'app': 'jobs', 'label': 'Jobs', 'icon':'icon-tasks'},
         {'app': 'taggit', 'label': 'Tags', 'icon':'icon-tag'},
         {'app': 'companies', 'label': 'Companies', 'icon':'icon-briefcase'},

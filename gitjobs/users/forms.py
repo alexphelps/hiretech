@@ -7,7 +7,6 @@ from django.contrib import messages
 from django.contrib.messages import constants as MSG
 
 from nocaptcha_recaptcha.fields import NoReCaptchaField
-
 from companies.models import Company
 from .models import UserProfile
 
