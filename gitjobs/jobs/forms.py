@@ -1,5 +1,6 @@
 from django import forms
 from taggit.forms import *
+from companies.models import Company
 
 class JobAddForm(forms.Form):
     job_title = forms.CharField(

@@ -19,6 +19,7 @@ from .models import Job
 from companies.models import Company
 from users.models import UserProfile
 from search.forms import CustomSearchForm
+from gitjobs.decorators import userincompany
 
 # Create your views here.
 class JobIndex(TemplateView):
@@ -38,28 +39,26 @@ class JobIndex(TemplateView):
 
 class JobAddNew(TemplateView):
     template_name = 'job_add.html'
-    def get(self,request):
+    @userincompany
+    def get(self,request,company_slug, **kwargs):
+        company = kwargs['company']
         form = JobAddForm()
-        current_user = request.user
-        current_user_id = current_user.id
-        current_user_profile = UserProfile.objects.get(user__id=current_user_id)
         context = {
-            'current_user_profile':current_user_profile,
+            'current_user_companies':kwargs['current_user_companies'],
             'form':form,
+            'company':kwargs['company'],
         }
         return render(
             request,
             self.template_name,
             context
         )
-    def post(self,request):
+    @userincompany
+    def post(self,request,company_slug, **kwargs):
+        company = kwargs['company']
         form = JobAddForm(request.POST)
-        current_user = request.user
-        current_user_id = current_user.id
-        current_user_profile = UserProfile.objects.get(user__id=current_user_id)
-        current_user_company = current_user_profile.company
         if form.is_valid():
-            job_company = current_user_company
+            job_company = get_object_or_404(Company, company_slug=company_slug)
             job_title = form.cleaned_data['job_title']
             job_location = form.cleaned_data['job_location']
             tags = form.cleaned_data['tags']
@@ -102,8 +101,9 @@ class JobAddNew(TemplateView):
             )
 
         context = {
-            'current_user_profile': current_user_profile,
+            'current_user_companies':kwargs['current_user_companies'],
             'form':form,
+            'company':kwargs['company'],
         }
         return render(
             request,

@@ -43,7 +43,7 @@
               </div>
               {% if current_user_account_published_jobs %}
               <div class="m-t-20">
-                <a href="/jobs/add/" class="btn btn-primary pull-right btn-sm">Add Another Job</a>
+                <a href="/jobs/{{ company.company_slug }}/add/" class="btn btn-primary pull-right btn-sm">Add Another Job</a>
                 <h5>Active Job Postings</h5>
               </div>
               <ul class="list-group m-t-20">
@@ -80,7 +80,7 @@
               {% else %}
                 <div class="well">
                   <p class="lead text-center">You don't have any active job postings.<br>
-                    <a href="/jobs/add/" class="btn btn-primary m-t-20">Add a Job</a>
+                    <a href="/jobs/{{ company.company_slug }}/add/" class="btn btn-primary m-t-20">Add a Job</a>
                   </p>
                 </div>
               {% endif %}
@@ -88,7 +88,7 @@
           <div role="tabpanel" class="tab-pane" id="filledjobs">
             {% if current_user_company_filled_jobs %}
             <div class="m-t-20">
-              <a href="/jobs/add/" class="btn btn-primary pull-right btn-sm">Add Another Job</a>
+              <a href="/jobs/{{ company.company_slug }}/add/" class="btn btn-primary pull-right btn-sm">Add Another Job</a>
               <h5>Filled Jobs</h5>
             </div>
             <ul class="list-group m-t-20">
@@ -126,7 +126,7 @@
       </div>
     </div>
   </div>
-    {% for job in current_user_account_published_jobs %}
+    {% for company in current_user_account_published_jobs %}
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog">
       <div class="modal-content">

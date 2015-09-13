@@ -17,5 +17,6 @@ def userincompany(func):
             raise PermissionDenied
         else:
             kwargs['company'] = company
+            kwargs['current_user_companies'] = current_user_companies
             return func(request,*args,**kwargs)
     return wrapper
