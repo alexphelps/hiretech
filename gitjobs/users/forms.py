@@ -151,3 +151,26 @@ class UserEditForm(forms.Form):
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
         user.save()
+class PasswordUpdateForm(forms.Form):
+    old_password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'id': 'new_password',
+                'class':'form-control'
+            }),
+        required=True)
+    new_password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'id': 'new_password',
+                'class':'form-control'
+            }),
+        required=True)
+
+    new_password2 = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'id': 'new_password',
+                'class':'form-control'
+            }),
+        required=True)

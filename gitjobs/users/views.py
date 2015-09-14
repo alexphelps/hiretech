@@ -27,6 +27,7 @@ from .forms import (
     PasswordResetRequestForm,
     PasswordResetNewPassword,
     UserEditForm,
+    PasswordUpdateForm,
 )
 from .models import UserProfile
 from jobs.models import Job
@@ -299,6 +300,7 @@ class DashboardView(TemplateView):
         current_user_profile = UserProfile.objects.get(user__id=current_user_id)
         current_user_account = current_user_profile.account.id
         current_user_account_companies = Company.objects.filter(account=current_user_account)
+        current_user_account_companies_count = current_user_account_companies.count()
         current_user_account_published_jobs = Job.objects.filter(job_company=current_user_account_companies,job_status='published').order_by('-job_created_date')
         published_jobs_count = current_user_account_published_jobs.count()
         current_user_company_filled_jobs = Job.objects.filter(job_company=current_user_account_companies,job_status='filled').order_by('-job_created_date')
@@ -306,6 +308,7 @@ class DashboardView(TemplateView):
         context = {
             'current_user_profile':current_user_profile,
             'current_user_account_companies': current_user_account_companies,
+            'current_user_account_companies_count':current_user_account_companies_count,
             'current_user_account_published_jobs':current_user_account_published_jobs,
             'current_user_company_filled_jobs': current_user_company_filled_jobs,
             'published_jobs_count':published_jobs_count,
@@ -361,6 +364,20 @@ class UserSettingsView(TemplateView):
                 error_msg
             )
 
+        context = {
+            'form':form,
+        }
+        return render(
+            request,
+            self.template_name,
+            context
+        )
+class PasswordUpdateView(TemplateView):
+    template_name = 'user_password_update.html'
+    form = PasswordUpdateForm
+    def get(self,request,**kwargs):
+        user = request.user
+        form = PasswordUpdateForm
         context = {
             'form':form,
         }

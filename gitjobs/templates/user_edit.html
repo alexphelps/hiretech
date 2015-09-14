@@ -3,7 +3,7 @@
 {% include 'header.html' %}
 <div class="container m-t-20">
   <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-10 col-md-offset-1">
       <div class="panel panel-default p-30">
         <div class="panel-header">
           <h4>Edit User Settings</h4>
@@ -17,9 +17,9 @@
               <div class="alert alert-success" role="alert">{{ message }}</div>
             {% endif %}
           {% endfor %}
-          <form action="." method="post" id="CompanyEditForm" enctype="multipart/form-data" class="form-horizontal">
+          <form action="." method="post" id="UserEditForm" enctype="multipart/form-data" class="form-horizontal">
             {% csrf_token %}
-            <div class="form-group {% if form.company_name.errors %}has-error{% endif %}">
+            <div class="form-group {% if form.first_name.errors %}has-error{% endif %}">
               <label for="" class="col-sm-2 control-label">Name</label>
               <div class="col-md-5 col-sm-10">
                 <label class="control-label" for="first_name">First Name</label>
