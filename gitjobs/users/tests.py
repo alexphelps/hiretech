@@ -2,6 +2,7 @@ from django.core.files import File
 from django.contrib.auth.models import AnonymousUser, User
 from django.http import HttpRequest
 from django.test import TestCase
+from accounts.models import Account
 from companies.models import Company
 from jobs.models import Job
 from .models import UserProfile
@@ -21,6 +22,10 @@ class LoginViewTest(TestCase):
         self.assertEqual(response.status_code,200)
 
     def test_user_login(self):
+        account = Account.objects.create(
+            name='Alex Company',
+            account_type='employer'
+        )
         user = User.objects.create_user(
             username='alex@admin.com',
             email='alex@admin.com',
@@ -29,13 +34,13 @@ class LoginViewTest(TestCase):
             password='testpass'
             )
         company = Company.objects.create(
+            account=account,
             company_name='Alex Company',
             company_logo='/media/logo.png',
         )
         userprofile = UserProfile.objects.create(
             user=user,
-            company=company,
-            user_type='employer'
+            account=account,
         )
         url = '/login/'
         userdata = {
