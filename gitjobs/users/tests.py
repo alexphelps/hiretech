@@ -117,6 +117,10 @@ class DashboardViewPublishedJobTest(TestCase):
         self.assertEqual(response.status_code,200)
 
     def test_user_login(self):
+        account = Account.objects.create(
+            name='Alex Company',
+            account_type='employer'
+        )
         user = User.objects.create_user(
             username='alex@admin.com',
             email='alex@admin.com',
@@ -125,13 +129,13 @@ class DashboardViewPublishedJobTest(TestCase):
             password='testpass'
             )
         company = Company.objects.create(
+            account=account,
             company_name='Alex Company',
             company_logo='/media/logo.png',
         )
         userprofile = UserProfile.objects.create(
             user=user,
-            company=company,
-            user_type='employer'
+            account=account,
         )
         job = Job.objects.create(
             job_company=company,
