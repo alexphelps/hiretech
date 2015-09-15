@@ -374,10 +374,48 @@ class UserSettingsView(TemplateView):
         )
 class PasswordUpdateView(TemplateView):
     template_name = 'user_password_update.html'
-    form = PasswordUpdateForm
     def get(self,request,**kwargs):
         user = request.user
         form = PasswordUpdateForm
+        context = {
+            'form':form,
+        }
+        return render(
+            request,
+            self.template_name,
+            context
+        )
+    def post(self,request):
+        form = PasswordUpdateForm(request.POST)
+        user = request.user
+        if form.is_valid():
+            current_password = form.cleaned_data['current_password']
+            current_password_match = user.check_password(current_password)
+            if current_password_match == True:
+                new_password = form.cleaned_data['new_password']
+                new_password_confirm = form.cleaned_data['new_password_confirm']
+                if new_password == new_password_confirm:
+                    user.set_password(new_password_confirm)
+                    success_msg = 'Your password has been updated.'
+                    messages.add_message(
+                        self.request,
+                        MSG.SUCCESS,
+                        success_msg
+                    )
+            else:
+                error_msg = 'Current password is incorrect.'
+                messages.add_message(
+                    request,
+                    MSG.ERROR,
+                    error_msg
+                )
+        else:
+            error_msg = 'Please see required fields below.'
+            messages.add_message(
+                request,
+                MSG.ERROR,
+                error_msg
+            )
         context = {
             'form':form,
         }
