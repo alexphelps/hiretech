@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'header.html' %}
+<div class="container m-t-20">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>{{ flatpage.title }}</h2>
+      {{ flatpage.content }}
+    </div>
+  </div>
+</div>
+{% include 'footer.html' %}
+{% include 'javascript.html' %}
+</body>
+{% endblock %}

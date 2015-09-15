@@ -41,7 +41,6 @@ SECRET_KEY = '=xno-dxwgo+jv$$u=7&x^wav$wmsynl6-^!k!fs=$^7to_1t8='
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = (
@@ -75,6 +74,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 )
 
 ROOT_URLCONF = 'gitjobs.urls'
