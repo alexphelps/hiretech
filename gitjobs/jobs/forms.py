@@ -69,3 +69,21 @@ class JobAddForm(forms.Form):
                 'rows':'4'
             }),
         required=False)
+    job_apply_method = forms.ChoiceField(
+        choices=(
+            ('link','Link'),
+            ('email','Email'),
+        ),
+        widget=forms.Select(
+            attrs={
+            'id': 'job_apply_method',
+            'class': 'form-control apply-select'
+            }),
+        required=True)
+    job_apply_link = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'id': 'job_apply_link',
+                'class': 'form-control',
+            }),
+        required=True)

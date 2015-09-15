@@ -27,6 +27,12 @@ class Job(models.Model):
         ('filled','Filled'),
     )
     job_status = models.CharField(max_length="20",choices=job_status_choices,default='draft')
+    job_apply_method_choices = (
+        ('link','Link'),
+        ('email','Email'),
+    )
+    job_apply_method = models.CharField(max_length="20",choices=job_apply_method_choices,default='draft')
+    job_apply_link = models.CharField(max_length=400,default='')
     tags = TaggableManager()
 
     def __unicode__(self):

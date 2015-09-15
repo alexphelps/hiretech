@@ -374,7 +374,7 @@ class UserSettingsView(TemplateView):
         )
 class PasswordUpdateView(TemplateView):
     template_name = 'user_password_update.html'
-    def get(self,request,**kwargs):
+    def get(self,request):
         user = request.user
         form = PasswordUpdateForm
         context = {

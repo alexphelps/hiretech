@@ -32,7 +32,11 @@
           <h5>Additional Notes</h5>
           {{ job.job_notes|markdown }}
         </div>
-        <a href="#" class="btn btn-primary btn-lg">Apply Now</a>
+        {% if job.job_apply_method == "link" %}
+          <a href="{{ job.job_apply_link }}" target="_blank" class="btn btn-primary btn-lg">Apply Now</a>
+        {% else %}
+            <a href="mailto:{{ job.job_apply_link }}" class="btn btn-primary btn-lg">Apply Now</a>
+        {% endif %}
       </div>
       <div class="col-md-4">
         <h5>Employment Type</h5>
@@ -49,7 +53,13 @@
               <span itemprop="addressLocality">{{ job.job_location }}</span>
             </span>
           </span>
-        <p class="m-t-30"><a href="#" class="btn btn-primary btn-lg">Apply Now</a></p>
+        <p class="m-t-30">
+          {% if job.job_apply_method == "link" %}
+            <a href="{{ job.job_apply_link }}" target="_blank" class="btn btn-primary btn-lg">Apply Now</a>
+          {% else %}
+              <a href="mailto:{{ job.job_apply_link }}" class="btn btn-primary btn-lg">Apply Now</a>
+          {% endif %}
+        </p>
       </div>
     </div>
   </div>
