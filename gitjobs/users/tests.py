@@ -162,3 +162,37 @@ class DashboardViewPublishedJobTest(TestCase):
         expected += '<a href="#" data-toggle="modal" data-target="#myModal"> '
         expected += 'Mark as Filled</a></li></ul></div></div></div></li>'
         self.assertContains(response,expected)
+
+class UserSettingsViewTest(TestCase):
+    def test_user_settings(self):
+        account = Account.objects.create(
+            name='Alex Company',
+            account_type='employer'
+        )
+        user = User.objects.create_user(
+            username='alex@admin.com',
+            email='alex@admin.com',
+            first_name='Alex',
+            last_name='Phelps',
+            password='testpass'
+            )
+        company = Company.objects.create(
+            account=account,
+            company_name='Alex Company',
+            company_logo='/media/logo.png',
+        )
+        userprofile = UserProfile.objects.create(
+            user=user,
+            account=account,
+        )
+        url = '/login/'
+        userdata = {
+            'email':'alex@admin.com',
+            'password':'testpass'
+        }
+        response = self.client.post(url,data=userdata,follow=True)
+        self.assertRedirects(response,'/dashboard/',302)
+        self.assertEqual(response.status_code,200)
+        url = '/users/settings/'
+        response = self.client.get(url)
+        self.assertEqual(response.status_code,200)
