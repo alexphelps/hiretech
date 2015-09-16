@@ -27,6 +27,7 @@ from .forms import (
     PasswordResetRequestForm,
     PasswordResetNewPassword,
     UserEditForm,
+    PasswordUpdateForm,
 )
 from .models import UserProfile
 from jobs.models import Job
@@ -299,6 +300,7 @@ class DashboardView(TemplateView):
         current_user_profile = UserProfile.objects.get(user__id=current_user_id)
         current_user_account = current_user_profile.account.id
         current_user_account_companies = Company.objects.filter(account=current_user_account)
+        current_user_account_companies_count = current_user_account_companies.count()
         current_user_account_published_jobs = Job.objects.filter(job_company=current_user_account_companies,job_status='published').order_by('-job_created_date')
         published_jobs_count = current_user_account_published_jobs.count()
         current_user_company_filled_jobs = Job.objects.filter(job_company=current_user_account_companies,job_status='filled').order_by('-job_created_date')
@@ -306,6 +308,7 @@ class DashboardView(TemplateView):
         context = {
             'current_user_profile':current_user_profile,
             'current_user_account_companies': current_user_account_companies,
+            'current_user_account_companies_count':current_user_account_companies_count,
             'current_user_account_published_jobs':current_user_account_published_jobs,
             'current_user_company_filled_jobs': current_user_company_filled_jobs,
             'published_jobs_count':published_jobs_count,
@@ -361,6 +364,58 @@ class UserSettingsView(TemplateView):
                 error_msg
             )
 
+        context = {
+            'form':form,
+        }
+        return render(
+            request,
+            self.template_name,
+            context
+        )
+class PasswordUpdateView(TemplateView):
+    template_name = 'user_password_update.html'
+    def get(self,request):
+        user = request.user
+        form = PasswordUpdateForm
+        context = {
+            'form':form,
+        }
+        return render(
+            request,
+            self.template_name,
+            context
+        )
+    def post(self,request):
+        form = PasswordUpdateForm(request.POST)
+        user = request.user
+        if form.is_valid():
+            current_password = form.cleaned_data['current_password']
+            current_password_match = user.check_password(current_password)
+            if current_password_match == True:
+                new_password = form.cleaned_data['new_password']
+                new_password_confirm = form.cleaned_data['new_password_confirm']
+                if new_password == new_password_confirm:
+                    user.set_password(new_password_confirm)
+                    success_msg = 'Your password has been updated.'
+                    messages.add_message(
+                        self.request,
+                        MSG.SUCCESS,
+                        success_msg
+                    )
+            else:
+                error_msg = 'Current password is incorrect.'
+                messages.add_message(
+                    request,
+                    MSG.ERROR,
+                    error_msg
+                )
+        else:
+            error_msg = 'Please see required fields below.'
+            messages.add_message(
+                request,
+                MSG.ERROR,
+                error_msg
+            )
         context = {
             'form':form,
         }

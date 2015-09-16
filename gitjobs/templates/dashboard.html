@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
 {% block content %}
 {% include 'header.html' %}
 <div class="container m-t-20">
@@ -43,7 +44,7 @@
               </div>
               {% if current_user_account_published_jobs %}
               <div class="m-t-20">
-                <a href="/jobs/{{ company.company_slug }}/add/" class="btn btn-primary pull-right btn-sm">Add Another Job</a>
+                <a href="/jobs/{{ company.company_slug }}/add/" class="btn btn-primary pull-right btn-sm">Post a Job</a>
                 <h5>Active Job Postings</h5>
               </div>
               <ul class="list-group m-t-20">
@@ -80,7 +81,7 @@
               {% else %}
                 <div class="well">
                   <p class="lead text-center">You don't have any active job postings.<br>
-                    <a href="/jobs/{{ company.company_slug }}/add/" class="btn btn-primary m-t-20">Add a Job</a>
+                    <a href="/jobs/{{ company.company_slug }}/add/" class="btn btn-primary m-t-20">Post a Job</a>
                   </p>
                 </div>
               {% endif %}
@@ -88,7 +89,7 @@
           <div role="tabpanel" class="tab-pane" id="filledjobs">
             {% if current_user_company_filled_jobs %}
             <div class="m-t-20">
-              <a href="/jobs/{{ company.company_slug }}/add/" class="btn btn-primary pull-right btn-sm">Add Another Job</a>
+              <a href="/jobs/{{ company.company_slug }}/add/" class="btn btn-primary pull-right btn-sm">Post a Job</a>
               <h5>Filled Jobs</h5>
             </div>
             <ul class="list-group m-t-20">
@@ -118,7 +119,7 @@
             {% else %}
               <div class="well m-t-20">
                 <p class="lead text-center">You don't have any filled jobs.<br>
-                  <a href="/jobs/add/" class="btn btn-primary m-t-20">Add a Job</a>
+                  <a href="/jobs/add/" class="btn btn-primary m-t-20">Post a Job</a>
                 </p>
               </div>
             {% endif %}

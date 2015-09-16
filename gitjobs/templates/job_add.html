@@ -70,6 +70,22 @@
               </div>
             </div>
             <div class="form-group">
+              <label for="" class="col-sm-2 control-label">Apply Method</label>
+              <div class="col-md-9 col-sm-10">
+                {{ form.job_apply_method }}
+                <span class="help-block">How would you like applicants to apply?</span>
+              </div>
+            </div>
+            <div class="form-group {% if form.job_apply_link.errors %}has-error{% endif %}">
+              <label for="" class="col-sm-2 control-label apply-option link">Apply Link</label>
+              <label for="" class="col-sm-2 control-label apply-option email" style="display:none;">Apply Email</label>
+              <div class="col-md-9 col-sm-10">
+                {{ form.job_apply_link }}
+                <span class="help-block apply-option link">Link to your application page.</span>
+                <span class="help-block apply-option email" style="display:none;">Email where applications should be sent to.</span>
+              </div>
+            </div>
+            <div class="form-group">
               <div class="col-md-9 col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-block btn-primary">Post Job</button>
               </div>
@@ -82,5 +98,16 @@
 </div>
 {% include 'footer.html' %}
 {% include 'javascript.html' %}
+<script>
+jQuery(document).ready(function() {
+  var $select = $('.apply-select'),
+      $option =  $('.apply-option');
+
+  $select.on('change', function() {
+    var value = '.' + $(this).val();
+    $option.show().not(value).hide();
+  });
+});
+</script>
 </body>
 {% endblock %}

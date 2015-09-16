@@ -15,7 +15,7 @@ class LoginForm(forms.Form):
         widget=forms.EmailInput(
             attrs={
                 'id': 'email',
-                'class': 'form-control'
+                'class': 'form-control floating-label'
             }),
         required=True)
 
@@ -23,7 +23,7 @@ class LoginForm(forms.Form):
         widget=forms.PasswordInput(
             attrs={
                 'id': 'password',
-                'class':'form-control'
+                'class':'form-control floating-label'
             }),
         required=True)
 
@@ -41,7 +41,7 @@ class PasswordResetNewPassword(forms.Form):
         widget=forms.PasswordInput(
             attrs={
                 'id': 'new_password',
-                'class':'form-control'
+                'class':'form-control floating-label'
             }),
         required=True)
 
@@ -49,7 +49,7 @@ class PasswordResetNewPassword(forms.Form):
         widget=forms.PasswordInput(
             attrs={
                 'id': 'new_password2',
-                'class':'form-control'
+                'class':'form-control floating-label'
             }),
         required=True)
 
@@ -58,7 +58,7 @@ class SignupForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'id': 'first_name',
-                'class': 'form-control'
+                'class': 'form-control floating-label'
             }),
         required=True)
 
@@ -66,7 +66,7 @@ class SignupForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'id': 'last_name',
-                'class': 'form-control'
+                'class': 'form-control floating-label'
             }),
         required=True)
 
@@ -74,7 +74,7 @@ class SignupForm(forms.Form):
         widget=forms.EmailInput(
             attrs={
                 'id': 'email',
-                'class': 'form-control'
+                'class': 'form-control floating-label'
             }),
         required=True)
 
@@ -82,7 +82,7 @@ class SignupForm(forms.Form):
         widget=forms.PasswordInput(
             attrs={
                 'id': 'password',
-                'class':'form-control'
+                'class':'form-control floating-label'
             }),
         required=True)
 
@@ -90,21 +90,21 @@ class SignupForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'id': 'company_name',
-                'class': 'form-control'
+                'class': 'form-control floating-label'
             }),
         )
     company_url = forms.CharField(
         widget=forms.URLInput(
             attrs={
                 'id': 'company_url',
-                'class': 'form-control'
+                'class': 'form-control floating-label'
             }),
         required=False)
     company_logo = forms.ImageField(
         widget=forms.FileInput(
             attrs={
                 'id': 'company_logo',
-                'class': 'form-control'
+                'class': 'form-control floating-label'
             }),
         required=True)
 
@@ -151,3 +151,26 @@ class UserEditForm(forms.Form):
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
         user.save()
+class PasswordUpdateForm(forms.Form):
+    current_password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'id': 'new_password',
+                'class':'form-control'
+            }),
+        required=True)
+    new_password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'id': 'new_password',
+                'class':'form-control'
+            }),
+        required=True)
+
+    new_password_confirm = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'id': 'new_password',
+                'class':'form-control'
+            }),
+        required=True)

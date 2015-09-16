@@ -67,6 +67,8 @@ class JobAddNew(TemplateView):
             job_responsibilities = form.cleaned_data['job_responsibilities']
             job_qualifications = form.cleaned_data['job_qualifications']
             job_notes = form.cleaned_data['job_notes']
+            job_apply_method = form.cleaned_data['job_apply_method']
+            job_apply_link = form.cleaned_data['job_apply_link']
             job = Job.objects.create(
                 job_company=job_company,
                 job_title=job_title,
@@ -77,6 +79,8 @@ class JobAddNew(TemplateView):
                 job_qualifications=job_qualifications,
                 job_notes=job_notes,
                 job_status='published',
+                job_apply_method=job_apply_method,
+                job_apply_link=job_apply_link,
             )
             for each in tags:
                 lowertag = each.lower()

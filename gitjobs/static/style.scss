@@ -68,7 +68,6 @@ body {
 .job-details-hero:first-of-type + .container {
   margin-top: -70px;
 }
-//custom styles
 .navbar {
     border-radius: 0px;
     margin-bottom: 0px;
@@ -117,7 +116,9 @@ i.icon-lg.mdi::before {
 .job-type.internship {
   background-color: $btn-info-bg;
 }
-/* --- material floating label --- */
+/* ==========================================================================
+   Material Floating Lable Styles
+   ========================================================================== */
 .floating-label.form-group {
     display: flex;
     height: 55px;
@@ -159,4 +160,15 @@ i.icon-lg.mdi::before {
 .floating-label.form-group.textarea-group {
   height: auto;
   min-height:110px;
+}
+/* ==========================================================================
+   List styles
+   ========================================================================== */
+ol.horizontal li, ul.horizontal li  {
+    float: left;
+  line-height: 20px;
+  margin-left: 10px;
+}
+ol.horizontal li:first-child, ul.horizontal li:first-child {
+  margin-left: 0;
 }
