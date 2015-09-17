@@ -7,11 +7,11 @@ from django.template.defaultfilters import slugify
 
 from imagekit import ImageSpec, register
 from imagekit.models import ImageSpecField
-from imagekit.processors import ResizeToFill,SmartResize,ResizeToFit
+from imagekit.processors import ResizeToFit
 from taggit.managers import TaggableManager
 
 from accounts.models import Account
-# Create your models here.
+
 class LogoThumbnailProcessor(ImageSpec):
     format = 'JPEG'
     options = {'quality': 90}
@@ -44,11 +44,6 @@ class Company(models.Model):
         if self.company_name and not self.company_slug:
             self.company_slug = slugify(self.company_name)
         return super(Company, self).save(**kwargs)
-
-        im = Image.open(company_logo)
-        rgb_im = im.convert('RGB')
-        r, g, b = rgb_im.getpixel((1, 1))
-        print r, g, b
 
     def get_absolute_url(self):
         return "/companies/%s/" % self.company_slug
