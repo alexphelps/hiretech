@@ -12,7 +12,7 @@ from taggit.managers import TaggableManager
 
 from accounts.models import Account
 
-class LogoThumbnailProcessor(ImageSpec):
+class LogoProcessor(ImageSpec):
     format = 'JPEG'
     options = {'quality': 90}
     @property
@@ -23,7 +23,7 @@ class LogoThumbnailProcessor(ImageSpec):
         r,g,b = rgb_image.getpixel((1, 1))
         return [ResizeToFit(300, 300,mat_color=(r,g,b))]
 
-register.generator('companies:company:company_logo_thumbnail', LogoThumbnailProcessor)
+register.generator('logo_processor', LogoProcessor)
 
 class Company(models.Model):
     account = models.ForeignKey('accounts.Account',blank=True,null=True)
@@ -33,7 +33,7 @@ class Company(models.Model):
     company_logo = models.ImageField(upload_to=settings.MEDIA_ROOT,default='')
     company_logo_thumb = ImageSpecField(
             source='company_logo',
-            id='companies:company:company_logo_thumbnail'
+            id='logo_processor'
         )
     tags = TaggableManager(blank=True)
 
