@@ -60,6 +60,7 @@ INSTALLED_APPS = (
     'accounts',
     'compressor',
     'taggit',
+    'imagekit',
 )
 
 MIDDLEWARE_CLASSES = (
