@@ -20,10 +20,10 @@ class LogoProcessor(ImageSpec):
         logoimage = self.source
         image = Image.open(logoimage)
         rgb_image = image.convert('RGB')
-        rgb = rgb_image.getpixel((1, 1))
-        if rgb == (0, 0, 0):
-            rgb = (255,255,255)
-        return [ResizeToFit(300, 300,mat_color=(rgb))]
+        background_color = rgb_image.getpixel((1, 1))
+        if background_color == (0, 0, 0):
+            background_color = (255,255,255)
+        return [ResizeToFit(300, 300,mat_color=(background_color))]
 
 register.generator('logo_processor', LogoProcessor)
 
