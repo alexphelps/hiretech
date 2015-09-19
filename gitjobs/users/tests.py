@@ -174,7 +174,7 @@ class DashboardViewPublishedJobTest(TestCase):
         self.assertEqual(response.status_code,200)
         expected = '<li class="list-group-item"><div class="row">'
         expected += '<div class="col-md-7 col-sm-7 col-xs-6">'
-        expected += '<img class="img-responsive img-rounded pull-left m-r-10 '
+        expected += '<img class="img-responsive pull-left m-r-10 '
         expected += 'job-list-img" src="/media/' + str(company.company_logo_thumb) + '">'
         expected += '<h5><a href="/jobs/' + str(job.id) + '/">Python Guy</a><br>'
         expected += '<small>Owensboro, KY</small></h5></div>'
