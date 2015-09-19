@@ -24,9 +24,11 @@ before_script:
 script:
   - cd gitjobs
   - python manage.py test --settings=gitjobs.settings.ci
+  - coverage run --source=accounts manage.py test --settings=gitjobs.settings.ci
   - coverage run --source=gitjobs manage.py test --settings=gitjobs.settings.ci
-  - coverage run --source=jobs manage.py test --settings=gitjobs.settings.ci
   - coverage run --source=companies manage.py test --settings=gitjobs.settings.ci
+  - coverage run --source=jobs manage.py test --settings=gitjobs.settings.ci
+  - coverage run --source=search manage.py test --settings=gitjobs.settings.ci
   - coverage run --source=users manage.py test --settings=gitjobs.settings.ci
 
 after_success:

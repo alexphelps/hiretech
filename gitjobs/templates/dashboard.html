@@ -6,7 +6,7 @@
 {% for company in current_user_account_companies %}
     <div class="row">
       <div class="col-md-6 col-md-offset-1">
-          <img class="img-responsive img-thumbnail pull-left m-r-20" style="width:100px" src="{{ company.company_logo.url }}" />
+          <img class="img-responsive img-thumbnail pull-left m-r-20" style="width:100px" src="{{ company.company_logo_thumb.url }}" />
           <h5>{{ company }}</h5>
            <p><a href="{{ company.company_url }}" target="_blank">{{ company.company_url }}</a></p>
       </div>
@@ -47,13 +47,13 @@
                 <a href="/jobs/{{ company.company_slug }}/add/" class="btn btn-primary pull-right btn-sm">Post a Job</a>
                 <h5>Active Job Postings</h5>
               </div>
-              <ul class="list-group m-t-20">
+              <ul class="list-group jobs-list m-t-20">
                 {% spaceless %}
                 {% for job in current_user_account_published_jobs %}
                   <li class="list-group-item">
                     <div class="row">
                       <div class="col-md-7 col-sm-7 col-xs-6">
-                        <img class="img-responsive pull-left m-r-10 job-list-img" src="{{ job.job_company.company_logo.url }}">
+                        <img class="img-responsive img-rounded pull-left m-r-10 job-list-img" src="{{ job.job_company.company_logo_thumb.url }}">
                         <h5>
                           <a href="/jobs/{{ job.id }}/">{{ job.job_title }}</a><br>
                           <small>{{ job.job_location }}</small>
@@ -92,12 +92,12 @@
               <a href="/jobs/{{ company.company_slug }}/add/" class="btn btn-primary pull-right btn-sm">Post a Job</a>
               <h5>Filled Jobs</h5>
             </div>
-            <ul class="list-group m-t-20">
+            <ul class="list-group jobs-list m-t-20">
               {% for job in current_user_company_filled_jobs %}
                 <li class="list-group-item">
                   <div class="row">
                     <div class="col-md-7 col-sm-7 col-xs-6">
-                      <img class="img-responsive pull-left m-r-10 job-list-img" src="{{ job.job_company.company_logo.url }}">
+                      <img class="img-responsive img-rounded pull-left m-r-10 job-list-img" src="{{ job.job_company.company_logo_thumb.url }}">
                       <h5>
                         {{ job.job_title }}<br>
                         <small>{{ job.job_location }}</small>
@@ -127,7 +127,7 @@
       </div>
     </div>
   </div>
-    {% for company in current_user_account_published_jobs %}
+    {% for job in current_user_account_published_jobs %}
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog">
       <div class="modal-content">

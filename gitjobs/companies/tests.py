@@ -1,13 +1,20 @@
+import os
+from django.conf import settings
+from django.core.files import File
 from django.test import TestCase
 from .models import Company
 from jobs.models import Job
 
 # Create your tests here.
 class CompanyDetailsViewTest(TestCase):
+    def setUp(self):
+        image_source = '/tests/testdata/test-logo.png'
+        self.image_path = os.path.join(settings.SITE_ROOT + image_source)
+
     def test_company_details_response(self):
         company = Company.objects.create(
             company_name='Git Jobs',
-            company_logo='/media/logo.png',
+            company_logo= File(open(self.image_path)),
             company_url='http://python.com',
         )
         url = '/companies/' + str(company.company_slug) + '/'
@@ -17,7 +24,7 @@ class CompanyDetailsViewTest(TestCase):
     def test_company_details_shows(self):
         company = Company.objects.create(
             company_name='Git Jobs',
-            company_logo='/media/logo.png',
+            company_logo=File(open(self.image_path)),
             company_url='http://python.com',
         )
         job = Job.objects.create(
@@ -29,14 +36,16 @@ class CompanyDetailsViewTest(TestCase):
         )
         url = '/companies/' + str(company.company_slug) + '/'
         response = self.client.get(url)
-        expected = '<img class="img-thumbnail job-details-img" src="/media/logo.png">'
+        expected = '<img class="img-thumbnail job-details-img" src="/media/'
+        expected += str(company.company_logo_thumb) + '">'
         expected += '<h3>Git Jobs</h3><p>'
         expected += '<a href="http://python.com" rel="nofollow">http://python.com</a></p>'
         self.assertContains(response,expected)
         expected = '<li class="list-group-item">'
         expected += '<div class="row"><div class="col-md-9 col-sm-9 col-xs-8">'
         expected += '<img class="img-responsive pull-left m-r-10 job-list-img" '
-        expected += 'src="/media/logo.png"><h5><a href="/jobs/1/">Python Guy</a>'
+        expected += 'src="/media/'+ str(company.company_logo_thumb) + '">'
+        expected += '<h5><a href="/jobs/1/">Python Guy</a>'
         expected += '<br><small>Owensboro, KY</small></h5></div>'
         expected += '<div class="col-md-3 col-sm-3 col-xs-4">'
         expected += '<ul class="list-unstyled text-center m-t-10">'

@@ -10,3 +10,4 @@ django-markdown-deux
 django-nocaptcha-recaptcha
 django-taggit
 django-suit==0.2.13
+django-imagekit
