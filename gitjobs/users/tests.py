@@ -186,7 +186,7 @@ class DashboardViewPublishedJobTest(TestCase):
         expected = '</li></ul></div><div class="col-md-2 col-sm-2 col-xs-2 text-center">'
         expected += '<div class="btn-group m-t-10"><a class="btn btn-default btn-sm '
         expected += 'dropdown-toggle" data-toggle="dropdown" href="#">'
-        expected += '<i class="fa fa-cog"></i></a><ul class="dropdown-menu"><li>'
+        expected += '<i class="mdi mdi-settings"></i></a><ul class="dropdown-menu"><li>'
         expected += '<a href="#" data-toggle="modal" data-target="#myModal"> '
         expected += 'Mark as Filled</a></li></ul></div></div></div></li>'
         self.assertContains(response,expected)

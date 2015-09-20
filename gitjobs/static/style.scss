@@ -1,6 +1,7 @@
 // add bootstrap variable settings here
 @import 'bootstrap';
 @import 'bootswatch';
+@import 'materialdesignicons/materialdesignicons.scss';
 @import 'bootstrap-tokenfield';
 @import 'tokenfield-typeahead';
 @import 'utility-classes';
@@ -100,21 +101,11 @@ i.icon-lg.mdi::before {
 .job-type {
   text-transform: uppercase;
   text-align: center;
-  color: #fff;
   padding: 3px 10px;
   border-radius: 4px;
-}
-.job-type.full_time {
-  background-color: $btn-success-bg;
-}
-.job-type.part_time {
-  background-color: $btn-warning-bg;
-}
-.job-type.contract {
-  background-color: $btn-primary-bg;
-}
-.job-type.internship {
-  background-color: $btn-info-bg;
+  color:#2196F3;
+  background-color: white;
+  border: 1px solid #2196F3;
 }
 /* ==========================================================================
    Material Floating Lable Styles
