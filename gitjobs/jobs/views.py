@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.messages import constants as MSG
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ValidationError,PermissionDenied
 from django.http import (
@@ -12,7 +13,7 @@ from django.http import (
     HttpResponseRedirect,
 )
 from django.shortcuts import get_object_or_404,render
-from django.views.generic import TemplateView,View
+from django.views.generic import TemplateView,View,ListView
 from taggit.models import Tag
 from .forms import JobAddForm
 from .models import Job
@@ -22,11 +23,21 @@ from search.forms import CustomSearchForm
 from gitjobs.decorators import userincompany
 
 # Create your views here.
-class JobIndex(TemplateView):
+class JobIndex(ListView):
     template_name = 'job_index.html'
     def get(self,request):
         form = CustomSearchForm(request.GET, searchqueryset=None)
         jobs_list = Job.objects.filter(job_status='published').order_by('-job_created_date')
+        paginator = Paginator(jobs_list, 30)
+        page = request.GET.get('page')
+
+        try:
+            jobs_list = paginator.page(page)
+        except PageNotAnInteger:
+            jobs_list = paginator.page(1)
+        except EmptyPage:
+            jobs_list = paginator.page(paginator.num_pages)
+
         context = {
             'form': form,
             'jobs_list': jobs_list,

@@ -52,6 +52,29 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-12">
+          <nav>
+            <ul class="pager">
+              {% if jobs_list.paginator.num_pages > 1 %}
+              <span class="current">
+                  Page {{ jobs_list.number }} of {{ jobs_list.paginator.num_pages }}.
+              </span>
+              {% endif %}
+              {% if jobs_list.has_previous %}
+              <li class="previous">
+                  <a href="?page={{ jobs_list.previous_page_number }}">Previous</a>
+              </li>
+              {% endif %}
+              {% if jobs_list.has_next %}
+                <li class="next">
+                  <a href="?page={{ jobs_list.next_page_number }}">Next</a>
+                </li>
+              {% endif %}
+            </ul>
+          </nav>
+      </div>
+    </div>
   </div>
 {% include 'footer.html' %}
 {% include 'javascript.html' %}
