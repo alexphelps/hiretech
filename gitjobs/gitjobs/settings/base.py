@@ -61,6 +61,8 @@ INSTALLED_APPS = (
     'compressor',
     'taggit',
     'imagekit',
+    'debug_toolbar',
+    'drip',
 )
 
 MIDDLEWARE_CLASSES = (
