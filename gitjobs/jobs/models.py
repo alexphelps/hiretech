@@ -1,10 +1,11 @@
 from django.conf import settings
 from django.db import models
-
+from django.contrib.auth.models import User, Group
 from taggit.managers import TaggableManager
 # Create your models here.
 
 class Job(models.Model):
+    job_author = models.ForeignKey('auth.User',blank=True,null=True)
     job_company = models.ForeignKey('companies.Company',default=0)
     job_location = models.CharField(max_length=200)
     job_title = models.CharField(max_length=200)

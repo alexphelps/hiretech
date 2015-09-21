@@ -147,8 +147,8 @@ DEFAULT_DOMAIN = 'git-jobs.com'
 SERVER_EMAIL = 'alexphelps3@gmail.com'
 EMAIL_HOST = 'smtp.mandrillapp.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'alexphelps3@gmail.com'
-EMAIL_HOST_PASSWORD = 'Aj0ESkNeZFOKmIX5gYsAfQ'
+EMAIL_HOST_USER = 'alex@hiretech.io'
+EMAIL_HOST_PASSWORD = '0BhynKVPhNMb8YdtAvqEOQ'
 
 
 
@@ -198,5 +198,6 @@ SUIT_CONFIG = {
         {'app': 'companies', 'label': 'Companies', 'icon':'icon-briefcase'},
         {'app': 'auth', 'label': 'Auth', 'icon':'icon-lock'},
         {'app': 'users', 'label': 'User Profiles', 'icon':'icon-user'},
+        {'app': 'drip', 'label': 'Drips', 'icon':'icon-envelope'},
     )
 }

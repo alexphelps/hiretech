@@ -80,7 +80,7 @@ class PasswordResetViewTest(TestCase):
             first_name='Alex',
             last_name='Phelps',
             password='testpass'
-            )
+        )
         company = Company.objects.create(
             account=account,
             company_name='Alex Company',

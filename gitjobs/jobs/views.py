@@ -69,6 +69,7 @@ class JobAddNew(TemplateView):
         company = kwargs['company']
         form = JobAddForm(request.POST)
         if form.is_valid():
+            job_author = request.user
             job_company = get_object_or_404(Company, company_slug=company_slug)
             job_title = form.cleaned_data['job_title']
             job_location = form.cleaned_data['job_location']
@@ -81,6 +82,7 @@ class JobAddNew(TemplateView):
             job_apply_method = form.cleaned_data['job_apply_method']
             job_apply_link = form.cleaned_data['job_apply_link']
             job = Job.objects.create(
+                job_author=job_author,
                 job_company=job_company,
                 job_title=job_title,
                 job_location=job_location,

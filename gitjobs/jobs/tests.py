@@ -1,10 +1,12 @@
 import os
 from django.conf import settings
 from django.core.files import File
-
+from django.contrib.auth.models import AnonymousUser, User
 from django.test import TestCase
 from .models import Job
+from accounts.models import Account
 from companies.models import Company
+
 
 # Create your tests here.
 class JobIndexViewTest(TestCase):
@@ -19,12 +21,25 @@ class JobIndexViewTest(TestCase):
 
     def test_job_list_shows(self):
         url = '/jobs/'
+        account = Account.objects.create(
+            name='Alex Company',
+            account_type='employer'
+        )
+        user = User.objects.create_user(
+            username='alex@admin.com',
+            email='alex@admin.com',
+            first_name='Alex',
+            last_name='Phelps',
+            password='testpass'
+        )
         company = Company.objects.create(
+            account=account,
             company_name='Alex Test Company',
             company_logo= File(open(self.image_path)),
             company_slug='alex-test-company'
         )
         job = Job.objects.create(
+            job_author=user,
             job_company=company,
             job_location='Owensboro, KY',
             job_title='Python Guy',
