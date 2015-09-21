@@ -142,13 +142,13 @@ HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 # Email Settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'GitJobs Noreply <noreply@git-jobs.com>'
-DEFAULT_DOMAIN = 'git-jobs.com'
-SERVER_EMAIL = 'alexphelps3@gmail.com'
+DEFAULT_FROM_EMAIL = 'HireTech Noreply <noreply@hiretech.io>'
+DEFAULT_DOMAIN = 'hiretech.io'
+SERVER_EMAIL = 'jobs@hiretech.io'
 EMAIL_HOST = 'smtp.mandrillapp.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'alex@hiretech.io'
-EMAIL_HOST_PASSWORD = '0BhynKVPhNMb8YdtAvqEOQ'
+EMAIL_HOST_PASSWORD = os.environ['MANDRILL_API_KEY']
 
 
 
