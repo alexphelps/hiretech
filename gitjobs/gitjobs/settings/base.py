@@ -190,7 +190,7 @@ MARKDOWN_DEUX_STYLES = {
 
 # Django Suit Config
 SUIT_CONFIG = {
-    'ADMIN_NAME': 'GitJobs',
+    'ADMIN_NAME': 'HireTech',
     'MENU': (
         {'app': 'accounts', 'label': 'Accounts', 'icon':'icon-leaf'},
         {'app': 'jobs', 'label': 'Jobs', 'icon':'icon-tasks'},
