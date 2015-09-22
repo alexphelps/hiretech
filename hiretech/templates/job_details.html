@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block title %}{{ job.job_title }} at {{ job.job_company.company_name }} - HireTech {% endblock %}
+{% block content %}
+{% include 'header.html' %}
+{% load markdown_deux_tags %}
+<div itemscope itemtype="http://schema.org/JobPosting">
+  <div class="job-details-hero">
+  </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+        <a href="/companies/{{ job.job_company.company_slug }}/">
+          <img class="img-thumbnail job-details-img" src="{{ job.job_company.company_logo_thumb.url }}">
+        </a>
+        <h3><span itemprop="title">{{ job.job_title }}</span> at {{ job.job_company.company_name }}</h3>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="" itemprop="description">
+          <h5>Job Description</h5>
+          {{ job.job_description|markdown }}
+        </div>
+        <div class="m-t-30" itemprop="responsibilities">
+          <h5>Key Responsibilities</h5>
+          {{ job.job_responsibilities|markdown }}
+        </div>
+        <div class="m-t-30" itemprop="qualifications">
+          <h5>Minimum Qualifications</h5>
+          {{ job.job_qualifications|markdown }}
+        </div>
+        <div class="m-t-30" class="">
+          <h5>Additional Notes</h5>
+          {{ job.job_notes|markdown }}
+        </div>
+        {% if job.job_apply_method == "link" %}
+          <a href="{{ job.job_apply_link }}" target="_blank" class="btn btn-primary btn-lg">Apply Now</a>
+        {% else %}
+            <a href="mailto:{{ job.job_apply_link }}" class="btn btn-primary btn-lg">Apply Now</a>
+        {% endif %}
+      </div>
+      <div class="col-md-4">
+        <h5>Employment Type</h5>
+        <p><span class="job-type {{ job.job_type }}" itemprop="employmentType">{{ job.get_job_type_display }}</span></p>
+        <h5>Tags</h5>
+        {% for tag in tags %}
+          <span class="label label-tag">{{ tag.name }}</span>
+        {% empty %}
+          <p>No Tags</p>
+        {% endfor %}
+        <h5>Job Location</h5>
+        <span itemprop="jobLocation" itemscope itemtype="http://schema.org/Place">
+          <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+              <span itemprop="addressLocality">{{ job.job_location }}</span>
+            </span>
+          </span>
+        <p class="m-t-30">
+          {% if job.job_apply_method == "link" %}
+            <a href="{{ job.job_apply_link }}" target="_blank" class="btn btn-primary btn-lg">Apply Now</a>
+          {% else %}
+              <a href="mailto:{{ job.job_apply_link }}" class="btn btn-primary btn-lg">Apply Now</a>
+          {% endif %}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% include 'footer.html' %}
+{% include 'javascript.html' %}
+</body>
+{% endblock %}

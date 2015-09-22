@@ -11,3 +11,4 @@ django-nocaptcha-recaptcha
 django-taggit
 django-suit==0.2.13
 django-imagekit
+https://github.com/kronok/django-drip/archive/cd7dcabc129a5b2857548e4e181addf0b4eaba8a.zip
