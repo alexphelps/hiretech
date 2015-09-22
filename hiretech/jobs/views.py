@@ -20,7 +20,7 @@ from .models import Job
 from companies.models import Company
 from users.models import UserProfile
 from search.forms import CustomSearchForm
-from gitjobs.decorators import userincompany
+from hiretech.decorators import userincompany
 
 # Create your views here.
 class JobIndex(ListView):

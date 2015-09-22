@@ -17,19 +17,19 @@ install:
   - "pip install coveralls"
 
 before_script:
-  - psql -c "CREATE DATABASE gitjobs;" -U postgres
+  - psql -c "CREATE DATABASE hiretech;" -U postgres
   - sleep 10
 
 # command to run tests
 script:
-  - cd gitjobs
-  - python manage.py test --settings=gitjobs.settings.ci
-  - coverage run --source=accounts manage.py test --settings=gitjobs.settings.ci
-  - coverage run --source=gitjobs manage.py test --settings=gitjobs.settings.ci
-  - coverage run --source=companies manage.py test --settings=gitjobs.settings.ci
-  - coverage run --source=jobs manage.py test --settings=gitjobs.settings.ci
-  - coverage run --source=search manage.py test --settings=gitjobs.settings.ci
-  - coverage run --source=users manage.py test --settings=gitjobs.settings.ci
+  - cd hiretech
+  - python manage.py test --settings=hiretech.settings.ci
+  - coverage run --source=accounts manage.py test --settings=hiretech.settings.ci
+  - coverage run --source=hiretech manage.py test --settings=hiretech.settings.ci
+  - coverage run --source=companies manage.py test --settings=hiretech.settings.ci
+  - coverage run --source=jobs manage.py test --settings=hiretech.settings.ci
+  - coverage run --source=search manage.py test --settings=hiretech.settings.ci
+  - coverage run --source=users manage.py test --settings=hiretech.settings.ci
 
 after_success:
   - coveralls

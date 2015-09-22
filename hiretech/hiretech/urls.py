@@ -1,4 +1,4 @@
-"""gitjobs URL Configuration
+"""hiretech URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.8/topics/http/urls/
@@ -52,8 +52,8 @@ urlpatterns = [
 
 
 
-admin.site.site_header = 'Gitjobs'
-admin.site.site_name = 'Gitjobs'
+admin.site.site_header = 'hiretech'
+admin.site.site_name = 'hiretech'
 if settings.DEBUG:
     urlpatterns += patterns('',
         url(r'^media(?P<path>.*)$', 'django.views.static.serve', {
