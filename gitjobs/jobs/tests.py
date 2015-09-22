@@ -21,16 +21,17 @@ class JobIndexViewTest(TestCase):
 
     def test_job_list_shows(self):
         url = '/jobs/'
-        account = Account.objects.create(
-            name='Alex Company',
-            account_type='employer'
-        )
         user = User.objects.create_user(
             username='alex@admin.com',
             email='alex@admin.com',
             first_name='Alex',
             last_name='Phelps',
             password='testpass'
+        )
+        account = Account.objects.create(
+            name='Alex Company',
+            owner=user,
+            account_type='employer'
         )
         company = Company.objects.create(
             account=account,

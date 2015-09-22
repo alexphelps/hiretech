@@ -246,15 +246,16 @@ class SignupView(TemplateView):
             company_name = form.cleaned_data['company_name']
             company_url = form.cleaned_data['company_url']
             company_logo = request.FILES['company_logo']
-            account = Account.objects.create(
-                name=account,
-            )
             user = User.objects.create_user(
                 username=email,
                 password=password,
                 email=email,
                 first_name=first_name,
                 last_name=last_name
+            )
+            account = Account.objects.create(
+                owner=user,
+                name=account,
             )
             company = Company.objects.create(
                 account=account,
