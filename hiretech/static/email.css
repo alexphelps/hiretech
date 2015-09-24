@@ -41,7 +41,7 @@ table {
     body[yahoo] .footerLinks {width: 32%; margin-bottom: 40px;}
 }
 body {
-    background-color: #ececec;
+    background-color: #ffffff;
 }
 
 /*** --------------------------------------------------
@@ -74,12 +74,12 @@ a {
 Layouts
 --------------------------------------------------- ***/
 .main-header {
-    background-color: #ececec;
+    background-color: #ffffff;
     padding: 20px 0;
     height: 80px;
 }
 .main-footer {
-    background-color: #ececec;
+    background-color: #ffffff;
     padding: 20px 0;
     height: 160px;
 }
