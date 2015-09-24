@@ -151,6 +151,9 @@ EMAIL_HOST_USER = 'alex@hiretech.io'
 EMAIL_HOST_PASSWORD = os.environ['MANDRILL_API_KEY']
 
 
+DRIP_MESSAGE_CLASSES = {
+    'hiretechdefault': 'hiretech.email.DefaultDripEmail',
+}
 
 LOGIN_URL = '/login/'
 

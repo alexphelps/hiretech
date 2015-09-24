@@ -1,0 +1,207 @@
+/*** --------------------------------------------------
+Email CSS to Inline with Premailer
+--------------------------------------------------- ***/
+.ReadMsgBody {
+    width: 100%;
+    background-color: #ffffff;
+}
+.ExternalClass {
+    width: 100%;
+    background-color: #ffffff;
+}
+body {
+    width: 100%;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    color: #000000;
+    font-family: Helvetica, Arial, sans-serif;
+}
+html {
+    width: 100%;
+}
+table {
+    border-collapse: collapse;
+}
+@media only screen and (max-width : 600px) {
+    td[class="force-col"] {
+        display: block;
+    }
+}
+@media only screen and (max-width: 640px) {
+    body[yahoo] .deviceWidth {width: 440px !important;}
+    body[yahoo] .deviceFixWidth {width: 370px !important;}
+    body[yahoo] .center {text-align: center !important;}
+    body[yahoo] .footerLinks {width: 32%; margin-bottom: 40px;}
+}
+@media only screen and (max-width: 479px) {
+    body[yahoo] .deviceWidth {width: 280px !important;}
+    body[yahoo] .deviceFixWidth {width: 210px !important;}
+    body[yahoo] .center {text-align: center !important;}
+    body[yahoo] .footerLinks {width: 32%; margin-bottom: 40px;}
+}
+body {
+    background-color: #ececec;
+}
+
+/*** --------------------------------------------------
+Typography Styles
+--------------------------------------------------- ***/
+h1 {
+    line-height: 31px;
+}
+h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    color: #253747;
+    font-family: Helvetica, Arial, sans-serif;
+}
+*, p {
+    color: #666;
+}
+p {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 24px;
+}
+a {
+    color: #00adee;
+    font-family: Helvetica, Arial, sans-serif;
+}
+.tagline {
+    color: #ffffff;
+}
+
+/*** --------------------------------------------------
+Layouts
+--------------------------------------------------- ***/
+.main-header {
+    background-color: #ececec;
+    padding: 20px 0;
+    height: 80px;
+}
+.main-footer {
+    background-color: #ececec;
+    padding: 20px 0;
+    height: 160px;
+}
+.main-footer element.style {
+    padding: 10px 0;
+}
+.main-footer p, a {
+    font-size: 14px;
+}
+.main-footer a {
+    color: #00adee;
+}
+
+.content-container {
+    padding: 0px 55px;
+}
+
+table.two-column td {
+      padding: 25px 15px;
+}
+
+table.three-column td {
+    padding: 25px 5px;
+}
+
+/*** --------------------------------------------------
+Table Styles
+--------------------------------------------------- ***/
+table.table-bordered tr {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+/*** --------------------------------------------------
+Inverse Table Styles
+--------------------------------------------------- ***/
+table.inverse {
+    background-color: #253747;
+}
+table.inverse h1,
+table.inverse h2,
+table.inverse h3,
+table.inverse h4,
+table.inverse h5,
+table.inverse h6,
+table.inverse h1 a,
+table.inverse h2 a,
+table.inverse h3 a,
+table.inverse h4 a,
+table.inverse h5 a,
+table.inverse h6,
+table.inverse a,
+table.inverse p,
+table.inverse * {
+    color: #ffffff;
+}
+
+/*** --------------------------------------------------
+Section Table Style
+--------------------------------------------------- ***/
+table.section {
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ececec;
+    border-top: 1px solid #ececec;
+}
+td.main-content {
+    font-size: 14px;
+    font-weight: normal;
+    color:#ffffff;
+    text-align: left;
+    font-family: Helvetica, Arial, sans-serif;
+    line-height: 24px;
+    vertical-align: top;
+    padding:25px 0;
+}
+
+/*** --------------------------------------------------
+Button Styles
+--------------------------------------------------- ***/
+.email-btn {
+    background-color: #00adee;
+    border-color: #00adee;
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 24px;
+    border-radius: 4px 4px 4px 4px;
+    border-style: solid;
+    border-width: 8px 15px;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.email-btn.email-btn-lg {
+    font-size: 20px;
+}
+/*** --------------------------------------------------
+Utility Classes
+--------------------------------------------------- ***/
+.display-block {
+    display: block;
+}
+
+/*** --------------------------------------------------
+Padding Utility Classes
+--------------------------------------------------- ***/
+.p-t-5{padding-top:5px}.p-t-10{padding-top:10px}.p-t-15{padding-top:15px}.p-t-20{padding-top:20px}.p-t-25{padding-top:25px}.p-t-30{padding-top:30px}.p-t-35{padding-top:35px}.p-t-40{padding-top:40px}.p-t-45{padding-top:45px}.p-t-50{padding-top:50px}.p-t-55{padding-top:55px}.p-t-60{padding-top:60px}.p-t-65{padding-top:65px}.p-t-70{padding-top:70px}.p-t-75{padding-top:75px}.p-t-80{padding-top:80px}.p-t-85{padding-top:85px}.p-b-5{padding-bottom:5px}.p-b-10{padding-bottom:10px}.p-b-15{padding-bottom:15px}.p-b-20{padding-bottom:20px}.p-b-25{padding-bottom:25px}.p-b-30{padding-bottom:30px}.p-b-35{padding-bottom:35px}.p-b-40{padding-bottom:40px}.p-b-45{padding-bottom:45px}.p-b-50{padding-bottom:50px}.p-b-55{padding-bottom:55px}.p-b-60{padding-bottom:60px}.p-b-65{padding-bottom:65px}.p-b-70{padding-bottom:70px}.p-b-75{padding-bottom:75px}.p-b-80{padding-bottom:80px}.p-b-85{padding-bottom:85px}.p-l-5{padding-left:5px}.p-l-10{padding-left:10px}.p-l-15{padding-left:15px}.p-l-20{padding-left:20px}.p-l-25{padding-left:25px}.p-l-30{padding-left:30px}.p-l-35{padding-left:35px}.p-l-40{padding-left:40px}.p-l-45{padding-left:45px}.p-l-50{padding-left:50px}.p-l-55{padding-left:55px}.p-l-60{padding-left:60px}.p-l-65{padding-left:65px}.p-l-70{padding-left:70px}.p-l-75{padding-left:75px}.p-l-80{padding-left:80px}.p-l-85{padding-left:85px}.p-r-5{padding-right:5px}.p-r-10{padding-right:10px}.p-r-15{padding-right:15px}.p-r-20{padding-right:20px}.p-r-25{padding-right:25px}.p-r-30{padding-right:30px}.p-r-35{padding-right:35px}.p-r-40{padding-right:40px}.p-r-45{padding-right:45px}.p-r-50{padding-right:50px}.p-r-55{padding-right:55px}.p-r-60{padding-right:60px}.p-r-65{padding-right:65px}.p-r-70{padding-right:70px}.p-r-75{padding-right:75px}.p-r-80{padding-right:80px}.p-r-85{padding-right:85px}
+
+
+/*** --------------------------------------------------
+General Utility Classes
+--------------------------------------------------- ***/
+.bold {
+    font-weight: bold;
+}
+.text-center {
+    text-align: center;
+}
+.text-primary {
+    color:#253747;
+}
+
+/*** --------------------------------------------------
+End Email CSS
+--------------------------------------------------- ***/
