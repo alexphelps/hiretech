@@ -98,20 +98,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'hiretech.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
-DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'hiretech',
-            'USER': 'postgres',
-            'PASSWORD': 'admin',
-            'HOST': 'localhost',
-            'PORT': '',
-        }
-    }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
