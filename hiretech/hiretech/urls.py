@@ -48,18 +48,11 @@ urlpatterns = [
     url(r'^search/', search_views.CustomSearchView.as_view(), name='search'),
     url(r'^sitemap\.xml$', views.index, {'sitemaps': sitemaps}),
     url(r'^sitemap-(?P<section>.+)\.xml$', views.sitemap, {'sitemaps': sitemaps}),
+    url(r'^media(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT,}),
+    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT,
 ]
 
 
 
 admin.site.site_header = 'hiretech'
 admin.site.site_name = 'hiretech'
-if settings.DEBUG:
-    urlpatterns += patterns('',
-        url(r'^media(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': settings.MEDIA_ROOT,
-        }),
-        url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': settings.STATIC_ROOT,
-        }),
-)
