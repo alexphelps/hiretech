@@ -8,3 +8,19 @@ DEBUG = False
 
 # Google Recaptcha
 os.environ['NORECAPTCHA_TESTING'] = 'True'
+
+EMAIL_BASE_URL = 'http://192.168.50.5:8000/'
+
+# Database
+# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
+
+DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'hiretech',
+            'USER': 'postgres',
+            'PASSWORD': 'admin',
+            'HOST': 'localhost',
+            'PORT': '',
+        }
+    }

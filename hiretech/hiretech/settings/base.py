@@ -98,20 +98,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'hiretech.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
-DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'hiretech',
-            'USER': 'postgres',
-            'PASSWORD': 'admin',
-            'HOST': 'localhost',
-            'PORT': '',
-        }
-    }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -151,6 +137,9 @@ EMAIL_HOST_USER = 'alex@hiretech.io'
 EMAIL_HOST_PASSWORD = os.environ['MANDRILL_API_KEY']
 
 
+DRIP_MESSAGE_CLASSES = {
+    'hiretechdefault': 'hiretech.email.DefaultDripEmail',
+}
 
 LOGIN_URL = '/login/'
 

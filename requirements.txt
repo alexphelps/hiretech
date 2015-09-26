@@ -4,6 +4,7 @@ python-coveralls
 Django==1.8.4
 Pillow==2.9.0
 wheel==0.24.0
+premailer
 django-haystack==2.4.0
 django-libsass
 django-markdown-deux
