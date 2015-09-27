@@ -6,7 +6,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-EMAIL_BASE_URL = 'https://hiretech.io/'
+EMAIL_BASE_URL = 'http://hiretech.io/'
 
 ALLOWED_HOSTS = [
     'hiretech.io'
