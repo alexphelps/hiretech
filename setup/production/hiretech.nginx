@@ -1,0 +1,46 @@
+server {
+        listen 80;
+
+        server_name dev.prontoworld.me;
+        #server_name www.engine.prontoblogs.com;
+
+        access_log /var/log/nginx/prontoworld_access.log;
+        error_log /var/log/nginx/prontoworld_error.log;
+
+        root /var/www/pronto-dashboard/pronto_dashboard/ ;
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header REMOTE_ADDR $remote_addr;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_connect_timeout 3600;
+        proxy_send_timeout 3600;
+        proxy_read_timeout 3600;
+
+        location / {
+               #uwsgi protocol
+#              include /etc/nginx/uwsgi_params;
+
+               # Http Proxy Module::Transfer requests to uwsgi BE  service
+               proxy_pass http://127.0.0.1:8000;
+        }
+
+        location /static/ {
+                alias /home/ubuntu/hiretech/hiretech/assets/;
+                expires 85400s;
+                access_log off;
+                log_not_found off;
+                add_header Pragma public;
+                add_header Cache-Control "max-age=85400, public";
+        }
+        location /media/ {
+                alias /home/ubuntu/hiretech/hiretech/media/;
+                expires 85400s;
+                access_log off;
+                log_not_found off;
+                add_header Pragma public;
+                add_header Cache-Control "max-age=85400, public";
+        }
+
+
+}
