@@ -12,8 +12,8 @@ ALLOWED_HOSTS = [
     '*'
 ]
 
-MEDIA_URL = '//d39h1855s3pz3w.cloudfront.net/media/'
-STATIC_URL = '//d39h1855s3pz3w.cloudfront.net/static/'
+#MEDIA_URL = '//d39h1855s3pz3w.cloudfront.net/media/'
+#STATIC_URL = '//d39h1855s3pz3w.cloudfront.net/static/'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
