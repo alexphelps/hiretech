@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.core.mail import EmailMessage,EmailMultiAlternatives
+from django.contrib.sites.models import Site
 from django.template import Context, Template
 from django.utils.html import strip_tags
 from django.template.loader import get_template
