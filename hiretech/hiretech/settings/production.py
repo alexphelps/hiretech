@@ -6,7 +6,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-# Email Errors 
+# Email Errors
 ADMINS = (
     ('HireTech Errors', 'errors@hiretech.io'),
 )
@@ -17,8 +17,8 @@ ALLOWED_HOSTS = [
     'hiretech.io'
 ]
 
-#MEDIA_URL = '//d39h1855s3pz3w.cloudfront.net/media/'
-#STATIC_URL = '//d39h1855s3pz3w.cloudfront.net/static/'
+MEDIA_URL = '//d39h1855s3pz3w.cloudfront.net/media/'
+STATIC_URL = '//d39h1855s3pz3w.cloudfront.net/static/'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
