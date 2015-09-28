@@ -9,7 +9,7 @@ DEBUG = True
 # Google Recaptcha
 os.environ['NORECAPTCHA_TESTING'] = 'True'
 
-EMAIL_BASE_URL = 'http://192.168.50.5:8000/'
+EMAIL_BASE_URL = 'http://192.168.50.5:8000'
 
 
 # Database
