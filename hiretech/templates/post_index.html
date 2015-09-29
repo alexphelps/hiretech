@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'header.html' %}
+{% load markdown_deux_tags %}
+<div class="container m-t-20">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        {% if post_list %}
+          <!-- List group -->
+            {% spaceless %}
+            {% for post in post_list %}
+                  <div class="row">
+                    <div class="col-md-12">
+                      <a href="{{ post.slug }}"><img class="img-responsive" src="{{ post.featured_image_thumbnail.url }}"></a>
+                      <h4><strong>{{ post.title }}</strong><br>
+                        <small><span class="author">{{ post.author.first_name }} {{ post.author.last_name }}</span> wrote this on <time>{{ post.published_date }}</time></small>
+                      </h4>
+                        <p>{{ post.body|truncatechars:200 }}</p>
+                        <p><a href="{{ post.slug }}" class="btn btn-sm">Read More</a></p>
+                        <hr>
+                    </div>
+                  </div>
+            {% endfor %}
+            {% endspaceless %}
+        {% else %}
+          <div class="well text-center">
+            <p class="lead">No posts yet, check back soon.</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+          <nav>
+            <ul class="pager">
+              {% if post_list.paginator.num_pages > 1 %}
+              <span class="current">
+                  Page {{ post_list.number }} of {{ post_list.paginator.num_pages }}
+              </span>
+              {% endif %}
+              {% if post_list.has_previous %}
+              <li class="previous">
+                  <a href="?page={{ post_list.previous_page_number }}">Previous</a>
+              </li>
+              {% endif %}
+              {% if post_list.has_next %}
+                <li class="next">
+                  <a href="?page={{ post_list.next_page_number }}">Next</a>
+                </li>
+              {% endif %}
+            </ul>
+          </nav>
+      </div>
+    </div>
+</div>
+{% include 'footer.html' %}
+{% include 'javascript.html' %}
+</body>
+{% endblock %}

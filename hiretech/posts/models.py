@@ -26,9 +26,14 @@ class Post(models.Model):
     title = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=100, unique=True,blank=True)
     body = models.TextField()
-    published_date = models.DateField(auto_now=True,null=True)
+    published_date = models.DateField(auto_now=False,null=True)
     category = models.ForeignKey('posts.Category')
     author = models.ForeignKey('auth.User',blank=True,null=True)
+    status_choices = (
+        ('draft','Draft'),
+        ('published','Published'),
+    )
+    status = models.CharField(max_length=20,choices=status_choices,default='draft')
     featured_image = models.ImageField(upload_to=settings.MEDIA_ROOT,default='')
     featured_image_thumbnail = ImageSpecField(
         source='featured_image',

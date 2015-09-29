@@ -10,4 +10,4 @@ class PostsSiteMap(Sitemap):
     priority = 0.7
 
     def items(self):
-        return Post.objects.all()
+        return Post.objects.filter(status='published')
