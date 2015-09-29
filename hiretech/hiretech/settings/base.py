@@ -58,6 +58,7 @@ INSTALLED_APPS = (
     'jobs',
     'companies',
     'accounts',
+    'posts',
     'compressor',
     'taggit',
     'imagekit',
@@ -188,5 +189,6 @@ SUIT_CONFIG = {
         {'app': 'auth', 'label': 'Auth', 'icon':'icon-lock'},
         {'app': 'users', 'label': 'User Profiles', 'icon':'icon-user'},
         {'app': 'drip', 'label': 'Drips', 'icon':'icon-envelope'},
+        {'app': 'posts', 'label': 'Posts', 'icon':'icon-pencil'},
     )
 }
