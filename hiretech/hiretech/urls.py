@@ -26,15 +26,18 @@ from users import views as user_views
 from search import views as search_views
 from jobs.sitemap import JobsSiteMap
 from companies.sitemap import CompaniesSiteMap
+from posts.sitemap import PostsSiteMap
 
 sitemaps = {
     'pages': FlatPageSitemap,
     'jobs-listings': JobsSiteMap,
-    'companies': CompaniesSiteMap
+    'companies': CompaniesSiteMap,
+    'posts': PostsSiteMap,
 }
 
 urlpatterns = [
     url(r'^$', include('flatpages.urls', namespace="homepage")),
+    url(r'^blog/', include('posts.urls', namespace="posts")),
     url(r'^jobs/', include('jobs.urls', namespace="jobs")),
     url(r'^companies/', include('companies.urls', namespace="companies")),
     url(r'^users/', include('users.urls', namespace="users")),

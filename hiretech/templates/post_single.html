@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}{{ post.title }} {% endblock %}
+{% block content %}
+{% include 'header.html' %}
+{% load markdown_deux_tags %}
+<div class="content">
+<section>
+  <div class="container">
+  <article class="post col-md-10 col-md-offset-1">
+    <div class="row m-t-30">
+      <div class="col-md-12">
+        <div class="focal-point">
+          <div><img class="img-responsive" src="{{ post.featured_image_thumbnail.url }}" /></div>
+        </div>
+      </div>
+    </div>
+    <h3 class="post-title"><strong>{{ post.title }}</strong></h3>
+    <p class=""><span class="author">{{ post.author.first_name }} {{ post.author.last_name }}</span> wrote this on <time>{{ post.published_date }}</time></p>
+    {{ post.body|markdown }}
+  </article>
+  <div class="comments m-t-40">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES * * */
+            var disqus_shortname = 'hiretechio';
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+</div>
+{% include 'footer.html' %}
+{% include 'javascript.html' %}
+</body>
+{% endblock %}
