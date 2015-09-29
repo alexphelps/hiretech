@@ -26,11 +26,13 @@ from users import views as user_views
 from search import views as search_views
 from jobs.sitemap import JobsSiteMap
 from companies.sitemap import CompaniesSiteMap
+from posts.sitemap import PostsSiteMap
 
 sitemaps = {
     'pages': FlatPageSitemap,
     'jobs-listings': JobsSiteMap,
-    'companies': CompaniesSiteMap
+    'companies': CompaniesSiteMap,
+    'posts': PostsSiteMap,
 }
 
 urlpatterns = [
