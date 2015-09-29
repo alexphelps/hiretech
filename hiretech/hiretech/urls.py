@@ -35,6 +35,7 @@ sitemaps = {
 
 urlpatterns = [
     url(r'^$', include('flatpages.urls', namespace="homepage")),
+    url(r'^blog/', include('posts.urls', namespace="posts")),
     url(r'^jobs/', include('jobs.urls', namespace="jobs")),
     url(r'^companies/', include('companies.urls', namespace="companies")),
     url(r'^users/', include('users.urls', namespace="users")),
