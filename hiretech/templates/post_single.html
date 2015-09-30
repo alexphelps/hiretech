@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block description %}{{ post.body|truncatechars:200 }}{% endblock %}
 {% block og_title %}{{ post.title }}{% endblock %}
 {% block og_description %}{{ post.body|truncatechars:200 }}{% endblock %}
 {% block facebook_image %}{{ post.featured_image_thumbnail.url }}{% endblock %}
 {% block twitter_description %}{{ post.body|truncatechars:200 }}{% endblock %}
 {% block twitter_tittle %}{{ post.title }}{% endblock %}
 {% block twitter_image %}{{ post.featured_image_thumbnail.url }}{% endblock %}
-{% block title %}{{ post.title }}{% endblock %}
 {% block content %}
 {% include 'header.html' %}
 {% load markdown_deux_tags %}
