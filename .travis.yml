@@ -30,6 +30,7 @@ script:
   - coverage run --source=jobs manage.py test --settings=hiretech.settings.ci
   - coverage run --source=search manage.py test --settings=hiretech.settings.ci
   - coverage run --source=users manage.py test --settings=hiretech.settings.ci
+  - coverage run --source=posts manage.py test --settings=hiretech.settings.ci
 
 after_success:
   - coveralls
