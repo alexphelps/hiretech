@@ -6,6 +6,21 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes"/>
 <title>{% block title %}HireTech{% endblock %}</title>
+<meta name="description" content="{% block description %}{% endblock %}"/>
+<link rel="canonical" href="https://hiretech.io/"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="{% block og_title %}HireTech{% endblock %}"/>
+<meta property="og:description" content="{% block og_description %}HireTech is where tech people come to find their next job.{% endblock %}"/>
+<meta property="og:url" content="https://hiretech.io/"/>
+<meta property="og:site_name" content="HireTech"/>
+<meta property="og:image" content="{% block facebook_image %}{% static 'images/hiretech-logo.png' %}{% endblock %}"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:description" content="{% block twitter_description %}HireTech is where tech people come to find their next job.{% endblock %}"/>
+<meta name="twitter:title" content="{% block twitter_tittle %}HireTech{% endblock %}"/>
+<meta name="twitter:domain" content="HireTech"/>
+<meta name="twitter:image" content="{% block twitter_image %}{% static 'images/hiretech-logo.png' %}{% endblock %}"/>
+<meta name="twitter:creator" content="@hiretechio"/>
 {% compress css %}
 <link rel="stylesheet" type="text/x-scss" href="{% static "style.scss" %}">
 {% endcompress %}
