@@ -4,6 +4,7 @@
 <script src="{% static 'javascript/bootstrap-tokenfield.min.js' %}"></script>
 <script src="{% static 'javascript/timeago.js' %}"></script>
 <script src="{% static 'javascript/main.js' %}"></script>
+{% if production %}
 <script>
 var _prum = [['id', '56080577abe53de75353c74e'],['mark', 'firstbyte', (new Date()).getTime()]];
 (function() {
@@ -14,3 +15,4 @@ var _prum = [['id', '56080577abe53de75353c74e'],['mark', 'firstbyte', (new Date(
     s.parentNode.insertBefore(p, s);
 })();
 </script>
+{% endif %}

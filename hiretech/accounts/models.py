@@ -11,6 +11,6 @@ class Account(models.Model):
         ('applicant','Applicant'),
     )
     account_type = models.CharField(max_length=20,choices=account_type_choices,default='employer')
-
+    free = models.BooleanField(default=True)
     def __unicode__(self):
         return self.name
