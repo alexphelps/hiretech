@@ -2,13 +2,26 @@
 {% block title %}{{ company.company_name }} Available Jobs {% endblock %}
 {% block content %}
 {% include 'header.html' %}
-<div class="job-details-hero">
-</div>
+{% if company.company_featured_image %}
+<style>
+.company-hero {
+  background-image: url('{{ company.company_featured_image_thumb.url }}');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: scroll;
+  background-size: cover;
+  background-color: #fff;
+  min-height: 400px;
+}
+</style>
+{% endif %}
 <div class="container">
+<div class="company-hero">
+</div>
 <div class="row">
   <div class="col-md-12 text-center">
     {% spaceless %}
-    <img class="img-thumbnail job-details-img" src="{{ company.company_logo_thumb.url }}">
+    <img class="img-thumbnail company-logo" src="{{ company.company_logo_thumb.url }}">
     <h3>{{ company.company_name }}</h3>
     <p>{{ company.company_url|urlize }}</p>
     {% endspaceless %}

@@ -36,7 +36,7 @@ class CompanyDetailsViewTest(TestCase):
         )
         url = '/companies/' + str(company.company_slug) + '/'
         response = self.client.get(url)
-        expected = '<img class="img-thumbnail job-details-img" src="/media/'
+        expected = '<img class="img-thumbnail company-logo" src="/media/'
         expected += str(company.company_logo_thumb) + '">'
         expected += '<h3>Git Jobs</h3><p>'
         expected += '<a href="http://python.com" rel="nofollow">http://python.com</a></p>'

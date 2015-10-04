@@ -7,7 +7,6 @@ from .models import Job
 from accounts.models import Account
 from companies.models import Company
 
-
 # Create your tests here.
 class JobIndexViewTest(TestCase):
     def setUp(self):
