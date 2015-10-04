@@ -7,7 +7,6 @@ from .models import Job
 from accounts.models import Account
 from companies.models import Company
 
-
 # Create your tests here.
 class JobIndexViewTest(TestCase):
     def setUp(self):
@@ -51,7 +50,7 @@ class JobIndexViewTest(TestCase):
         expected = '<li class="list-group-item"><div class="row">'
         expected += '<div class="col-md-9 col-sm-9 col-xs-8">'
         expected += '<img class="img-responsive pull-left m-r-10 '
-        expected += 'job-list-img" src="/media/'
+        expected += 'job-list-img hidden-xs" src="/media/'
         expected += str(company.company_logo_thumb) + '">'
         expected += '<h5><a href="/jobs/'+ str(job.id) +'/">Python Guy</a><br><small>'
         expected += '<a href="/companies/alex-test-company" class="text-muted">'

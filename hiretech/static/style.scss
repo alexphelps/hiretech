@@ -21,9 +21,12 @@ body article.post {
     float: none !important;
   }
 }
-.job-details-hero {
+.company-hero {
   height: 120px;
-  background-color: #F1F1F1;
+}
+.company-logo {
+  margin-top: -70px;
+  width:140px;
 }
 .label-tag {
   background-color: #E4E1E1;
@@ -70,9 +73,7 @@ body article.post {
   cursor: default;
 }
 
-.job-details-hero:first-of-type + .container {
-  margin-top: -70px;
-}
+
 .navbar {
     border-radius: 0px;
     margin-bottom: 0px;
@@ -99,9 +100,7 @@ i.icon-lg.mdi::before {
 .job-list-img {
     width:68px;
 }
-.job-details-img {
-    width:140px;
-}
+
 .job-type {
   text-transform: uppercase;
   text-align: center;

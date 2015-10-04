@@ -7,7 +7,7 @@ from django.template.defaultfilters import slugify
 
 from imagekit import ImageSpec, register
 from imagekit.models import ImageSpecField
-from imagekit.processors import ResizeToFit
+from imagekit.processors import ResizeToFit,ResizeToFill
 from taggit.managers import TaggableManager
 
 from accounts.models import Account
@@ -36,6 +36,13 @@ class Company(models.Model):
     company_logo_thumb = ImageSpecField(
             source='company_logo',
             id='logo_processor'
+        )
+    company_featured_image = models.ImageField(upload_to=settings.MEDIA_ROOT,default='',blank=True)
+    company_featured_image_thumb = ImageSpecField(
+            source='company_featured_image',
+            processors=[ResizeToFill(1200, 500)],
+            format='JPEG',
+            options={'quality': 95}
         )
     tags = TaggableManager(blank=True)
 
