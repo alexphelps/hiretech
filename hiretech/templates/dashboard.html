@@ -4,127 +4,149 @@
 {% include 'header.html' %}
 <div class="container m-t-20">
 {% for company in current_user_account_companies %}
-    <div class="row">
-      <div class="col-md-6 col-md-offset-1">
-          <img class="img-responsive img-thumbnail pull-left m-r-20" style="width:100px" src="{{ company.company_logo_thumb.url }}" />
-          <h5>{{ company }}</h5>
-           <p><a href="{{ company.company_url }}" target="_blank">{{ company.company_url }}</a></p>
-      </div>
-      <div class="col-md-2">
-        <div class="well text-center">
-          <h6>Open Jobs</h6>
-          <p class="lead text-primary m-b-5"><strong>{{ published_jobs_count }}</strong></p>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="well text-center">
-          <h6>Filled Jobs</h6>
-          <p class="lead text-primary m-b-5"><strong>{{ filled_jobs_count }}</strong></p>
-        </div>
-      </div>
-    </div>
     <div class="row m-t-20">
-      <div class="col-md-10 col-md-offset-1">
-        <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active"><a href="#activejobs" aria-controls="activejobs" role="tab" data-toggle="tab">Active Jobs</a></li>
-          <li role="presentation"><a href="#filledjobs" aria-controls="filledjobs" role="tab" data-toggle="tab">Filled Jobs</a></li>
-          <li role="presentation"><a href="/companies/{{ company.company_slug }}/edit/">Settings</a></li>
-        </ul>
-        <div class="tab-content">
-          <div role="tabpanel" class="tab-pane active" id="activejobs">
-            <div class="m-t-20">
-              {% for message in messages %}
-                {% if message.level == 40 %}
-                  <div class="alert alert-danger" role="alert">{{ message }}</div>
-                {% endif %}
-                {% if message.level == 25 %}
-                  <div class="alert alert-success" role="alert">{{ message }}</div>
-                {% endif %}
-              {% endfor %}
-              </div>
-              {% if current_user_account_published_jobs %}
-              <div class="m-t-20">
-                <a href="/jobs/{{ company.company_slug }}/add/" class="btn btn-primary pull-right btn-sm">Post a Job</a>
-                <h5>Active Job Postings</h5>
-              </div>
-              <ul class="list-group jobs-list m-t-20">
-                {% spaceless %}
-                {% for job in current_user_account_published_jobs %}
-                  <li class="list-group-item">
-                    <div class="row">
-                      <div class="col-md-7 col-sm-7 col-xs-6">
-                        <img class="img-responsive pull-left m-r-10 job-list-img" src="{{ job.job_company.company_logo_thumb.url }}">
-                        <h5>
-                          <a href="/jobs/{{ job.id }}/">{{ job.job_title }}</a><br>
-                          <small>{{ job.job_location }}</small>
-                        </h5>
-                      </div>
-                      <div class="col-md-3 col-sm-3 col-xs-4">
-                        <ul class="list-unstyled text-center m-t-10">
-                          <li><a href="/jobs/{{ job.id }}/"><span class="job-type {{ job.job_type }}">{{ job.get_job_type_display }}</span></a></li>
-                          <li><small class="timeago" title="{{ job.job_created_date|date:"c" }}">{{ job.job_created_date }}</small></li>
-                        </ul>
-                      </div>
-                      <div class="col-md-2 col-sm-2 col-xs-2 text-center">
-                        <div class="btn-group m-t-10">
-                          <a class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" href="#"><i class="mdi mdi-settings"></i></a>
-                          <ul class="dropdown-menu">
-                            <li><a href="#" data-toggle="modal" data-target="#myModal"> Mark as Filled</a></li>
+      <div class="col-md-4">
+        <div class="panel panel-company-details">
+          {% if company.company_featured_image %}
+          <div class="panel-heading text-center"
+              {% spaceless %}
+                style="background-image: url('{{ company.company_featured_image_thumb.url }}');"
+              {% endspaceless %}>
+          </div>
+          {% else %}
+          <div class="panel-heading text-center">
+            <a href="/companies/{{ company.company_slug }}/edit/">Add Cover Photo</a>
+          </div>
+          {% endif %}
+          <div class="panel-body">
+            <div class="text-center">
+              <img class="img-responsive img-thumbnail company-logo" style="width:100px" src="{{ company.company_logo_thumb.url }}" />
+            </div>
+            <h5>{{ company }}</h5>
+             <p><a href="{{ company.company_url }}" target="_blank">{{ company.company_url }}</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-4">
+          <div class="well text-center">
+            <h6>Open Jobs</h6>
+            <p class="lead text-primary m-b-5"><strong>{{ published_jobs_count }}</strong></p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="well text-center">
+            <h6>Filled Jobs</h6>
+            <p class="lead text-primary m-b-5"><strong>{{ filled_jobs_count }}</strong></p>
+          </div>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="active"><a href="#activejobs" aria-controls="activejobs" role="tab" data-toggle="tab">Active Jobs</a></li>
+              <li role="presentation"><a href="#filledjobs" aria-controls="filledjobs" role="tab" data-toggle="tab">Filled Jobs</a></li>
+              <li role="presentation"><a href="/companies/{{ company.company_slug }}/edit/">Settings</a></li>
+            </ul>
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="activejobs">
+                <div class="m-t-20">
+                  {% for message in messages %}
+                    {% if message.level == 40 %}
+                      <div class="alert alert-danger" role="alert">{{ message }}</div>
+                    {% endif %}
+                    {% if message.level == 25 %}
+                      <div class="alert alert-success" role="alert">{{ message }}</div>
+                    {% endif %}
+                  {% endfor %}
+                  </div>
+                  {% if current_user_account_published_jobs %}
+                  <div class="m-t-20">
+                    <a href="/jobs/{{ company.company_slug }}/add/" class="btn btn-primary pull-right btn-sm">Post a Job</a>
+                    <h5>Active Job Postings</h5>
+                  </div>
+                  <ul class="list-group jobs-list m-t-20">
+                    {% spaceless %}
+                    {% for job in current_user_account_published_jobs %}
+                      <li class="list-group-item">
+                        <div class="row">
+                          <div class="col-md-7 col-sm-7 col-xs-6">
+                            <img class="img-responsive pull-left m-r-10 job-list-img" src="{{ job.job_company.company_logo_thumb.url }}">
+                            <h5>
+                              <a href="/jobs/{{ job.id }}/">{{ job.job_title }}</a><br>
+                              <small>{{ job.job_location }}</small>
+                            </h5>
+                          </div>
+                          <div class="col-md-3 col-sm-3 col-xs-4">
+                            <ul class="list-unstyled text-center m-t-10">
+                              <li><a href="/jobs/{{ job.id }}/"><span class="job-type {{ job.job_type }}">{{ job.get_job_type_display }}</span></a></li>
+                              <li><small class="timeago" title="{{ job.job_created_date|date:"c" }}">{{ job.job_created_date }}</small></li>
+                            </ul>
+                          </div>
+                          <div class="col-md-2 col-sm-2 col-xs-2 text-center">
+                            <div class="btn-group m-t-10">
+                              <a class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" href="#"><i class="mdi mdi-settings"></i></a>
+                              <ul class="dropdown-menu">
+                                <li><a href="#" data-toggle="modal" data-target="#myModal"> Mark as Filled</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    {% endfor %}
+                    {% endspaceless %}
+                  </ul>
+                  {% else %}
+                    <div class="well">
+                      <p class="lead text-center">You don't have any active job postings.<br>
+                        <a href="/jobs/{{ company.company_slug }}/add/" class="btn btn-primary m-t-20">Post a Job</a>
+                      </p>
+                    </div>
+                  {% endif %}
+              </div><!--End Active Jobs Panel -->
+              <div role="tabpanel" class="tab-pane" id="filledjobs">
+                {% if current_user_company_filled_jobs %}
+                <div class="m-t-20">
+                  <a href="/jobs/{{ company.company_slug }}/add/" class="btn btn-primary pull-right btn-sm">Post a Job</a>
+                  <h5>Filled Jobs</h5>
+                </div>
+                <ul class="list-group jobs-list m-t-20">
+                  {% for job in current_user_company_filled_jobs %}
+                    <li class="list-group-item">
+                      <div class="row">
+                        <div class="col-md-7 col-sm-7 col-xs-6">
+                          <img class="img-responsive pull-left m-r-10 job-list-img" src="{{ job.job_company.company_logo_thumb.url }}">
+                          <h5>
+                            {{ job.job_title }}<br>
+                            <small>{{ job.job_location }}</small>
+                          </h5>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-4">
+                          <ul class="list-unstyled text-center m-t-10">
+                            <li><span class="job-type {{ job.job_type }}">{{ job.get_job_type_display }}</span></li>
+                            <li><small class="timeago" title="{{ job.job_created_date|date:"c" }}">{{ job.job_created_date }}</small></li>
                           </ul>
                         </div>
+                        <div class="col-md-2 col-sm-2 col-xs-2 text-center">
+                          <p class="m-t-20 m-r-10"><span class="label label-tag">Filled</span></p>
+                        </div>
                       </div>
-                    </div>
-                  </li>
-                {% endfor %}
-                {% endspaceless %}
-              </ul>
-              {% else %}
-                <div class="well">
-                  <p class="lead text-center">You don't have any active job postings.<br>
-                    <a href="/jobs/{{ company.company_slug }}/add/" class="btn btn-primary m-t-20">Post a Job</a>
-                  </p>
-                </div>
-              {% endif %}
-          </div><!--End Active Jobs Panel -->
-          <div role="tabpanel" class="tab-pane" id="filledjobs">
-            {% if current_user_company_filled_jobs %}
-            <div class="m-t-20">
-              <a href="/jobs/{{ company.company_slug }}/add/" class="btn btn-primary pull-right btn-sm">Post a Job</a>
-              <h5>Filled Jobs</h5>
-            </div>
-            <ul class="list-group jobs-list m-t-20">
-              {% for job in current_user_company_filled_jobs %}
-                <li class="list-group-item">
-                  <div class="row">
-                    <div class="col-md-7 col-sm-7 col-xs-6">
-                      <img class="img-responsive pull-left m-r-10 job-list-img" src="{{ job.job_company.company_logo_thumb.url }}">
-                      <h5>
-                        {{ job.job_title }}<br>
-                        <small>{{ job.job_location }}</small>
-                      </h5>
-                    </div>
-                    <div class="col-md-3 col-sm-3 col-xs-4">
-                      <ul class="list-unstyled text-center m-t-10">
-                        <li><span class="job-type {{ job.job_type }}">{{ job.get_job_type_display }}</span></li>
-                        <li><small class="timeago" title="{{ job.job_created_date|date:"c" }}">{{ job.job_created_date }}</small></li>
-                      </ul>
-                    </div>
-                    <div class="col-md-2 col-sm-2 col-xs-2 text-center">
-                      <p class="m-t-20 m-r-10"><span class="label label-tag">Filled</span></p>
-                    </div>
+                    </li>
+                  {% endfor %}
+                </ul>
+                {% else %}
+                  <div class="well m-t-20">
+                    <p class="lead text-center">You don't have any filled jobs.<br>
+                      <a href="/jobs/add/" class="btn btn-primary m-t-20">Post a Job</a>
+                    </p>
                   </div>
-                </li>
-              {% endfor %}
-            </ul>
-            {% else %}
-              <div class="well m-t-20">
-                <p class="lead text-center">You don't have any filled jobs.<br>
-                  <a href="/jobs/add/" class="btn btn-primary m-t-20">Post a Job</a>
-                </p>
-              </div>
-            {% endif %}
-          </div><!--End Exipred Jobs Panel -->
+                {% endif %}
+              </div><!--End Exipred Jobs Panel -->
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
     {% for job in current_user_account_published_jobs %}

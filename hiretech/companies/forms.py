@@ -25,10 +25,19 @@ class CompanyEditForm(forms.Form):
                 'class': 'form-control'
             }),
         required=False)
+    company_featured_image = forms.ImageField(
+        widget=forms.FileInput(
+            attrs={
+                'id': 'company_featured_image',
+                'class': 'form-control'
+            }),
+        required=False)
 
-    def save(self, company,request,compnay_logo):
+    def save(self, company,request,compnay_logo,company_featured_image):
         company.company_name = self.cleaned_data['company_name']
         company.company_url = self.cleaned_data['company_url']
-        if request.FILES:
+        if 'company_logo' in request.FILES:
             company.company_logo = request.FILES['company_logo']
+        if 'company_featured_image'in request.FILES:
+            company.company_featured_image = request.FILES['company_featured_image']
         company.save()

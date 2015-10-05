@@ -100,7 +100,13 @@ i.icon-lg.mdi::before {
 .job-list-img {
     width:68px;
 }
-
+.panel-company-details .panel-heading {
+  background-size:cover;
+  min-height:150px;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-color: #f9f9f9;
+}
 .job-type {
   text-transform: uppercase;
   text-align: center;

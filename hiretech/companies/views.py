@@ -56,10 +56,13 @@ class CompanyEditView(TemplateView):
         form = CompanyEditForm(request.POST,request.FILES)
         company = kwargs['company']
         company_logo = ''
+        company_featured_image = ''
         if form.is_valid():
-            if request.FILES:
+            if 'company_logo' in request.FILES:
                 company_logo = request.FILES['company_logo']
-            form.save(company,request,company_logo)
+            if 'company_featured_image'in request.FILES:
+                company_featured_image = request.FILES['company_featured_image']
+            form.save(company,request,company_logo,company_featured_image)
             success_msg = 'Company Details Updated.'
             messages.add_message(
                 request,
