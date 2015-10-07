@@ -5,6 +5,20 @@
 <div class="container m-t-20">
 {% for company in current_user_account_companies %}
     <div class="row m-t-20">
+      <div class="col-md-12">
+      {% for message in messages %}
+        {% if message.level == 40 %}
+          <div class="alert alert-danger auto-close" role="alert">
+            {{ message }}
+          </div>
+        {% endif %}
+        {% if message.level == 25 %}
+          <div class="alert alert-success auto-close" role="alert">
+              {{ message }}
+            </div>
+        {% endif %}
+      {% endfor %}
+      </div>
       <div class="col-md-4">
         <div class="panel panel-company-details">
           {% if company.company_featured_image %}
@@ -15,7 +29,7 @@
           </div>
           {% else %}
           <div class="panel-heading text-center">
-            <a href="/companies/{{ company.company_slug }}/edit/">Add Cover Photo</a>
+            <a class="btn btn-primary btn-xs" href="/companies/{{ company.company_slug }}/edit/">Add Cover Photo</a>
           </div>
           {% endif %}
           <div class="panel-body">
@@ -24,6 +38,8 @@
             </div>
             <h5>{{ company }}</h5>
              <p><a href="{{ company.company_url }}" target="_blank">{{ company.company_url }}</a></p>
+             <p><a class="btn btn-primary btn-block btn-sm" href="/companies/{{ company.company_slug }}">View Company Page</a></p>
+             <p><a class="btn btn-default btn-block btn-sm" href="/companies/{{ company.company_slug }}/edit/">Edit Company Settings</a></p>
           </div>
         </div>
       </div>
@@ -47,20 +63,9 @@
             <ul class="nav nav-tabs" role="tablist">
               <li role="presentation" class="active"><a href="#activejobs" aria-controls="activejobs" role="tab" data-toggle="tab">Active Jobs</a></li>
               <li role="presentation"><a href="#filledjobs" aria-controls="filledjobs" role="tab" data-toggle="tab">Filled Jobs</a></li>
-              <li role="presentation"><a href="/companies/{{ company.company_slug }}/edit/">Settings</a></li>
             </ul>
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane active" id="activejobs">
-                <div class="m-t-20">
-                  {% for message in messages %}
-                    {% if message.level == 40 %}
-                      <div class="alert alert-danger" role="alert">{{ message }}</div>
-                    {% endif %}
-                    {% if message.level == 25 %}
-                      <div class="alert alert-success" role="alert">{{ message }}</div>
-                    {% endif %}
-                  {% endfor %}
-                  </div>
                   {% if current_user_account_published_jobs %}
                   <div class="m-t-20">
                     <a href="/jobs/{{ company.company_slug }}/add/" class="btn btn-primary pull-right btn-sm">Post a Job</a>
