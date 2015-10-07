@@ -32,7 +32,7 @@ class PasswordResetRequestForm(forms.Form):
         widget=forms.EmailInput(
             attrs={
                 'id': 'email',
-                'class': 'form-control'
+                'class': 'form-control floating-label'
             }),
         required=True)
 
