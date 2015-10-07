@@ -1,10 +1,10 @@
-
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group, User
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import messages
 from django.contrib.messages import constants as MSG
+from django.template import RequestContext, loader
 
 from nocaptcha_recaptcha.fields import NoReCaptchaField
 from companies.models import Company
@@ -146,11 +146,22 @@ class UserEditForm(forms.Form):
                 'class': 'form-control'
             }),
         required=True)
+    current_user_profile_avatar = forms.ImageField(
+        widget=forms.FileInput(
+            attrs={
+                'id': 'avatar',
+                'class': 'form-control'
+            }),
+        required=False)
 
-    def save(self,user):
+    def save(self,user,request,current_user_profile_avatar):
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
+        user.email = self.cleaned_data['email']
+        if 'avatar' in request.FILES:
+            current_user_profile_avatar = request.FILES['avatar']
         user.save()
+
 class PasswordUpdateForm(forms.Form):
     current_password = forms.CharField(
         widget=forms.PasswordInput(

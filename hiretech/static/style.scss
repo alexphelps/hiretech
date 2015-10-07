@@ -172,3 +172,13 @@ ol.horizontal li, ul.horizontal li  {
 ol.horizontal li:first-child, ul.horizontal li:first-child {
   margin-left: 0;
 }
+/* ==========================================================================
+   User Settings Navbar
+   ========================================================================== */
+.avatar {
+ width: 140px;
+}
+.user-settings .avatar {
+  margin-top: -5px;
+  width: 35px;
+}

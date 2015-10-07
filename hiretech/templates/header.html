@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load gravatar %}
 <nav class="navbar">
   <div class="container">
     <div class="navbar-header">
@@ -12,12 +13,14 @@
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       {% if user.is_authenticated %}
-      <ul class="nav navbar-nav navbar-right">
+
+      <ul class="nav navbar-nav navbar-right user-settings">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              {{ user.first_name }} {{ user.last_name }}<span class="caret"></span>
+              <img class="pull-right img-circle m-l-10 avatar" src="{% gravatar_url user.email 90 %}">
+              {{ user.first_name }} {{ user.last_name }}
             </a>
-              <ul class="dropdown-menu pull-right m-r-20">
+              <ul class="dropdown-menu pull-right">
                   <li><a href="/users/settings/"> Settings</a></li>
                   <li><a href="/users/update-password/"> Update Password</a></li>
                   <li class="divider"></li>

@@ -29,6 +29,9 @@ from .forms import (
     UserEditForm,
     PasswordUpdateForm,
 )
+
+from django_gravatar.helpers import get_gravatar_url, has_gravatar, get_gravatar_profile_url, calculate_gravatar_hash
+
 from .models import UserProfile
 from jobs.models import Job
 from accounts.models import Account
@@ -329,6 +332,8 @@ class UserSettingsView(TemplateView):
         current_user = request.user
         current_user_id = current_user.id
         current_user_profile = UserProfile.objects.get(user__id=current_user_id)
+        current_user_email = current_user.email
+        gravatar_exists = has_gravatar(current_user_email)
         initial = {
             'first_name': user.first_name,
             'last_name': user.last_name,
@@ -337,6 +342,8 @@ class UserSettingsView(TemplateView):
         form = self.form(initial=initial)
         context = {
             'form':form,
+            'current_user': current_user_profile,
+            'gravatar_exists':gravatar_exists,
         }
         return render(
             request,
@@ -344,13 +351,17 @@ class UserSettingsView(TemplateView):
             context
         )
     def post(self,request,**kwargs):
-        form = UserEditForm(request.POST)
+        form = UserEditForm(request.POST,request.FILES)
         user = request.user
         current_user = request.user
         current_user_id = current_user.id
         current_user_profile = UserProfile.objects.get(user__id=current_user_id)
+        current_user_profile_avatar = ''
         if form.is_valid():
-            form.save(user)
+            if 'avatar' in request.FILES:
+                current_user_profile_avatar = request.FILES['avatar']
+                print current_user_profile_avatar
+            form.save(user,request,current_user_profile_avatar)
             success_msg = 'User details updated.'
             messages.add_message(
                 request,
@@ -367,6 +378,7 @@ class UserSettingsView(TemplateView):
 
         context = {
             'form':form,
+            'current_user': current_user_profile,
         }
         return render(
             request,

@@ -63,6 +63,7 @@ INSTALLED_APPS = (
     'taggit',
     'imagekit',
     'drip',
+    'django_gravatar',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -193,3 +194,5 @@ SUIT_CONFIG = {
         {'app': 'posts', 'label': 'Posts', 'icon':'icon-pencil'},
     )
 }
+GRAVATAR_DEFAULT_SECURE = True
+GRAVATAR_DEFAULT_IMAGE = 'https://hiretech.io/static/images/hiretech-avatar-default.png'

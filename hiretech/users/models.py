@@ -8,6 +8,7 @@ from  accounts.models import Account
 class UserProfile(models.Model):
     user = models.ForeignKey(User)
     account = models.ForeignKey('accounts.Account',blank=True,null=True)
+    avatar = models.ImageField(upload_to=settings.MEDIA_ROOT,default='',blank=True)
 
 
 def __unicode__(self):
