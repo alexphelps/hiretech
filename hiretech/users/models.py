@@ -14,7 +14,8 @@ class UserProfile(models.Model):
 def __unicode__(self):
         return '%s (%s)' % (
             self.user.username,
-            self.user.account
+            self.user.account,
+            self.user.avatar
         )
 def user(self):
     return self.user.username

@@ -146,7 +146,7 @@ class UserEditForm(forms.Form):
                 'class': 'form-control'
             }),
         required=True)
-    current_user_profile_avatar = forms.ImageField(
+    avatar = forms.ImageField(
         widget=forms.FileInput(
             attrs={
                 'id': 'avatar',
@@ -154,13 +154,18 @@ class UserEditForm(forms.Form):
             }),
         required=False)
 
-    def save(self,user,request,current_user_profile_avatar):
+    def save(self,user,request):
+        user = request.user
+        current_user = request.user
+        current_user_id = current_user.id
+        current_user_profile = UserProfile.objects.get(user__id=current_user_id)
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
         user.email = self.cleaned_data['email']
-        if 'avatar' in request.FILES:
-            current_user_profile_avatar = request.FILES['avatar']
+        #if 'avatar' in request.FILES:
+        #    current_user_profile.avatar = request.FILES['avatar']
         user.save()
+        #current_user_profile.save()
 
 class PasswordUpdateForm(forms.Form):
     current_password = forms.CharField(

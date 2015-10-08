@@ -333,7 +333,7 @@ class UserSettingsView(TemplateView):
         current_user_id = current_user.id
         current_user_profile = UserProfile.objects.get(user__id=current_user_id)
         current_user_email = current_user.email
-        gravatar_exists = has_gravatar(current_user_email)
+        #gravatar_exists = has_gravatar(current_user_email)
         initial = {
             'first_name': user.first_name,
             'last_name': user.last_name,
@@ -343,7 +343,7 @@ class UserSettingsView(TemplateView):
         context = {
             'form':form,
             'current_user': current_user_profile,
-            'gravatar_exists':gravatar_exists,
+            #'gravatar_exists':gravatar_exists,
         }
         return render(
             request,
@@ -356,12 +356,10 @@ class UserSettingsView(TemplateView):
         current_user = request.user
         current_user_id = current_user.id
         current_user_profile = UserProfile.objects.get(user__id=current_user_id)
-        current_user_profile_avatar = ''
+        avatar = ''
         if form.is_valid():
-            if 'avatar' in request.FILES:
-                current_user_profile_avatar = request.FILES['avatar']
-                print current_user_profile_avatar
-            form.save(user,request,current_user_profile_avatar)
+            #avatar = request.FILES['avatar']
+            form.save(user,request)
             success_msg = 'User details updated.'
             messages.add_message(
                 request,
@@ -380,10 +378,8 @@ class UserSettingsView(TemplateView):
             'form':form,
             'current_user': current_user_profile,
         }
-        return render(
-            request,
-            self.template_name,
-            context
+        return HttpResponseRedirect(
+            reverse('dashboard'),
         )
 class PasswordUpdateView(TemplateView):
     template_name = 'user_password_update.html'

@@ -37,7 +37,7 @@
                 {{ form.email }}
               </div>
             </div>
-            <div class="form-group">
+            <!--<div class="form-group">
               <label for="" class="col-sm-2 control-label">User Photo</label>
               <div class="col-md-3 col-sm-3">
                 {% if current_user.avatar %}
@@ -48,12 +48,23 @@
               </div>
               <div class="col-md-7 col-sm-7">
                 <label class="control-label" for="avatar">Upload Photo</label><br/>
-                {{ form.current_user_profile_avatar }}
+                {{ form.avatar }}
+              </div>
+            </div>-->
+            <div class="form-group m-b-20">
+              <label for="" class="col-sm-2 control-label">User Photo</label>
+              <div class="col-md-10">
+                <a class="btn btn-default" href="https://gravatar.com" target="_blank">Update Avatar on Gravatar</a>
               </div>
             </div>
             <div class="form-group">
               <div class="col-md-10 col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-block btn-primary">Update User Settings</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-10 col-sm-offset-2 col-sm-10">
+                <a href="/users/update-password/">Looking to update your password?</a>
               </div>
             </div>
           </form>
