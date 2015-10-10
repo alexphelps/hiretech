@@ -42,10 +42,12 @@
           <h5>Minimum Qualifications</h5>
           {{ job.job_qualifications|markdown }}
         </div>
+        {% if job.job_notes %}
         <div class="m-t-30" class="">
           <h5>Additional Notes</h5>
           {{ job.job_notes|markdown }}
         </div>
+        {% endif %}
         {% if job.job_apply_method == "link" %}
           <a href="{{ job.job_apply_link }}" target="_blank" class="btn btn-primary btn-lg">Apply Now</a>
         {% else %}
