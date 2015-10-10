@@ -7,7 +7,7 @@
 {% block og_image %}{% if job.job_company.company_featured_image %}{{ job.job_company.company_featured_image_thumb.url }}{% else %}{{ job.job_company.company_logo_thumb.url }}{% endif %}{% endblock %}
 {% block twitter_description %}{{ job.job_description|truncatechars:100 }}{% endblock %}
 {% block twitter_title %}{{ job.job_title }} wanted at {{ job.job_company.company_name }}{% endblock %}
-{% block twitter_image %}{% static 'images/hiretech-logo.png' %}{% endblock %}
+{% block twitter_image %}{% if job.job_company.company_featured_image %}{{ job.job_company.company_featured_image_thumb.url }}{% else %}{{ job.job_company.company_logo_thumb.url }}{% endif %}{% endblock %}
 {% block content %}
 {% include 'header.html' %}
 {% load markdown_deux_tags %}
