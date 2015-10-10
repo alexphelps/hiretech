@@ -1,0 +1,27 @@
+{% autoescape on %}
+
+{% with "https://hiretech.io" as host %}
+{% with "Share in" as share_txt %}
+
+{% with "twitter" as service %}
+<a href="http://twitter.com/share?url={{ request.build_absolute_uri }}&amp;text={{ job.job_title }} wanted at {{ job.job_company.company_name  }}" target="_blank" title="{{ share_txt }} {{ service }}">
+    <i class="mdi mdi-twitter text-twitter icon-circle-bg"></i>
+</a>
+{% endwith%}
+
+{% with "facebook" as service %}
+<a href="http://www.facebook.com/share.php?u={{ request.build_absolute_uri }}&amp;text={{ job.job_title }} wanted at {{ job.job_company.company_name  }}" target="_blank" title="{{ share_txt }} {{ service }}">
+    <i class="mdi mdi-facebook text-facebook icon-circle-bg"></i>
+</a>
+{% endwith %}
+
+{% with "linkedin" as service %}
+<a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{ request.build_absolute_uri }}&amp;text={{ job.job_title }} wanted at {{ job.job_company.company_name  }}&amp;ro=false&amp;summary=&amp;source=" target="_blank" title="{{ share_txt }} {{ service }}">
+    <i class="mdi mdi-linkedin text-linkedin icon-circle-bg"></i>
+</a>
+{% endwith %}
+
+{% endwith %}
+{% endwith %}
+
+{% endautoescape %}

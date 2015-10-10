@@ -55,6 +55,8 @@
         {% endif %}
       </div>
       <div class="col-md-4">
+        <h5>Share</h5>
+        {% include 'jobsharebuttons.html' %}
         <h5>Employment Type</h5>
         <p><span class="job-type {{ job.job_type }}" itemprop="employmentType">{{ job.get_job_type_display }}</span></p>
         <h5>Tags</h5>
