@@ -65,6 +65,7 @@ class JobIndexViewTest(TestCase):
         company = Company.objects.create(
             company_name='Python Shop',
             company_logo= File(open(self.image_path)),
+            company_featured_image= File(open(self.image_path)),
             company_url='http://python.com',
         )
         job = Job.objects.create(
