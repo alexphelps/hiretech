@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User, Group
+from django.utils import timezone
 from taggit.managers import TaggableManager
 # Create your models here.
 
@@ -22,7 +23,7 @@ class Job(models.Model):
     job_qualifications = models.TextField(default='')
     job_notes = models.TextField(default='')
     job_created_date = models.DateTimeField('date created',auto_now_add=True,null=True)
-    job_expiration_date = models.DateTimeField(default=datetime.now() + timedelta(days=60))
+    job_expiration_date = models.DateTimeField(default=timezone.now() + timedelta(days=60))
     job_status_choices = (
         ('draft','Draft'),
         ('pending_review','Pending Review'),
