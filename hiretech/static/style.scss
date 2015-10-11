@@ -8,10 +8,35 @@
 body {
   font-size: 14px;
 }
+/* ==========================================================================
+   Blog Styles
+   ========================================================================== */
 body article.post {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 300;
 }
+.post .panel-heading {
+  height:320px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.post-meta {
+  background-color:#f8f8f8;
+}
+.post-title {
+  padding-top:24%;color:#fff;
+}
+.post-image-filter {
+  height: inherit;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.00)), to(rgba(0, 0, 0, 0.50)));
+  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.50));
+  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.50));
+  background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.50));
+  background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.50));
+  background-image: linear-gradient(top, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.50));
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#000000', EndColorStr='#000000');
+}
+
 .navbar-toggle .icon-bar {
   background-color:#2196F3;
 }

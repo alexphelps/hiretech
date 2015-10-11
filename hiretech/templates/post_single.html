@@ -13,35 +13,61 @@
 {% block content %}
 {% include 'header.html' %}
 {% load markdown_deux_tags %}
+{% load gravatar %}
+<style>
+</style>
 <div class="content">
 <section>
   <div class="container">
-  <article class="post col-md-10 col-md-offset-1">
-    <div class="row m-t-30">
-      <div class="col-md-12">
-        <div class="focal-point">
-          <div><img class="img-responsive" src="{{ post.featured_image_thumbnail.url }}" /></div>
+    <div class="row">
+      <article class="post col-md-10 col-md-offset-1">
+        <div class="panel m-t-20">
+          <div class="">
+            <div class="panel-heading" {% spaceless %}
+              style="background-image: url('{{ post.featured_image_thumbnail.url }}');"
+            {% endspaceless %}>
+            <div class="row post-image-filter">
+              <div class="col-md-12">
+                <h2 class="post-title">{{ post.title }}</h2>
+              </div>
+            </div>
+
+            </div>
+        </div>
+        <div class="post-meta">
+          <div class="p-20">
+            <div class="row">
+              <div class="col-md-12">
+                  <span class="author"><img class="img-circle m-l-10" src="{% gravatar_url post.author 30 %}"> {{ post.author.first_name }} {{ post.author.last_name }}</span>
+                  on <time>{{ post.published_date }}</time>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-body p-l-30 p-r-30">
+          {{ post.body|markdown }}
         </div>
       </div>
+      </article>
     </div>
-    <h3 class="post-title"><strong>{{ post.title }}</strong></h3>
-    <p class=""><span class="author">{{ post.author.first_name }} {{ post.author.last_name }}</span> wrote this on <time>{{ post.published_date }}</time></p>
-    {{ post.body|markdown }}
-  </article>
-  <div class="comments m-t-40">
+  <div class="comments m-t-20">
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
-        <div id="disqus_thread"></div>
-        <script type="text/javascript">
-            /* * * CONFIGURATION VARIABLES * * */
-            var disqus_shortname = 'hiretechio';
-            /* * * DON'T EDIT BELOW THIS LINE * * */
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-        </script>
+        <div class="panel">
+          <div class="panel-body">
+            <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                  /* * * CONFIGURATION VARIABLES * * */
+                  var disqus_shortname = 'hiretechio';
+                  /* * * DON'T EDIT BELOW THIS LINE * * */
+                  (function() {
+                      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                  })();
+              </script>
+            </div>
+        </div>
       </div>
     </div>
   </div>
