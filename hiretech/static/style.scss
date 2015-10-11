@@ -16,7 +16,7 @@ body article.post {
     font-weight: 300;
 }
 .post .panel-heading {
-  height:320px;
+  height:300px;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -25,6 +25,10 @@ body article.post {
 }
 .post-title {
   padding-top:24%;color:#fff;
+}
+.post .panel-footer {
+  background: #fff;
+  border-top: 1px solid #f8f8f8;
 }
 .post-image-filter {
   height: inherit;
