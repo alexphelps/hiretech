@@ -2,22 +2,45 @@
 {% block content %}
 {% include 'header.html' %}
 {% load markdown_deux_tags %}
+{% load gravatar %}
 <div class="container m-t-20">
   <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-10 col-md-offset-1">
         {% if post_list %}
           <!-- List group -->
             {% spaceless %}
             {% for post in post_list %}
                   <div class="row">
                     <div class="col-md-12">
-                      <a href="{{ post.slug }}"><img class="img-responsive" src="{{ post.featured_image_thumbnail.url }}"></a>
-                      <h4><strong>{{ post.title }}</strong><br>
-                        <small><span class="author">{{ post.author.first_name }} {{ post.author.last_name }}</span> wrote this on <time>{{ post.published_date }}</time></small>
-                      </h4>
-                        <p>{{ post.body|truncatechars:200 }}</p>
+                    <article class="post">
+                      <div class="panel m-t-20">
+                        <a href="{{ post.slug }}">
+                          <div class="panel-heading" {% spaceless %}
+                              style="background-image: url('{{ post.featured_image_thumbnail.url }}');"
+                            {% endspaceless %}>
+                            <div class="row post-image-filter">
+                              <div class="col-md-12">
+                                <h2 class="post-title">{{ post.title }}</h2>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                      <div class="post-meta">
+                        <div class="p-20">
+                          <div class="row">
+                            <div class="col-md-12">
+                                <span class="author"><img class="img-circle m-l-10" src="{% gravatar_url post.author 30 %}"> {{ post.author.first_name }} {{ post.author.last_name }}</span>
+                                on <time>{{ post.published_date }}</time>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel-body p-l-30 p-r-30">
+                        {{ post.body|truncatechars:200 }}
                         <p><a href="{{ post.slug }}" class="btn btn-sm">Read More</a></p>
-                        <hr>
+                      </div>
+                    </div>
+                    </article>
                     </div>
                   </div>
             {% endfor %}
