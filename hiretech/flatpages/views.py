@@ -15,7 +15,7 @@ class HomepageView(TemplateView):
         form = CustomSearchForm(request.GET, searchqueryset=None)
         user = request.user
         recent_five_jobs_list = Job.objects.filter(job_status='published').order_by('-job_created_date')[:5]
-        recent_post_list = Post.objects.filter(status='published').order_by('-published_date')[:3]
+        recent_post_list = Post.objects.filter(status='published').order_by('published_date')[:3]
         context = {
             'user':user,
             'form': form,
